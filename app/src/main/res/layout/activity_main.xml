@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/panel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_profile" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/panel"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:background="@color/panel"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/open_profile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/panel_button"
+            android:contentDescription="profile"
+            android:onClick="onPanelClick"
+            app:srcCompat="@drawable/user" />
+
+        <ImageButton
+            android:id="@+id/open_achievements_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/panel_button"
+            android:contentDescription="achievements"
+            android:onClick="onPanelClick"
+            app:srcCompat="@drawable/star" />
+
+        <ImageButton
+            android:id="@+id/open_tasks_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/panel_button"
+            android:contentDescription="notifications"
+            android:onClick="onPanelClick"
+            app:srcCompat="@drawable/code" />
+
+        <ImageButton
+            android:id="@+id/open_events_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/panel_button"
+            android:contentDescription="events"
+            android:onClick="onPanelClick"
+            app:srcCompat="@drawable/calendar" />
+
+        <ImageButton
+            android:id="@+id/open_notifications_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/panel_button"
+            android:contentDescription="notifications"
+            android:onClick="onPanelClick"
+            app:srcCompat="@drawable/bell" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
