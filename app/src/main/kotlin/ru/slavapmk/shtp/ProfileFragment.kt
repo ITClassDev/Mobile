@@ -1,10 +1,13 @@
 package ru.slavapmk.shtp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import ru.slavapmk.shtp.MainActivity.Companion.fmanager
 
 /**
  * A simple [Fragment] subclass.
@@ -26,7 +29,22 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val inflate = inflater.inflate(R.layout.fragment_profile, container, false)
+
+
+        val findViewById = inflate?.findViewById<ImageButton>(R.id.imageButton11)
+        Log.d("TAG", findViewById.toString())
+        findViewById?.setOnClickListener {
+            fmanager
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .remove(this)
+                    .add(R.id.fragmentContainer, SettingsFragment.newInstance("", ""))
+                    .addToBackStack("backstack")
+                    .commit()
+        }
+
+        return inflate
     }
 
     companion object {

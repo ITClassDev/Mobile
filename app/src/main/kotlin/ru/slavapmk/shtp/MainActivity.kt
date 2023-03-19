@@ -1,28 +1,32 @@
 package ru.slavapmk.shtp
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
 class MainActivity : AppCompatActivity() {
     private val panelButtons: java.util.HashMap<String, ImageButton> = java.util.HashMap<String, ImageButton>()
-    private val fragmentManager: androidx.fragment.app.FragmentManager = supportFragmentManager
     private val fragmentClassesList: java.util.HashMap<String, Fragment> = java.util.HashMap<String, Fragment>()
     private val fragmentLayoutsList: java.util.HashMap<String, Int> = java.util.HashMap<String, Int>()
     private var currentFragment: Fragment? = null
+
+    companion object {
+        lateinit var fmanager: FragmentManager
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        fmanager = supportFragmentManager
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val panel: LinearLayout = findViewById(R.id.panel)
-        for (i in 0 until panel.childCount) {
-            val button: ImageButton = panel.getChildAt(i) as ImageButton
+        val bottomPanel: LinearLayout = findViewById(R.id.panel)
+        for (i in 0 until bottomPanel.childCount) {
+            val button: ImageButton = bottomPanel.getChildAt(i) as ImageButton
             panelButtons[getResourceEntryName(button)] = button
         }
-        panel.getChildAt(0).isSelected = true
+        bottomPanel.getChildAt(0).isSelected = true
         fragmentClassesList["profile"] = ProfileFragment.newInstance("", "")
         fragmentClassesList["achievements"] = AchievementsFragment.newInstance("", "")
         fragmentClassesList["tasks"] = TasksFragment.newInstance("", "")
@@ -47,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun openFragment(fragmentName: String) {
         val fragment: Fragment? = fragmentClassesList[fragmentName]
-        val fragmentTransaction: androidx.fragment.app.FragmentTransaction = getSupportFragmentManager()
+        val fragmentTransaction: androidx.fragment.app.FragmentTransaction = supportFragmentManager
                 .beginTransaction()
                 .setReorderingAllowed(true)
         if (currentFragment != null) fragmentTransaction.remove(currentFragment!!)
@@ -61,16 +65,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun getResourceEntryName(view: android.view.View): String {
         return view.resources.getResourceEntryName(view.id)
-    }
-
-    private fun getColorById(@ColorRes id: Int): Int {
-        val resources: android.content.res.Resources = resources
-        return resources.getColor(id, theme)
-    }
-
-    private fun getDrawableByName(name: String): Drawable {
-        val resources: android.content.res.Resources = resources
-        val resourceId: Int = resources.getIdentifier(name, "drawable", packageName)
-        return resources.getDrawable(resourceId, theme)
     }
 }
