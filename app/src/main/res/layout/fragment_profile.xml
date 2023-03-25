@@ -59,7 +59,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="328dp"
-                android:layout_height="44dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="@+id/textView"
@@ -73,7 +73,7 @@
                     android:background="@drawable/rounded_bg1"
                     android:contentDescription="ffff"
                     android:contextClickable="true"
-                    android:src="@drawable/github"
+                    android:src="@drawable/soc_github_30"
                     android:tooltipText="ffff" />
 
                 <ImageButton
@@ -84,18 +84,18 @@
                     android:background="@drawable/rounded_bg1"
                     android:contentDescription="ffff"
                     android:contextClickable="true"
-                    android:src="@drawable/telegram"
+                    android:src="@drawable/soc_telegram_30"
                     android:tooltipText="ffff" />
 
                 <ImageButton
                     android:id="@+id/gh3"
                     android:layout_width="75dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="75dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_bg1"
                     android:contentDescription="ffff"
                     android:contextClickable="true"
-                    android:src="@drawable/stepik"
+                    android:src="@drawable/soc_stepik_30"
                     android:tooltipText="ffff" />
 
                 <ImageButton
@@ -106,7 +106,7 @@
                     android:background="@drawable/rounded_bg1"
                     android:contentDescription="ffff"
                     android:contextClickable="true"
-                    android:src="@drawable/kaggle"
+                    android:src="@drawable/soc_kaggle_30"
                     android:tooltipText="ffff" />
 
                 <ImageButton
@@ -117,7 +117,7 @@
                     android:background="@drawable/rounded_bg1"
                     android:contentDescription="ffff"
                     android:contextClickable="true"
-                    android:src="@drawable/global"
+                    android:src="@drawable/soc_personal_30"
                     android:tooltipText="ffff" />
 
             </LinearLayout>

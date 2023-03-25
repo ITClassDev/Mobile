@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
                 .setReorderingAllowed(true)
         if (currentFragment != null) fragmentTransaction.remove(currentFragment!!)
         if (fragment != null) {
-            fragmentTransaction.add(R.id.fragmentContainer, fragment)
+            fragmentTransaction
+                    .add(R.id.fragmentContainer, fragment)
                     .addToBackStack("backstack")
                     .commit()
         }

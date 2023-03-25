@@ -40,7 +40,7 @@
             android:backgroundTint="@color/panel_button"
             android:contentDescription="profile"
             android:onClick="onPanelClick"
-            app:srcCompat="@drawable/user" />
+            app:srcCompat="@drawable/panel_user" />
 
         <ImageButton
             android:id="@+id/open_achievements_button"
@@ -50,7 +50,7 @@
             android:backgroundTint="@color/panel_button"
             android:contentDescription="achievements"
             android:onClick="onPanelClick"
-            app:srcCompat="@drawable/star" />
+            app:srcCompat="@drawable/panel_star" />
 
         <ImageButton
             android:id="@+id/open_tasks_button"
@@ -60,7 +60,7 @@
             android:backgroundTint="@color/panel_button"
             android:contentDescription="notifications"
             android:onClick="onPanelClick"
-            app:srcCompat="@drawable/code" />
+            app:srcCompat="@drawable/panel_code" />
 
         <ImageButton
             android:id="@+id/open_events_button"
@@ -70,7 +70,7 @@
             android:backgroundTint="@color/panel_button"
             android:contentDescription="events"
             android:onClick="onPanelClick"
-            app:srcCompat="@drawable/calendar" />
+            app:srcCompat="@drawable/panel_calendar" />
 
         <ImageButton
             android:id="@+id/open_notifications_button"
@@ -80,7 +80,7 @@
             android:backgroundTint="@color/panel_button"
             android:contentDescription="notifications"
             android:onClick="onPanelClick"
-            app:srcCompat="@drawable/bell" />
+            app:srcCompat="@drawable/panel_bell" />
 
     </LinearLayout>
 
