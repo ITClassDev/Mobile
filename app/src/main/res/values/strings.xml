@@ -1,5 +1,44 @@
 <resources>
     <string name="app_name">ShTP</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_user_name">User Name</string>
+    <string name="button_personal_github">GitHub Account</string>
+    <string name="button_personal_telegram">Telegram Account</string>
+    <string name="button_personal_stepik">Stepik Account</string>
+    <string name="button_personal_kaggle">Kaggle Account</string>
+    <string name="button_personal_link">Personal Site</string>
+    <string name="default_user_values" translatable="false">NaN</string>
+    <string name="user_score">Score</string>
+    <string name="user_solved">Solved</string>
+    <string name="user_position">Position</string>
+    <string name="user_open_more">Open more</string>
+    <string name="settings_button_description">Settings</string>
+    <string name="upcoming_event">Upcoming event</string>
+    <string name="settings_header">Account Settings</string>
+    <string name="save_button">Save</string>
+    <string name="settings_profile_about_hint">About you</string>
+    <string name="settings_auth_current_password">Current Password</string>
+    <string name="settings_auth_new_password">New Password</string>
+    <string name="settings_auth_password_retry">Retry Password</string>
+    <string name="logo_description_github" translatable="false">GitHub</string>
+    <string name="logo_description_telegram" translatable="false">Telegram</string>
+    <string name="logo_description_stepik" translatable="false">Stepik</string>
+    <string name="logo_description_kaggle" translatable="false">Kaggle</string>
+    <string name="logo_description_personal">Personal website</string>
+    <string name="personal_input_github">GitHub Username</string>
+    <string name="personal_input_telegram">Telegram Nickname</string>
+    <string name="personal_input_stepik">Stepik Nickname</string>
+    <string name="personal_input_kaggle">Kaggle Nickname</string>
+    <string name="personal_input_personal">Personal URL</string>
+    <string name="achievements_header">Achievements</string>
+    <string name="events_header">Events</string>
+    <string name="notifications_header">Notifications</string>
+    <string name="tasks_header">Tasks</string>
+    <string name="settings_auth_header">Authentication</string>
+    <string name="settings_links_header">Social Links</string>
+    <string name="settings_information_header">Basic information</string>
+    <string name="home_open_profile">Profile</string>
+    <string name="home_open_achievements">Achievements</string>
+    <string name="home_open_tasks">Tasks</string>
+    <string name="home_open_events">Events</string>
+    <string name="home_open_notifications">Notifications</string>
 </resources>

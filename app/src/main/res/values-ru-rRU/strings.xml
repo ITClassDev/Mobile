@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ШТП</string>
+    <string name="app_name">"ШТП"</string>
+    <string name="settings_button_description">Настройки</string>
+    <string name="default_user_name">Имя Пользователя</string>
+    <string name="button_personal_github">Аккаунт GitHub</string>
+    <string name="button_personal_telegram">Аккаунт Telegram</string>
+    <string name="button_personal_stepik">Аккаунт Stepik</string>
+    <string name="button_personal_kaggle">Аккаунт Kaggle</string>
+    <string name="button_personal_link">Персональный сайт</string>
+    <string name="user_score">Очков</string>
+    <string name="user_solved">Решено</string>
+    <string name="user_position">Позиция</string>
+    <string name="user_open_more">Подробнее</string>
+    <string name="upcoming_event">Ближайшее мероприятие</string>
+    <string name="settings_header">Настройки Аккаунта</string>
+    <string name="tasks_header">Задачи</string>
+    <string name="settings_auth_header">Аутентификация</string>
+    <string name="settings_links_header">Социальные ссылки</string>
+    <string name="settings_information_header">Основная информация</string>
+    <string name="save_button">Сохранить</string>
+    <string name="settings_profile_about_hint">О себе</string>
+    <string name="settings_auth_current_password">Текущий пароль</string>
+    <string name="settings_auth_new_password">Новый пароль</string>
+    <string name="settings_auth_password_retry">Повтор пароля</string>
+    <string name="logo_description_personal">Персональный сайт</string>
+    <string name="personal_input_github">Никнейм GitHub</string>
+    <string name="personal_input_telegram">Никнейм Telegram</string>
+    <string name="personal_input_stepik">Никнейм Stepik</string>
+    <string name="personal_input_kaggle">Никнейм Kaggle</string>
+    <string name="personal_input_personal">URL Своего сайта</string>
+    <string name="achievements_header">Достижения</string>
+    <string name="events_header">Мероприятия</string>
+    <string name="notifications_header">Уведомления</string>
+    <string name="home_open_profile">Профиль</string>
+    <string name="home_open_achievements">Достижения</string>
+    <string name="home_open_tasks">Задачи</string>
+    <string name="home_open_events">Мероприятия</string>
+    <string name="home_open_notifications">Уведомления</string>
 </resources>

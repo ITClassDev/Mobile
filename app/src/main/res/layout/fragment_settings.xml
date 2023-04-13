@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,345 +7,364 @@
     android:background="@color/background"
     tools:context=".SettingsFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:lines="2"
+            android:text="@string/settings_header"
+            android:textColor="@android:color/white"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="@id/soc_links_group"
+            app:layout_constraintStart_toStartOf="@id/soc_links_group"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:id="@+id/soc_links_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginRight="40dp"
+            android:background="#434648"
+            android:paddingBottom="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView10">
 
             <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:id="@+id/links_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#5A5D60"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
-                android:lines="2"
-                android:text="Настройки\nАкканта"
-                android:textColor="@color/white"
-                android:textSize="34sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/settings_links_header"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/soc_links_group"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/links_list"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginRight="40dp"
-                android:background="#434648"
-                android:paddingBottom="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView10">
-
-                <TextView
-                    android:id="@+id/links_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="#5A5D60"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center"
-                    android:text="Социальные ссылки"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/links_text">
 
                 <LinearLayout
-                    android:id="@+id/links_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:orientation="vertical"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/links_text">
+                    android:layout_height="match_parent"
+                    android:divider="@drawable/divider_20"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
 
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/logo_description_github"
+                        android:src="@drawable/soc_github_30" />
+
+                    <EditText
+                        android:id="@+id/github_soc_input"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:divider="@drawable/divider_20"
-                        android:orientation="horizontal"
-                        android:showDividers="middle">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/soc_github_30" />
-
-                        <EditText
-                            android:id="@+id/github_soc_input"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="text"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:divider="@drawable/divider_20"
-                        android:orientation="horizontal"
-                        android:showDividers="middle">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/soc_telegram_30" />
-
-                        <EditText
-                            android:id="@+id/telegram_soc_input"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="text"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:divider="@drawable/divider_20"
-                        android:orientation="horizontal"
-                        android:showDividers="middle">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/soc_stepik_30" />
-
-                        <EditText
-                            android:id="@+id/stepik_soc_input"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="text"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:divider="@drawable/divider_20"
-                        android:orientation="horizontal"
-                        android:showDividers="middle">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/soc_kaggle_30" />
-
-                        <EditText
-                            android:id="@+id/kaggle_soc_input"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="text"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:divider="@drawable/divider_20"
-                        android:orientation="horizontal"
-                        android:showDividers="middle">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/soc_personal_30" />
-
-                        <EditText
-                            android:id="@+id/personal_soc_input"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:inputType="text"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
+                        android:layout_height="50dp"
+                        android:autofillHints="username"
+                        android:hint="@string/personal_input_github"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:theme="@style/MyEditTextStyle2"
+                        android:textColorHint="@android:color/darker_gray"
+                        />
                 </LinearLayout>
 
-                <Button
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/selected_button_background"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center"
-                    android:text="Сохранить"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/links_list" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@drawable/divider_20"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/logo_description_telegram"
+                        android:src="@drawable/soc_telegram_30" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/bio_group_info"
-                android:layout_width="0dp"
+                    <EditText
+                        android:id="@+id/telegram_soc_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autofillHints="username"
+                        android:hint="@string/personal_input_telegram"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:theme="@style/MyEditTextStyle2"
+                        android:textColorHint="@android:color/darker_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@drawable/divider_20"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/logo_description_stepik"
+                        android:src="@drawable/soc_stepik_30" />
+
+                    <EditText
+                        android:id="@+id/stepik_soc_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autofillHints="username"
+                        android:hint="@string/personal_input_stepik"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:theme="@style/MyEditTextStyle2"
+                        android:textColorHint="@android:color/darker_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@drawable/divider_20"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/logo_description_kaggle"
+                        android:src="@drawable/soc_kaggle_30" />
+
+                    <EditText
+                        android:id="@+id/kaggle_soc_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autofillHints="username"
+                        android:hint="@string/personal_input_kaggle"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:theme="@style/MyEditTextStyle2"
+                        android:textColorHint="@android:color/darker_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@drawable/divider_20"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/logo_description_personal"
+                        android:src="@drawable/soc_personal_30" />
+
+                    <EditText
+                        android:id="@+id/personal_soc_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autofillHints="notApplicable"
+                        android:hint="@string/personal_input_personal"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:theme="@style/MyEditTextStyle2"
+                        android:textColorHint="@android:color/darker_gray" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="40dp"
-                android:background="#434648"
-                android:paddingBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/selected_button_background"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="@string/save_button"
+                android:textColor="@android:color/white"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/soc_links_group">
-
-                <TextView
-                    android:id="@+id/bio_profile_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="#5A5D60"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center"
-                    android:text="Основная информация"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/bio_input_about"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bio_profile_header">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Profile about" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/selected_button_background"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center"
-                    android:text="Сохранить"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bio_input_about" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/auth_group_info"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="40dp"
-                android:background="#434648"
-                android:paddingBottom="10dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bio_group_info">
-
-                <TextView
-                    android:id="@+id/auth_profile_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="#5A5D60"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center"
-                    android:text="Аутентификация"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/current_password_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/auth_profile_header">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|bottom"
-                        android:hint="Текущий пароль" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/new_password_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/current_password_input">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|bottom"
-                        android:hint="Новый пароль" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/repeat_password_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/new_password_input">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|bottom"
-                        android:hint="Повтор пароля" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/selected_button_background"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center"
-                    android:text="Сохранить"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/repeat_password_input" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@id/links_list" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bio_group_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#434648"
+            android:paddingBottom="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/soc_links_group">
+
+            <TextView
+                android:id="@+id/bio_profile_header"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#5A5D60"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="@string/settings_information_header"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bio_input_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bio_profile_header">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/settings_profile_about_hint" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/selected_button_background"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="@string/save_button"
+                android:textColor="@android:color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bio_input_about" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/auth_group_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#434648"
+            android:paddingBottom="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bio_group_info">
+
+            <TextView
+                android:id="@+id/auth_profile_header"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#5A5D60"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="@string/settings_auth_header"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/current_password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/auth_profile_header">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|bottom"
+                    android:hint="@string/settings_auth_current_password" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/new_password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/current_password_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|bottom"
+                    android:hint="@string/settings_auth_new_password" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/repeat_password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/new_password_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|bottom"
+                    android:hint="@string/settings_auth_password_retry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/selected_button_background"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="@string/save_button"
+                android:textColor="@android:color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/repeat_password_input" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
