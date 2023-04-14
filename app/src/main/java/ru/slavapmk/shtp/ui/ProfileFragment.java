@@ -1,4 +1,4 @@
-package ru.slavapmk.shtp;
+package ru.slavapmk.shtp.ui;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import androidx.fragment.app.Fragment;
-import static ru.slavapmk.shtp.MainActivity.fmanager;
+import static ru.slavapmk.shtp.ui.MainActivity.fmanager;
+
+import ru.slavapmk.shtp.R;
 
 public class ProfileFragment extends Fragment {
     private String mParam1;

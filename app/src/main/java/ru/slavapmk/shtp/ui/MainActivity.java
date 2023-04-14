@@ -1,4 +1,4 @@
-package ru.slavapmk.shtp;
+package ru.slavapmk.shtp.ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +12,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.HashMap;
 
+import ru.slavapmk.shtp.R;
+
 public class MainActivity extends AppCompatActivity {
+    public static final String ENDPOINT_URL = "http://localhost:8080/";
     private HashMap<String, ImageButton> panelButtons = new HashMap<>();
     private HashMap<String, Fragment> fragmentClassesList = new HashMap<>();
     private HashMap<String, Integer> fragmentLayoutsList = new HashMap<>();
@@ -57,17 +60,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void openFragment(String fragmentName) {
         Fragment fragment = fragmentClassesList.get(fragmentName);
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager()
-                .beginTransaction()
-                .setReorderingAllowed(true);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().setReorderingAllowed(true);
         if (currentFragment != null) {
             fragmentTransaction.remove(currentFragment);
         }
         if (fragment != null) {
-            fragmentTransaction
-                    .add(R.id.fragmentContainer, fragment)
-                    .addToBackStack("backstack")
-                    .commit();
+            fragmentTransaction.add(R.id.fragmentContainer, fragment).addToBackStack("backstack").commit();
         }
         currentFragment = fragment;
     }

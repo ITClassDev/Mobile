@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/panel"
@@ -20,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/fragment_profile" />
+
     </FrameLayout>
 
     <LinearLayout
@@ -83,5 +85,16 @@
             app:srcCompat="@drawable/panel_bell" />
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/frameLayout"
+        app:layout_constraintEnd_toEndOf="@id/frameLayout"
+        app:layout_constraintStart_toStartOf="@id/frameLayout"
+        app:layout_constraintTop_toTopOf="@id/frameLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

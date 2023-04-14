@@ -1,10 +1,12 @@
-package ru.slavapmk.shtp;
+package ru.slavapmk.shtp.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
+
+import ru.slavapmk.shtp.R;
 
 /**
  * A simple {@link Fragment} subclass.
