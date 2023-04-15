@@ -41,4 +41,5 @@
     <string name="home_open_tasks">Tasks</string>
     <string name="home_open_events">Events</string>
     <string name="home_open_notifications">Notifications</string>
+    <string name="user_name" translatable="false">%1$s %2$s</string>
 </resources>
