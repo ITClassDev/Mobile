@@ -7,13 +7,12 @@ android {
     namespace 'ru.slavapmk.shtp'
     compileSdk 33
 
-
     defaultConfig {
         applicationId "ru.slavapmk.shtp"
         minSdk 26
         targetSdk 33
         versionCode 1
-        versionName "0.0.9.1"
+        versionName "0.0.10"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,12 +30,16 @@ android {
     lint {
         disable 'MissingTranslation'
     }
+    viewBinding.enabled = true
 }
 
 dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-protobuf:2.9.0'
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'jp.wasabeef:picasso-transformations:2.4.0'
+    implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'

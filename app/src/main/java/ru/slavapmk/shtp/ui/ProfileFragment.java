@@ -1,5 +1,6 @@
 package ru.slavapmk.shtp.ui;
 
+import static ru.slavapmk.shtp.Values.ENDPOINT_URL;
 import static ru.slavapmk.shtp.ui.MainActivity.fmanager;
 
 import android.content.Intent;
@@ -9,10 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.Locale;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 import ru.slavapmk.shtp.R;
 import ru.slavapmk.shtp.Values;
 
@@ -34,12 +41,19 @@ public class ProfileFragment extends Fragment {
                 Values.user.getFirstName(),
                 Values.user.getLastName()
         ));
-        inflate.<TextView>findViewById(R.id.textView6).setText(Integer.toString(Values.user.getRating()));
+        inflate.<TextView>findViewById(R.id.textView6).setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
         inflate.<ImageButton>findViewById(R.id.gh).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getUserGithub()))));
         inflate.<ImageButton>findViewById(R.id.gh2).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
         inflate.<ImageButton>findViewById(R.id.gh3).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getUserStepik()))));
         inflate.<ImageButton>findViewById(R.id.gh4).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getUserKaggle()))));
         inflate.<ImageButton>findViewById(R.id.gh5).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Values.user.getUserWebsite()))));
+
+        Picasso
+                .get()
+                .load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath())
+                .transform(new CropCircleTransformation())
+                .into(inflate.<ImageView>findViewById(R.id.imageView2));
+
         return inflate;
     }
 

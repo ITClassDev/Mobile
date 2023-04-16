@@ -4,20 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
 import ru.slavapmk.shtp.R
-import ru.slavapmk.shtp.Values
-import ru.slavapmk.shtp.Values.api
-import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
+import ru.slavapmk.shtp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val panelButtons = HashMap<String, ImageButton>()

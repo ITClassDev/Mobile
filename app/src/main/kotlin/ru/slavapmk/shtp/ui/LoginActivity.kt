@@ -48,14 +48,14 @@ class LoginActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val authLogin =
-                    Values.api.authLogin(
+                    Values.api.login(
                         AuthLoginRequest(
                             loginInput.text.toString(),
                             passwordInput.text.toString()
                         )
                     )
                 Values.token = "Bearer ${authLogin.accessToken}"
-                Values.user = Values.api.authMe(Values.token).user
+                Values.user = Values.api.getMe(Values.token).user
                 runOnUiThread {
                     val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
                     this@LoginActivity.startActivity(myIntent)

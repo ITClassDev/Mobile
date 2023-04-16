@@ -31,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="48dp"
             android:layout_marginRight="40dp"
             android:background="#434648"
             android:paddingBottom="10dp"
@@ -60,7 +60,9 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/links_text">
@@ -85,11 +87,10 @@
                         android:layout_height="50dp"
                         android:autofillHints="username"
                         android:hint="@string/personal_input_github"
-                        android:inputType="text"
+                        android:inputType="textPersonName"
                         android:textColor="@android:color/white"
-                        android:theme="@style/MyEditTextStyle2"
                         android:textColorHint="@android:color/darker_gray"
-                        />
+                        android:theme="@style/MyEditTextStyle2" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -112,10 +113,10 @@
                         android:layout_height="50dp"
                         android:autofillHints="username"
                         android:hint="@string/personal_input_telegram"
-                        android:inputType="text"
+                        android:inputType="textPersonName"
                         android:textColor="@android:color/white"
-                        android:theme="@style/MyEditTextStyle2"
-                        android:textColorHint="@android:color/darker_gray" />
+                        android:textColorHint="@android:color/darker_gray"
+                        android:theme="@style/MyEditTextStyle2" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -138,10 +139,10 @@
                         android:layout_height="50dp"
                         android:autofillHints="username"
                         android:hint="@string/personal_input_stepik"
-                        android:inputType="text"
+                        android:inputType="numberDecimal"
                         android:textColor="@android:color/white"
-                        android:theme="@style/MyEditTextStyle2"
-                        android:textColorHint="@android:color/darker_gray" />
+                        android:textColorHint="@android:color/darker_gray"
+                        android:theme="@style/MyEditTextStyle2" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -164,10 +165,10 @@
                         android:layout_height="50dp"
                         android:autofillHints="username"
                         android:hint="@string/personal_input_kaggle"
-                        android:inputType="text"
+                        android:inputType="textPersonName"
                         android:textColor="@android:color/white"
-                        android:theme="@style/MyEditTextStyle2"
-                        android:textColorHint="@android:color/darker_gray" />
+                        android:textColorHint="@android:color/darker_gray"
+                        android:theme="@style/MyEditTextStyle2" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -190,25 +191,12 @@
                         android:layout_height="50dp"
                         android:autofillHints="notApplicable"
                         android:hint="@string/personal_input_personal"
-                        android:inputType="text"
+                        android:inputType="textUri"
                         android:textColor="@android:color/white"
-                        android:theme="@style/MyEditTextStyle2"
-                        android:textColorHint="@android:color/darker_gray" />
+                        android:textColorHint="@android:color/darker_gray"
+                        android:theme="@style/MyEditTextStyle2" />
                 </LinearLayout>
             </LinearLayout>
-
-            <Button
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/selected_button_background"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:text="@string/save_button"
-                android:textColor="@android:color/white"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/links_list" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -244,30 +232,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bio_profile_header">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/about_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:hint="@string/settings_profile_about_hint" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/selected_button_background"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:text="@string/save_button"
-                android:textColor="@android:color/white"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bio_input_about" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -313,7 +293,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center|bottom"
-                    android:hint="@string/settings_auth_current_password" />
+                    android:hint="@string/settings_auth_current_password"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -331,7 +312,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center|bottom"
-                    android:hint="@string/settings_auth_new_password" />
+                    android:hint="@string/settings_auth_new_password"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -341,6 +323,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/new_password_input">
@@ -349,22 +333,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center|bottom"
-                    android:hint="@string/settings_auth_password_retry" />
+                    android:hint="@string/settings_auth_password_retry"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/selected_button_background"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:text="@string/save_button"
-                android:textColor="@android:color/white"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/repeat_password_input" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/save_button"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/auth_group_info"
+            app:layout_constraintStart_toStartOf="@id/auth_group_info"
+            app:layout_constraintTop_toBottomOf="@id/auth_group_info" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

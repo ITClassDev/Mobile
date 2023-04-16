@@ -33,7 +33,7 @@
     <string name="events_header">Events</string>
     <string name="notifications_header">Notifications</string>
     <string name="tasks_header">Tasks</string>
-    <string name="settings_auth_header">Authentication</string>
+    <string name="settings_auth_header">Change password</string>
     <string name="settings_links_header">Social Links</string>
     <string name="settings_information_header">Basic information</string>
     <string name="home_open_profile">Profile</string>

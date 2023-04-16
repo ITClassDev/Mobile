@@ -15,7 +15,7 @@
     <string name="upcoming_event">Ближайшее мероприятие</string>
     <string name="settings_header">Настройки Аккаунта</string>
     <string name="tasks_header">Задачи</string>
-    <string name="settings_auth_header">Аутентификация</string>
+    <string name="settings_auth_header">Смена пароля</string>
     <string name="settings_links_header">Социальные ссылки</string>
     <string name="settings_information_header">Основная информация</string>
     <string name="save_button">Сохранить</string>

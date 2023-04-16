@@ -1,6 +1,6 @@
-package ru.slavapmk.shtp.io.dto.auth
+package ru.slavapmk.shtp.io.dto.user
 
-data class User(
+data class UserFull(
     val firstName: String,
     val groupId: Any,
     val id: Int,
@@ -11,12 +11,12 @@ data class User(
     val rating: Int,
     val systemAchievements: Any,
     val techStack: Any,
-    val userAboutText: Any,
+    val userAboutText: String,
     val userAvatarPath: Any,
-    val userGithub: Any,
-    val userKaggle: Any,
+    val userGithub: String,
+    val userKaggle: String,
     val userRole: Int,
-    val userStepik: Any,
-    val userTelegram: Any,
+    val userStepik: String,
+    val userTelegram: String,
     val userWebsite: String
 )
