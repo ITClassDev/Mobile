@@ -86,15 +86,4 @@
 
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/loadingBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@id/frameLayout"
-        app:layout_constraintEnd_toEndOf="@id/frameLayout"
-        app:layout_constraintStart_toStartOf="@id/frameLayout"
-        app:layout_constraintTop_toTopOf="@id/frameLayout" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

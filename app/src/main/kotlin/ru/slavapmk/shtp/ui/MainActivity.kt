@@ -14,11 +14,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
-import ru.slavapmk.shtp.io.ServerAPI
+import ru.slavapmk.shtp.Values.api
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 
 class MainActivity : AppCompatActivity() {
@@ -52,26 +50,6 @@ class MainActivity : AppCompatActivity() {
         fragmentLayoutsList["events"] = R.layout.fragment_events
         fragmentLayoutsList["notifications"] = R.layout.fragment_notifications
         openFragment("profile")
-        val retrofit = Retrofit.Builder().baseUrl(Values.ENDPOINT_URL)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-        val api = retrofit.create(ServerAPI::class.java)
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val authLogin = api.authLogin(AuthLoginRequest("testuser@mail.com", "qwerty"))
-                Values.token = "Bearer ${authLogin.accessToken}"
-                Values.user = api.authMe(Values.token).user
-                runOnUiThread {
-                    findViewById<TextView>(R.id.userNameLastName).text = resources.getString(
-                        R.string.user_name, Values.user.firstName, Values.user.lastName
-                    )
-                    findViewById<ProgressBar>(R.id.loadingBar).visibility = View.GONE
-                }
-            } catch (e: HttpException) {
-                runOnUiThread {
-                    Toast.makeText(this@MainActivity, "Incorrect", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
     }
 
     fun onPanelClick(view: View) {

@@ -42,4 +42,8 @@
     <string name="home_open_events">Events</string>
     <string name="home_open_notifications">Notifications</string>
     <string name="user_name" translatable="false">%1$s %2$s</string>
+    <string name="login_field_email">Email</string>
+    <string name="login_field_password">Password</string>
+    <string name="login_field_login_button">Log in</string>
+    <string name="login_field_incorrect_data">Incorrect email or password</string>
 </resources>

@@ -18,5 +18,5 @@ data class User(
     val userRole: Int,
     val userStepik: Any,
     val userTelegram: Any,
-    val userWebsite: Any
+    val userWebsite: String
 )

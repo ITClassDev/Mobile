@@ -37,4 +37,8 @@
     <string name="home_open_tasks">Задачи</string>
     <string name="home_open_events">Мероприятия</string>
     <string name="home_open_notifications">Уведомления</string>
+    <string name="login_field_email">Почта</string>
+    <string name="login_field_password">Пароль</string>
+    <string name="login_field_login_button">Войти</string>
+    <string name="login_field_incorrect_data">Неверная почта или пароль</string>
 </resources>

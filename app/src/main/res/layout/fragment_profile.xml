@@ -72,6 +72,7 @@
                 android:contentDescription="@string/button_personal_github"
                 android:contextClickable="true"
                 android:src="@drawable/soc_github_30"
+                android:onClick="gh1"
                 android:tooltipText="@string/button_personal_github" />
 
             <ImageButton
@@ -83,6 +84,7 @@
                 android:contentDescription="@string/button_personal_telegram"
                 android:contextClickable="true"
                 android:src="@drawable/soc_telegram_30"
+                android:onClick="gh2"
                 android:tooltipText="@string/button_personal_telegram" />
 
             <ImageButton
@@ -94,6 +96,7 @@
                 android:contentDescription="@string/button_personal_stepik"
                 android:contextClickable="true"
                 android:src="@drawable/soc_stepik_30"
+                android:onClick="gh3"
                 android:tooltipText="@string/button_personal_stepik" />
 
             <ImageButton
@@ -105,6 +108,7 @@
                 android:contentDescription="@string/button_personal_kaggle"
                 android:contextClickable="true"
                 android:src="@drawable/soc_kaggle_30"
+                android:onClick="gh4"
                 android:tooltipText="@string/button_personal_kaggle" />
 
             <ImageButton
@@ -116,6 +120,7 @@
                 android:contentDescription="@string/button_personal_link"
                 android:contextClickable="true"
                 android:src="@drawable/soc_personal_30"
+                android:onClick="gh5"
                 android:tooltipText="@string/button_personal_link" />
 
         </LinearLayout>
@@ -129,7 +134,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button9">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <LinearLayout
                 android:layout_width="111dp"
@@ -210,18 +215,18 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#1668DC"
-            android:backgroundTintMode="add"
-            android:text="@string/user_open_more"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        <!--        <Button-->
+        <!--            android:id="@+id/button9"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:backgroundTint="#1668DC"-->
+        <!--            android:backgroundTintMode="add"-->
+        <!--            android:text="@string/user_open_more"-->
+        <!--            android:textColor="#FFFFFF"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />-->
 
 
         <TextView
