@@ -72,7 +72,6 @@
                 android:contentDescription="@string/button_personal_github"
                 android:contextClickable="true"
                 android:src="@drawable/soc_github_30"
-                android:onClick="gh1"
                 android:tooltipText="@string/button_personal_github" />
 
             <ImageButton
@@ -84,7 +83,6 @@
                 android:contentDescription="@string/button_personal_telegram"
                 android:contextClickable="true"
                 android:src="@drawable/soc_telegram_30"
-                android:onClick="gh2"
                 android:tooltipText="@string/button_personal_telegram" />
 
             <ImageButton
@@ -96,7 +94,6 @@
                 android:contentDescription="@string/button_personal_stepik"
                 android:contextClickable="true"
                 android:src="@drawable/soc_stepik_30"
-                android:onClick="gh3"
                 android:tooltipText="@string/button_personal_stepik" />
 
             <ImageButton
@@ -108,7 +105,6 @@
                 android:contentDescription="@string/button_personal_kaggle"
                 android:contextClickable="true"
                 android:src="@drawable/soc_kaggle_30"
-                android:onClick="gh4"
                 android:tooltipText="@string/button_personal_kaggle" />
 
             <ImageButton
@@ -120,7 +116,6 @@
                 android:contentDescription="@string/button_personal_link"
                 android:contextClickable="true"
                 android:src="@drawable/soc_personal_30"
-                android:onClick="gh5"
                 android:tooltipText="@string/button_personal_link" />
 
         </LinearLayout>
