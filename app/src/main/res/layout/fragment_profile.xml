@@ -31,7 +31,7 @@
             android:id="@+id/imageButton11"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:backgroundTint="@color/settings_button"
+            android:background="@color/settings_button"
             android:contentDescription="@string/settings_button_description"
             android:src="@drawable/setting_button"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
