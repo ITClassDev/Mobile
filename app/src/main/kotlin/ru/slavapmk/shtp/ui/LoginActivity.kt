@@ -14,10 +14,6 @@ import ru.slavapmk.shtp.databinding.ActivityLoginBinding
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import java.net.ConnectException
 
-
-private const val appId = "ru.slavapmk.shtp"
-private const val authToken = "AUTH_TOKEN"
-
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
@@ -27,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val prefs = getSharedPreferences(appId, MODE_PRIVATE)
-        val loadedToken = prefs.getString(authToken, null)
+        val prefs = getSharedPreferences(Values.APP_ID, MODE_PRIVATE)
+        val loadedToken = prefs.getString(Values.AUTH_ID, null)
         loadedToken?.let {
             Values.token = it
             Values.api.getMe(it)
@@ -74,8 +70,8 @@ class LoginActivity : AppCompatActivity() {
                     .subscribeOn(Schedulers.io())
                     .subscribe { me ->
                         Values.user = me.user
-                        getSharedPreferences(appId, MODE_PRIVATE).edit {
-                            this.putString(authToken, Values.token).apply()
+                        getSharedPreferences(Values.APP_ID, MODE_PRIVATE).edit {
+                            this.putString(Values.AUTH_ID, Values.token).apply()
                         }
                         val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
                         this@LoginActivity.startActivity(myIntent)

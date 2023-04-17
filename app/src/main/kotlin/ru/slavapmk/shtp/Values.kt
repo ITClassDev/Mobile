@@ -8,6 +8,9 @@ import ru.slavapmk.shtp.io.dto.user.UserFull
 
 object Values {
     const val ENDPOINT_URL = "http://91.203.192.42:8080"
+    const val APP_ID = "ru.slavapmk.shtp"
+    const val AUTH_ID = "AUTH_TOKEN"
+
     lateinit var token: String
     lateinit var user: UserFull
 
