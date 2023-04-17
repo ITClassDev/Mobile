@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:divider="@drawable/divider_10"
+            android:divider="@drawable/divider_20"
             android:orientation="horizontal"
             android:showDividers="middle"
             tools:ignore="UselessParent">
