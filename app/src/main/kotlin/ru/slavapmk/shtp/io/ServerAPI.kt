@@ -10,6 +10,7 @@ import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import ru.slavapmk.shtp.io.dto.PatchResult
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
@@ -39,11 +40,11 @@ interface ServerAPI {
         @Body user: UserFull
     ): Observable<String>
 
-    @PATCH("users")
+    @PATCH("users/")
     fun updateProfile(
         @Header("Authorization") token: String,
         @Body user: PatchUserRequest
-    ): Observable<String>
+    ): Observable<PatchResult>
 
     @GET("users/{id}")
     fun getUser(
