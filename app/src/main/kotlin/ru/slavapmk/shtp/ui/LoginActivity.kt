@@ -1,73 +1,101 @@
 package ru.slavapmk.shtp.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.textfield.TextInputEditText
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import ru.slavapmk.shtp.R
+import androidx.core.content.edit
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
+import retrofit2.adapter.rxjava3.HttpException
 import ru.slavapmk.shtp.Values
+import ru.slavapmk.shtp.databinding.ActivityLoginBinding
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
+import java.net.ConnectException
 
+
+private const val appId = "ru.slavapmk.shtp"
+private const val authToken = "AUTH_TOKEN"
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var loginLayout: LinearLayout
-    private lateinit var loginInput: TextInputEditText
-    private lateinit var passwordInput: TextInputEditText
-    private lateinit var incorrectDataStatus: TextView
-    private lateinit var progressBar: ProgressBar
+    private lateinit var binding: ActivityLoginBinding
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        loginLayout = findViewById(R.id.loginLayout)
-        loginInput = findViewById(R.id.loginInput)
-        passwordInput = findViewById(R.id.passwordInput)
-        incorrectDataStatus = findViewById(R.id.incorrectDataStatus)
-        progressBar = findViewById(R.id.progressBar)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        loginInput.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
-            incorrectDataStatus.visibility = View.GONE
-        }
-        passwordInput.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
-            incorrectDataStatus.visibility = View.GONE
-        }
-    }
-
-    fun login(view: View?) {
-        progressBar.visibility = View.VISIBLE
-        loginLayout.visibility = View.GONE
-
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val authLogin =
-                    Values.api.login(
-                        AuthLoginRequest(
-                            loginInput.text.toString(),
-                            passwordInput.text.toString()
-                        )
-                    )
-                Values.token = "Bearer ${authLogin.accessToken}"
-                Values.user = Values.api.getMe(Values.token).user
-                runOnUiThread {
+        val prefs = getSharedPreferences(appId, MODE_PRIVATE)
+        val loadedToken = prefs.getString(authToken, null)
+        loadedToken?.let {
+            Values.token = it
+            Values.api.getMe(it)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe { me ->
+                    Values.user = me.user
                     val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
                     this@LoginActivity.startActivity(myIntent)
                 }
-            } catch (e: HttpException) {
-                if (e.code() == 422)
-                    runOnUiThread {
-                        progressBar.visibility = View.GONE
-                        loginLayout.visibility = View.VISIBLE
-                        incorrectDataStatus.visibility = View.VISIBLE
-                    }
-            }
+            return
         }
+
+        binding.loginLayout.visibility = View.VISIBLE
+        binding.loginButton.visibility = View.VISIBLE
+        binding.statusProgress.visibility = View.GONE
+
+        binding.loginInput.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
+            hideErrors()
+        }
+        binding.passwordInput.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
+            hideErrors()
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    fun login(view: View?) {
+        hideErrors()
+        binding.statusProgress.visibility = View.VISIBLE
+
+        Values.api.login(
+            AuthLoginRequest(
+                binding.loginInput.text.toString(), binding.passwordInput.text.toString()
+            )
+        )
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({ loginResponse ->
+                Values.token = "Bearer ${loginResponse.accessToken}"
+
+                Values.api.getMe(Values.token)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe { me ->
+                        Values.user = me.user
+                        getSharedPreferences(appId, MODE_PRIVATE).edit {
+                            this.putString(authToken, Values.token).apply()
+                        }
+                        val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
+                        this@LoginActivity.startActivity(myIntent)
+                    }
+            }, {
+                if (it is ConnectException)
+                    binding.noInternet.visibility = View.VISIBLE
+                else if (it is HttpException && it.code() == 422)
+                    binding.incorrectDataStatus.visibility = View.VISIBLE
+                else
+                    binding.networkError.visibility = View.VISIBLE
+                binding.statusProgress.visibility = View.GONE
+            })
+
+
+    }
+
+    private fun hideErrors() {
+        binding.incorrectDataStatus.visibility = View.GONE
+        binding.noInternet.visibility = View.GONE
+        binding.networkError.visibility = View.GONE
     }
 }

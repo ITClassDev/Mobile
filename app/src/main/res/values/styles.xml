@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="MyEditTextStyle2" parent="Widget.AppCompat.EditText">
         <item name="colorControlActivated">#fff</item>
         <item name="colorControlNormal">#aaa</item>
+    </style>
+
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <!--        <item name="boxStrokeColor">@color/lineColor</item>-->
+        <item name="android:textColorHint">#afafaf</item>
+        <!--        <item name="boxStrokeWidth">1dp</item>-->
+        <item name="boxBackgroundColor">#666666</item>
+    </style>
+
+    <style name="TextInputEditText" parent="ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox.Dense">
+        <item name="android:textColor">#afafaf</item>
     </style>
 </resources>

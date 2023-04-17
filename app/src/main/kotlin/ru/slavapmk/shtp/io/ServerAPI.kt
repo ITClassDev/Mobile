@@ -1,5 +1,6 @@
 package ru.slavapmk.shtp.io
 
+import io.reactivex.rxjava3.core.Observable
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -18,36 +19,36 @@ import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 
 interface ServerAPI {
     @POST("auth/login")
-    suspend fun login(
+    fun login(
         @Body authRequest: AuthLoginRequest
-    ): AuthLoginResponse
+    ): Observable<AuthLoginResponse>
 
     @GET("auth/me")
-    suspend fun getMe(
+    fun getMe(
         @Header("Authorization") token: String
-    ): AuthMeResponse
+    ): Observable<AuthMeResponse>
 
     @GET("users")
-    suspend fun allUsers(
+    fun allUsers(
         @Header("Authorization") token: String
-    ): AllUsers
+    ): Observable<AllUsers>
 
     @PUT("users")
-    suspend fun addUser(
+    fun addUser(
         @Header("Authorization") token: String,
         @Body user: UserFull
-    ): String
+    ): Observable<String>
 
     @PATCH("users")
-    suspend fun updateProfile(
+    fun updateProfile(
         @Header("Authorization") token: String,
         @Body user: PatchUserRequest
-    ): String
+    ): Observable<String>
 
     @GET("users/{id}")
-    suspend fun getUser(
+    fun getUser(
         @Path("id") userId: Int
-    ): UserFull
+    ): Observable<UserFull>
 
     @DELETE("users/{id}")
     suspend fun deleteUser(

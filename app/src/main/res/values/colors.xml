@@ -3,6 +3,9 @@
     <color name="background">#2D2F31</color>
     <color name="panel">#1E1E1E</color>
     <color name="selected_button_background">#1668dc</color>
+    <color name="colorPrimary">#1668DC</color>
+    <color name="colorPrimaryDark">#1668dc</color>
+    <color name="colorAccent">#1668dc</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
