@@ -16,13 +16,13 @@ object Values {
     lateinit var token: String
     lateinit var user: UserFull
 
-//    private var httpLoggingInterceptor = HttpLoggingInterceptor()
-//    init {
-//        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-//    }
+    private var httpLoggingInterceptor = HttpLoggingInterceptor()
+    init {
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    }
     private val retrofit: Retrofit = Retrofit
         .Builder()
-//        .client(OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build())
+        .client(OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build())
         .baseUrl(ENDPOINT_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
