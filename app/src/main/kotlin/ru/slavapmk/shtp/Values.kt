@@ -10,7 +10,7 @@ import ru.slavapmk.shtp.io.dto.user.UserFull
 
 
 object Values {
-    const val ENDPOINT_URL = "https://shtp.1561.ru/api"
+    const val ENDPOINT_URL = "https://shtp.1561.ru/api/"
     const val APP_ID = "ru.slavapmk.shtp"
     const val AUTH_ID = "AUTH_TOKEN"
 
