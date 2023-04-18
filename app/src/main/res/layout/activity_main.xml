@@ -49,7 +49,7 @@
                 android:layout_width="55dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/panel_button"
+                android:backgroundTint="@color/panel"
                 android:contentDescription="@string/home_open_profile"
                 android:onClick="onPanelClick"
                 app:srcCompat="@drawable/panel_user" />
@@ -59,7 +59,7 @@
                 android:layout_width="55dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/panel_button"
+                android:backgroundTint="@color/panel"
                 android:contentDescription="@string/home_open_achievements"
                 android:onClick="onPanelClick"
                 app:srcCompat="@drawable/panel_star" />
@@ -69,7 +69,7 @@
                 android:layout_width="55dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/panel_button"
+                android:backgroundTint="@color/panel"
                 android:contentDescription="@string/home_open_tasks"
                 android:onClick="onPanelClick"
                 app:srcCompat="@drawable/panel_code" />
@@ -79,7 +79,7 @@
                 android:layout_width="55dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/panel_button"
+                android:backgroundTint="@color/panel"
                 android:contentDescription="@string/home_open_events"
                 android:onClick="onPanelClick"
                 app:srcCompat="@drawable/panel_calendar" />
@@ -89,7 +89,7 @@
                 android:layout_width="55dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/panel_button"
+                android:backgroundTint="@color/panel"
                 android:contentDescription="@string/home_open_notifications"
                 android:onClick="onPanelClick"
                 app:srcCompat="@drawable/panel_bell" />
