@@ -13,10 +13,10 @@ data class UserFull(
     val techStack: Any,
     val userAboutText: String,
     val userAvatarPath: Any,
-    val userGithub: String,
-    val userKaggle: String,
+    val userGithub: String?,
+    val userKaggle: String?,
     val userRole: Int,
-    val userStepik: String,
-    val userTelegram: String,
-    val userWebsite: String
+    val userStepik: String?,
+    val userTelegram: String?,
+    val userWebsite: String?
 )

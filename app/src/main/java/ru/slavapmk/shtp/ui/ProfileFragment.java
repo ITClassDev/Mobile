@@ -32,6 +32,12 @@ public class ProfileFragment extends Fragment {
         binding.userNameLastName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
         binding.textView6.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
 
+        if (Values.user.getUserGithub() == null) binding.gh.setVisibility(View.GONE);
+        if (Values.user.getUserTelegram() == null) binding.gh2.setVisibility(View.GONE);
+        if (Values.user.getUserStepik() == null) binding.gh3.setVisibility(View.GONE);
+        if (Values.user.getUserKaggle() == null) binding.gh4.setVisibility(View.GONE);
+        if (Values.user.getUserWebsite() == null) binding.gh5.setVisibility(View.GONE);
+
         binding.gh.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getUserGithub()))));
         binding.gh2.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
         binding.gh3.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getUserStepik()))));
