@@ -31,8 +31,9 @@
             android:id="@+id/imageButton11"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@color/settings_button"
+            android:backgroundTint="@color/settings_button"
             android:contentDescription="@string/settings_button_description"
+            android:padding="0dp"
             android:src="@drawable/setting_button"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -225,31 +226,31 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!--        <Button-->
-        <!--            android:id="@+id/button9"-->
+        <!--                <Button-->
+        <!--                    android:id="@+id/button9"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginTop="10dp"-->
+        <!--                    android:backgroundTint="#1668DC"-->
+        <!--                    android:backgroundTintMode="add"-->
+        <!--                    android:text="@string/user_open_more"-->
+        <!--                    android:textColor="#FFFFFF"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />-->
+
+
+        <!--        <TextView-->
         <!--            android:layout_width="wrap_content"-->
         <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            android:backgroundTint="#1668DC"-->
-        <!--            android:backgroundTintMode="add"-->
-        <!--            android:text="@string/user_open_more"-->
-        <!--            android:textColor="#FFFFFF"-->
+        <!--            android:layout_marginTop="24dp"-->
+        <!--            android:fontFamily="@font/montserrat"-->
+        <!--            android:text="@string/upcoming_event"-->
+        <!--            android:textColor="@android:color/white"-->
+        <!--            android:textSize="18sp"-->
         <!--            app:layout_constraintEnd_toEndOf="parent"-->
         <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />-->
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/montserrat"
-            android:text="@string/upcoming_event"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        <!--            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
