@@ -66,7 +66,7 @@
             app:layout_constraintTop_toBottomOf="@+id/userNameLastName">
 
             <ImageButton
-                android:id="@+id/gh"
+                android:id="@+id/user_personal_github"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -77,7 +77,7 @@
                 android:tooltipText="@string/button_personal_github" />
 
             <ImageButton
-                android:id="@+id/gh2"
+                android:id="@+id/user_personal_telegram"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -88,7 +88,7 @@
                 android:tooltipText="@string/button_personal_telegram" />
 
             <ImageButton
-                android:id="@+id/gh3"
+                android:id="@+id/user_personal_stepik"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -99,7 +99,7 @@
                 android:tooltipText="@string/button_personal_stepik" />
 
             <ImageButton
-                android:id="@+id/gh4"
+                android:id="@+id/user_personal_kaggle"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -110,7 +110,7 @@
                 android:tooltipText="@string/button_personal_kaggle" />
 
             <ImageButton
-                android:id="@+id/gh5"
+                android:id="@+id/user_personal_website"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"

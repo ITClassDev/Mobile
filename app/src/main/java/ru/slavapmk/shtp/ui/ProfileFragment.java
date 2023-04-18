@@ -32,17 +32,17 @@ public class ProfileFragment extends Fragment {
         binding.userNameLastName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
         binding.textView6.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
 
-        if (Values.user.getUserGithub() == null) binding.gh.setVisibility(View.GONE);
-        if (Values.user.getUserTelegram() == null) binding.gh2.setVisibility(View.GONE);
-        if (Values.user.getUserStepik() == null) binding.gh3.setVisibility(View.GONE);
-        if (Values.user.getUserKaggle() == null) binding.gh4.setVisibility(View.GONE);
-        if (Values.user.getUserWebsite() == null) binding.gh5.setVisibility(View.GONE);
+        if (Values.user.getUserGithub() == null) binding.userPersonalGithub.setVisibility(View.GONE);
+        if (Values.user.getUserTelegram() == null) binding.userPersonalTelegram.setVisibility(View.GONE);
+        if (Values.user.getUserStepik() == null) binding.userPersonalStepik.setVisibility(View.GONE);
+        if (Values.user.getUserKaggle() == null) binding.userPersonalKaggle.setVisibility(View.GONE);
+        if (Values.user.getUserWebsite() == null) binding.userPersonalWebsite.setVisibility(View.GONE);
 
-        binding.gh.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getUserGithub()))));
-        binding.gh2.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
-        binding.gh3.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getUserStepik()))));
-        binding.gh4.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getUserKaggle()))));
-        binding.gh5.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
+        binding.userPersonalGithub.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getUserGithub()))));
+        binding.userPersonalTelegram.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
+        binding.userPersonalStepik.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getUserStepik()))));
+        binding.userPersonalKaggle.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getUserKaggle()))));
+        binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
                 !Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ?
                         "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()
         ))));
