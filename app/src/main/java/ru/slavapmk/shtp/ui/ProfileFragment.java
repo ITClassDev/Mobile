@@ -23,7 +23,6 @@ import ru.slavapmk.shtp.Values;
 import ru.slavapmk.shtp.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater);
@@ -57,5 +56,4 @@ public class ProfileFragment extends Fragment {
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
     }
-
 }

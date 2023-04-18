@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity() {
         }
         bottomPanel.getChildAt(0).isSelected = true
         fragmentClassesList["profile"] = ProfileFragment.newInstance()
-        fragmentClassesList["achievements"] = AchievementsFragment.newInstance("", "")
-        fragmentClassesList["tasks"] = TasksFragment.newInstance("", "")
-        fragmentClassesList["events"] = EventsFragment.newInstance("", "")
-        fragmentClassesList["notifications"] = NotificationsFragment.newInstance("", "")
+        fragmentClassesList["achievements"] = AchievementsFragment.newInstance()
+        fragmentClassesList["tasks"] = TasksFragment.newInstance()
+        fragmentClassesList["events"] = EventsFragment.newInstance()
+        fragmentClassesList["notifications"] = NotificationsFragment.newInstance()
         fragmentLayoutsList["profile"] = R.layout.fragment_profile
         fragmentLayoutsList["achievements"] = R.layout.fragment_achievements
         fragmentLayoutsList["tasks"] = R.layout.fragment_tasks
