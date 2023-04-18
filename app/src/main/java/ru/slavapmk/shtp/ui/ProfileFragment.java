@@ -42,7 +42,10 @@ public class ProfileFragment extends Fragment {
         binding.gh2.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
         binding.gh3.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getUserStepik()))));
         binding.gh4.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getUserKaggle()))));
-        binding.gh5.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Values.user.getUserWebsite()))));
+        binding.gh5.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
+                !Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ?
+                        "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()
+        ))));
 
         Picasso.get().load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath()).transform(new CropCircleTransformation()).into(binding.imageView2);
 
