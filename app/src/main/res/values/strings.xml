@@ -46,6 +46,6 @@
     <string name="login_field_password">Password</string>
     <string name="login_field_login_button">Log in</string>
     <string name="login_field_incorrect_data">Incorrect email or password</string>
-    <string name="no_internet">Нет интернета</string>
-    <string name="network_error">Неопознаная сетевая ошибка</string>
+    <string name="no_internet">No access to the server</string>
+    <string name="network_error">Unidentified network error</string>
 </resources>
