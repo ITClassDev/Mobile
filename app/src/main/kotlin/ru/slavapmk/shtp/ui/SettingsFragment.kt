@@ -1,26 +1,30 @@
 package ru.slavapmk.shtp.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.adapter.rxjava3.HttpException
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.FragmentSettingsBinding
+import ru.slavapmk.shtp.io.dto.ErrorResponse
 import ru.slavapmk.shtp.io.dto.user.SocialLinks
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserPassword
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
+import java.net.ConnectException
 
 class SettingsFragment : Fragment() {
     private var binding: FragmentSettingsBinding? = null
 
-    @SuppressLint("CheckResult")
+    private lateinit var savingUpload: Disposable
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -67,7 +71,7 @@ class SettingsFragment : Fragment() {
                 null
             )
 
-            Values.api.updateProfile(Values.token, patchUserRequest)
+            savingUpload = Values.api.updateProfile(Values.token, patchUserRequest)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
@@ -75,11 +79,28 @@ class SettingsFragment : Fragment() {
                         View.GONE
                 }, {
                     if (it is HttpException && it.code() == 400)
-                        Toast.makeText(context, "Current password incorrect", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            context,
+                            Gson().fromJson(
+                                it.response()?.errorBody()?.string(),
+                                ErrorResponse::class.java
+                            ).detail,
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
+                    else if (it is ConnectException)
+                        Toast.makeText(context, "No internet", Toast.LENGTH_SHORT)
+                            .show()
+                    requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                        View.GONE
                 })
         }
         return binding!!.root
+    }
+
+    override fun onStop() {
+        super.onStop()
+        savingUpload.dispose()
     }
 
     companion object {
