@@ -19,22 +19,22 @@ import ru.slavapmk.shtp.io.dto.user.all.AllUsers
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 
 interface ServerAPI {
-    @POST("auth/login")
+    @POST("auth/login/")
     fun login(
         @Body authRequest: AuthLoginRequest
     ): Observable<AuthLoginResponse>
 
-    @GET("auth/me")
+    @GET("auth/me/")
     fun getMe(
         @Header("Authorization") token: String
     ): Observable<AuthMeResponse>
 
-    @GET("users")
+    @GET("users/")
     fun allUsers(
         @Header("Authorization") token: String
     ): Observable<AllUsers>
 
-    @PUT("users")
+    @PUT("users/")
     fun addUser(
         @Header("Authorization") token: String,
         @Body user: UserFull
@@ -46,18 +46,18 @@ interface ServerAPI {
         @Body user: PatchUserRequest
     ): Observable<PatchResult>
 
-    @GET("users/{id}")
+    @GET("users/{id}/")
     fun getUser(
         @Path("id") userId: Int
     ): Observable<UserFull>
 
-    @DELETE("users/{id}")
+    @DELETE("users/{id}/")
     suspend fun deleteUser(
         @Header("Authorization") token: String,
         @Path("id") userId: Int
     )
 
-    @PATCH("users/avatar")
+    @PATCH("users/avatar/")
     suspend fun uploadAvatar(@Body image: RequestBody)
 
 }
