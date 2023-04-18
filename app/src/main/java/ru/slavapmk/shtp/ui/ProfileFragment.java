@@ -9,10 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.squareup.picasso.Picasso;
@@ -22,39 +20,29 @@ import java.util.Locale;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 import ru.slavapmk.shtp.R;
 import ru.slavapmk.shtp.Values;
+import ru.slavapmk.shtp.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View inflate = inflater.inflate(R.layout.fragment_profile, container, false);
-        inflate.findViewById(R.id.imageButton11).setOnClickListener(view ->
-                fmanager
-                        .beginTransaction()
-                        .setReorderingAllowed(true)
-                        .remove(ProfileFragment.this)
-                        .add(R.id.fragmentContainer, SettingsFragment.newInstance())
-                        .addToBackStack("backstack")
-                        .commit()
-        );
-        inflate.<TextView>findViewById(R.id.userNameLastName).setText(getResources().getString(
-                R.string.user_name,
-                Values.user.getFirstName(),
-                Values.user.getLastName()
-        ));
-        inflate.<TextView>findViewById(R.id.textView6).setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
-        inflate.<ImageButton>findViewById(R.id.gh).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getUserGithub()))));
-        inflate.<ImageButton>findViewById(R.id.gh2).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
-        inflate.<ImageButton>findViewById(R.id.gh3).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getUserStepik()))));
-        inflate.<ImageButton>findViewById(R.id.gh4).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getUserKaggle()))));
-        inflate.<ImageButton>findViewById(R.id.gh5).setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Values.user.getUserWebsite()))));
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater);
 
-        Picasso
-                .get()
-                .load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath())
-                .transform(new CropCircleTransformation())
-                .into(inflate.<ImageView>findViewById(R.id.imageView2));
+        binding.imageButton11.setOnClickListener(view -> fmanager.beginTransaction().setReorderingAllowed(true).remove(ProfileFragment.this).add(R.id.fragmentContainer, SettingsFragment.newInstance()).addToBackStack("backstack").commit());
+        binding.userNameLastName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
+        binding.textView6.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
 
-        return inflate;
+        binding.gh.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getUserGithub()))));
+        binding.gh2.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
+        binding.gh3.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getUserStepik()))));
+        binding.gh4.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getUserKaggle()))));
+        binding.gh5.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Values.user.getUserWebsite()))));
+
+        Picasso.get().load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath()).transform(new CropCircleTransformation()).into(binding.imageView2);
+
+        binding.aboutText.setText(Values.user.getUserAboutText());
+
+        return binding.getRoot();
     }
 
     public static ProfileFragment newInstance() {
