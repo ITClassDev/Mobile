@@ -17,10 +17,10 @@ jobs:
     - name: Make Gradle executable
       run: chmod +x ./gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build --no-daemon
     - name: Generate version.txt
       run: |
-        ./gradlew generateVersionTxt
+        ./gradlew generateVersionTxt --no-daemon
         echo "RELEASE=v$(cat app/version.txt)" >> $GITHUB_ENV
     - name: Create Release
       id: create_release
