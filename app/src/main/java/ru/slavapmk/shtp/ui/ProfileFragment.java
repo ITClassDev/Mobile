@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 
 import java.util.Locale;
 
-import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 import ru.slavapmk.shtp.R;
 import ru.slavapmk.shtp.Values;
 import ru.slavapmk.shtp.databinding.FragmentProfileBinding;
@@ -31,11 +31,16 @@ public class ProfileFragment extends Fragment {
         binding.userNameLastName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
         binding.textView6.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
 
-        if (Values.user.getUserGithub() == null) binding.userPersonalGithub.setVisibility(View.GONE);
-        if (Values.user.getUserTelegram() == null) binding.userPersonalTelegram.setVisibility(View.GONE);
-        if (Values.user.getUserStepik() == null) binding.userPersonalStepik.setVisibility(View.GONE);
-        if (Values.user.getUserKaggle() == null) binding.userPersonalKaggle.setVisibility(View.GONE);
-        if (Values.user.getUserWebsite() == null) binding.userPersonalWebsite.setVisibility(View.GONE);
+        if (Values.user.getUserGithub() == null)
+            binding.userPersonalGithub.setVisibility(View.GONE);
+        if (Values.user.getUserTelegram() == null)
+            binding.userPersonalTelegram.setVisibility(View.GONE);
+        if (Values.user.getUserStepik() == null)
+            binding.userPersonalStepik.setVisibility(View.GONE);
+        if (Values.user.getUserKaggle() == null)
+            binding.userPersonalKaggle.setVisibility(View.GONE);
+        if (Values.user.getUserWebsite() == null)
+            binding.userPersonalWebsite.setVisibility(View.GONE);
 
         binding.userPersonalGithub.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getUserGithub()))));
         binding.userPersonalTelegram.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
@@ -46,7 +51,19 @@ public class ProfileFragment extends Fragment {
                         "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()
         ))));
 
-        Picasso.get().load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath()).transform(new CropCircleTransformation()).into(binding.imageView2);
+        RequestManager with = Glide.with(this);
+        if (Values.user.getUserAvatarPath().endsWith(".gif"))
+            with
+                    .asGif()
+                    .circleCrop()
+                    .load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath())
+                    .into(binding.imageView2);
+        else
+            with
+                    .asBitmap()
+                    .circleCrop()
+                    .load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath())
+                    .into(binding.imageView2);
 
         binding.aboutText.setText(Values.user.getUserAboutText());
 

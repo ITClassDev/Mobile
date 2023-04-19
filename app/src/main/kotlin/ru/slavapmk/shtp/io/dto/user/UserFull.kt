@@ -12,7 +12,7 @@ data class UserFull(
     val systemAchievements: Any,
     val techStack: Any,
     val userAboutText: String,
-    val userAvatarPath: Any,
+    val userAvatarPath: String,
     val userGithub: String?,
     val userKaggle: String?,
     val userRole: Int,
