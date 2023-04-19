@@ -31,15 +31,15 @@ public class ProfileFragment extends Fragment {
         binding.userNameLastName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
         binding.textView6.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
 
-        if (Values.user.getUserGithub() == null)
+        if (Values.user.getUserGithub() == null || Values.user.getUserGithub().equals(""))
             binding.userPersonalGithub.setVisibility(View.GONE);
-        if (Values.user.getUserTelegram() == null)
+        if (Values.user.getUserTelegram() == null || Values.user.getUserTelegram().equals(""))
             binding.userPersonalTelegram.setVisibility(View.GONE);
-        if (Values.user.getUserStepik() == null)
+        if (Values.user.getUserStepik() == null || Values.user.getUserStepik().equals(""))
             binding.userPersonalStepik.setVisibility(View.GONE);
-        if (Values.user.getUserKaggle() == null)
+        if (Values.user.getUserKaggle() == null || Values.user.getUserKaggle().equals(""))
             binding.userPersonalKaggle.setVisibility(View.GONE);
-        if (Values.user.getUserWebsite() == null)
+        if (Values.user.getUserWebsite() == null || Values.user.getUserWebsite().equals(""))
             binding.userPersonalWebsite.setVisibility(View.GONE);
 
         binding.userPersonalGithub.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getUserGithub()))));
