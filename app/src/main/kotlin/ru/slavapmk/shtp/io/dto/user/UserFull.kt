@@ -10,7 +10,7 @@ data class UserFull(
     val new_notifications: Boolean,
     val rating: Int,
     val systemAchievements: Any,
-    val techStack: Any,
+    val techStack: String?,
     val userAboutText: String,
     val userAvatarPath: String,
     val userGithub: String?,

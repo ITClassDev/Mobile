@@ -43,4 +43,5 @@
     <string name="login_field_incorrect_data">Неверная почта или пароль</string>
     <string name="no_internet">Нет доступа к серверу</string>
     <string name="network_error">Неопознаная сетевая ошибка</string>
+    <string name="tech_stack">Технологии</string>
 </resources>

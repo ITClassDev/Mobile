@@ -48,4 +48,5 @@
     <string name="login_field_incorrect_data">Incorrect email or password</string>
     <string name="no_internet">No access to the server</string>
     <string name="network_error">Unidentified network error</string>
+    <string name="tech_stack">Tech Stack</string>
 </resources>

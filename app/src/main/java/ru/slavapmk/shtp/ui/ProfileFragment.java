@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.google.android.material.chip.Chip;
 
 import java.util.Locale;
 
@@ -66,6 +67,15 @@ public class ProfileFragment extends Fragment {
                     .into(binding.imageView2);
 
         binding.aboutText.setText(Values.user.getUserAboutText());
+
+        if (Values.user.getTechStack() != null)
+            for (String s : Values.user.getTechStack().split(",")) {
+                Chip chip = new Chip(getContext());
+                chip.setText(s);
+                binding.chipGroup.addView(chip);
+            }
+        if (Values.user.getTechStack() == null || Values.user.getTechStack().split(",").length == 0)
+            binding.chipGroup.setVisibility(View.GONE);
 
         return binding.getRoot();
     }
