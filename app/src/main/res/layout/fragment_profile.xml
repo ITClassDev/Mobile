@@ -235,7 +235,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout10"
+            android:id="@+id/tech_stack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -256,7 +256,7 @@
                 android:textSize="24sp" />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chip_group"
+                android:id="@+id/tech_stack_chips"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"

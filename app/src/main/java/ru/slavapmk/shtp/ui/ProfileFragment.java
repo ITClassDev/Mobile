@@ -72,10 +72,10 @@ public class ProfileFragment extends Fragment {
             for (String s : Values.user.getTechStack().split(",")) {
                 Chip chip = new Chip(getContext());
                 chip.setText(s);
-                binding.chipGroup.addView(chip);
+                binding.techStackChips.addView(chip);
             }
         if (Values.user.getTechStack() == null || Values.user.getTechStack().split(",").length == 0)
-            binding.chipGroup.setVisibility(View.GONE);
+            binding.techStack.setVisibility(View.GONE);
 
         return binding.getRoot();
     }
