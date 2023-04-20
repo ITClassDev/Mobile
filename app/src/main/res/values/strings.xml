@@ -54,4 +54,5 @@
     <string name="tasks">Tasks</string>
     <string name="events">Events</string>
     <string name="notification">Notification</string>
+    <string name="settings_tech_stack_hint">Tech stack</string>
 </resources>

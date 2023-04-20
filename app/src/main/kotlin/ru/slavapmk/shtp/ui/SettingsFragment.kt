@@ -1,11 +1,18 @@
 package ru.slavapmk.shtp.ui
 
 import android.os.Bundle
+import android.text.InputType
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import com.google.android.material.chip.ChipDrawable
 import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
@@ -20,10 +27,14 @@ import ru.slavapmk.shtp.io.dto.user.patch.PatchUserPassword
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 import java.net.ConnectException
 
+
 class SettingsFragment : Fragment() {
-    private var binding: FragmentSettingsBinding? = null
+    private lateinit var binding: FragmentSettingsBinding
 
     private lateinit var savingUpload: Disposable
+    private var checkBackspace = false
+
+    private val stack = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,24 +42,24 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSettingsBinding.inflate(inflater)
-        binding!!.aboutInput.setText(Values.user.userAboutText)
-        binding!!.githubSocInput.setText(Values.user.userGithub)
-        binding!!.telegramSocInput.setText(Values.user.userTelegram)
-        binding!!.stepikSocInput.setText(Values.user.userStepik)
-        binding!!.kaggleSocInput.setText(Values.user.userKaggle)
-        binding!!.personalSocInput.setText(Values.user.userWebsite)
-        binding!!.saveButton.setOnClickListener {
+        binding.aboutInput.setText(Values.user.userAboutText)
+        binding.githubSocInput.setText(Values.user.userGithub)
+        binding.telegramSocInput.setText(Values.user.userTelegram)
+        binding.stepikSocInput.setText(Values.user.userStepik)
+        binding.kaggleSocInput.setText(Values.user.userKaggle)
+        binding.personalSocInput.setText(Values.user.userWebsite)
+        binding.saveButton.setOnClickListener {
             requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
                 View.VISIBLE
 
             var aboutText: String? = null
-            if (binding!!.aboutInput.text != null) aboutText =
-                binding!!.aboutInput.text.toString()
+            if (binding.aboutInput.text != null) aboutText =
+                binding.aboutInput.text.toString()
 
             var password: PatchUserPassword? = PatchUserPassword(
-                binding?.repeatPasswordInput?.editText?.editableText.toString(),
-                binding?.currentPasswordInput?.editText?.editableText.toString(),
-                binding?.newPasswordInput?.editText?.editableText.toString()
+                binding.repeatPasswordInput.editText?.editableText.toString(),
+                binding.currentPasswordInput.editText?.editableText.toString(),
+                binding.newPasswordInput.editText?.editableText.toString()
             )
 
             if (
@@ -62,13 +73,13 @@ class SettingsFragment : Fragment() {
                 null,
                 password,
                 SocialLinks(
-                    binding!!.githubSocInput.text.toString(),
-                    binding!!.kaggleSocInput.text.toString(),
-                    binding!!.stepikSocInput.text.toString(),
-                    binding!!.telegramSocInput.text.toString(),
-                    binding!!.personalSocInput.text.toString()
+                    binding.githubSocInput.text.toString(),
+                    binding.kaggleSocInput.text.toString(),
+                    binding.stepikSocInput.text.toString(),
+                    binding.telegramSocInput.text.toString(),
+                    binding.personalSocInput.text.toString()
                 ),
-                null
+                stack
             )
 
             savingUpload = Values.api.updateProfile(Values.token, patchUserRequest)
@@ -95,7 +106,73 @@ class SettingsFragment : Fragment() {
                         View.GONE
                 })
         }
-        return binding!!.root
+
+        Values.user.techStack?.split(",")?.let { stack.addAll(it) }
+
+        binding.techStackInput.imeOptions = EditorInfo.IME_ACTION_DONE
+        binding.techStackInput.setRawInputType(InputType.TYPE_CLASS_TEXT)
+
+        var lastCall = ""
+        binding.techStackInput.doOnTextChanged { text, _, _, count ->
+            if (stack.isNotEmpty() && text.toString() != lastCall && count == 0 && checkBackspace) {
+                stack.removeLast()
+                reloadChips(stack)
+                lastCall = text.toString()
+            }
+        }
+
+        binding.techStackInput.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val fullText = binding.techStackInput.text.toString()
+                val parsedOldStack =
+                    stack.joinToString(separator = "  ", prefix = " ", postfix = " ")
+                if (!fullText.contains(parsedOldStack) && parsedOldStack.replace(" ", "") != "") {
+                    reloadChips(stack)
+                    return@setOnEditorActionListener true
+                }
+                val element =
+                    fullText.substring(if (parsedOldStack.replace(" ", "") == "") 0 else parsedOldStack.length)
+                if (element != "") {
+                    stack.add(element)
+                    reloadChips(stack)
+                    return@setOnEditorActionListener true
+                }
+            }
+
+            return@setOnEditorActionListener false
+        }
+
+        reloadChips(stack)
+
+        return binding.root
+    }
+
+    private fun reloadChips(stacks: ArrayList<String>) {
+        checkBackspace = false
+        binding.techStackInput.text?.clear()
+        for (stack in stacks)
+            addChip(stack)
+        checkBackspace = true
+    }
+
+    private fun addChip(text: String) {
+        val chipDrawable = ChipDrawable.createFromResource(requireContext(), R.xml.empty_chip)
+        chipDrawable.isCloseIconVisible = false
+        chipDrawable.text = text
+        chipDrawable.setBounds(
+            10,
+            10,
+            chipDrawable.intrinsicWidth + 10,
+            chipDrawable.intrinsicHeight + 10
+        )
+        val spannableString = SpannableString(" $text ")
+        spannableString.setSpan(
+            ImageSpan(chipDrawable),
+            0,
+            spannableString.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        binding.techStackInput.append(spannableString)
     }
 
     override fun onStop() {

@@ -49,4 +49,5 @@
     <string name="tasks">Задачи</string>
     <string name="events">Мероприятия</string>
     <string name="notification">Уведомления</string>
+    <string name="settings_tech_stack_hint">Навыки</string>
 </resources>

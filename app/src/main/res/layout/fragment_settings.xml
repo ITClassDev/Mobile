@@ -87,6 +87,7 @@
                         android:layout_height="50dp"
                         android:autofillHints="username"
                         android:hint="@string/personal_input_github"
+                        android:imeOptions="actionDone"
                         android:inputType="textPersonName"
                         android:textColor="@android:color/white"
                         android:textColorHint="@android:color/darker_gray"
@@ -113,6 +114,7 @@
                         android:layout_height="50dp"
                         android:autofillHints="username"
                         android:hint="@string/personal_input_telegram"
+                        android:imeOptions="actionDone"
                         android:inputType="textPersonName"
                         android:textColor="@android:color/white"
                         android:textColorHint="@android:color/darker_gray"
@@ -139,6 +141,7 @@
                         android:layout_height="50dp"
                         android:autofillHints="username"
                         android:hint="@string/personal_input_stepik"
+                        android:imeOptions="actionDone"
                         android:inputType="numberDecimal"
                         android:textColor="@android:color/white"
                         android:textColorHint="@android:color/darker_gray"
@@ -165,6 +168,7 @@
                         android:layout_height="50dp"
                         android:autofillHints="username"
                         android:hint="@string/personal_input_kaggle"
+                        android:imeOptions="actionDone"
                         android:inputType="textPersonName"
                         android:textColor="@android:color/white"
                         android:textColorHint="@android:color/darker_gray"
@@ -191,6 +195,7 @@
                         android:layout_height="50dp"
                         android:autofillHints="notApplicable"
                         android:hint="@string/personal_input_personal"
+                        android:imeOptions="actionDone"
                         android:inputType="textUri"
                         android:textColor="@android:color/white"
                         android:textColorHint="@android:color/darker_gray"
@@ -234,8 +239,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bio_profile_header">
@@ -244,8 +247,30 @@
                     android:id="@+id/about_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:hint="@string/settings_profile_about_hint" />
+                    android:hint="@string/settings_profile_about_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tech_stack_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bio_input_about">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tech_stack_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/settings_tech_stack_hint"
+                    android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -294,6 +319,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|bottom"
                     android:hint="@string/settings_auth_current_password"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -313,6 +339,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|bottom"
                     android:hint="@string/settings_auth_new_password"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -334,6 +361,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|bottom"
                     android:hint="@string/settings_auth_password_retry"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
