@@ -33,7 +33,8 @@ class LoginActivity : AppCompatActivity() {
                 .subscribe { me ->
                     Values.user = me.user
                     val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
-                    this@LoginActivity.startActivity(myIntent)
+                    myIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(myIntent)
                 }
             return
         }
@@ -74,7 +75,8 @@ class LoginActivity : AppCompatActivity() {
                             this.putString(Values.AUTH_ID, Values.token).apply()
                         }
                         val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
-                        this@LoginActivity.startActivity(myIntent)
+                        myIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(myIntent)
                     }
             }, {
                 if (it is ConnectException)
