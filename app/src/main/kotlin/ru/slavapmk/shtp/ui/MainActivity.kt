@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         val resourceName = getResourceEntryName(view)
         val fragmentName = resourceName.replaceFirst("open_".toRegex(), "").replace("_button", "")
         openFragment(fragmentName)
+        finishAffinity()
     }
 
     private fun openFragment(fragmentName: String) {
