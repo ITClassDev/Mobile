@@ -28,7 +28,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater);
 
-        binding.imageButton11.setOnClickListener(view -> fmanager.beginTransaction().setReorderingAllowed(true).remove(ProfileFragment.this).add(R.id.fragmentContainer, SettingsFragment.newInstance()).addToBackStack("backstack").commit());
+        binding.imageButton11.setOnClickListener(view -> fmanager.beginTransaction().replace(R.id.fragmentContainer, SettingsFragment.newInstance()).addToBackStack(null).commit());
         binding.userNameLastName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
         binding.textView6.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
 
