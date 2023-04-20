@@ -1,5 +1,6 @@
 package ru.slavapmk.shtp.ui;
 
+import static android.content.Context.MODE_PRIVATE;
 import static ru.slavapmk.shtp.Values.ENDPOINT_URL;
 
 import android.content.Intent;
@@ -76,6 +77,13 @@ public class ProfileFragment extends Fragment {
             }
         if (Values.user.getTechStack() == null || Values.user.getTechStack().split(",").length == 0)
             binding.techStack.setVisibility(View.GONE);
+
+        binding.logoutButton.setOnClickListener(view -> {
+            requireActivity().getSharedPreferences(Values.APP_ID, MODE_PRIVATE).edit().remove(Values.AUTH_ID).apply();
+            Intent myIntent = new Intent(requireContext(), LoginActivity.class);
+            myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(myIntent);
+        });
 
         return binding.getRoot();
     }
