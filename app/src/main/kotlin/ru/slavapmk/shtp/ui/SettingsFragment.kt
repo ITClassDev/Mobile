@@ -31,7 +31,7 @@ import java.net.ConnectException
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
 
-    private lateinit var savingUpload: Disposable
+    private var savingUpload: Disposable? = null
     private var checkBackspace = false
 
     private val stack = ArrayList<String>()
@@ -131,7 +131,13 @@ class SettingsFragment : Fragment() {
                     return@setOnEditorActionListener true
                 }
                 val element =
-                    fullText.substring(if (parsedOldStack.replace(" ", "") == "") 0 else parsedOldStack.length)
+                    fullText.substring(
+                        if (parsedOldStack.replace(
+                                " ",
+                                ""
+                            ) == ""
+                        ) 0 else parsedOldStack.length
+                    )
                 if (element != "") {
                     stack.add(element)
                     reloadChips(stack)
@@ -177,13 +183,6 @@ class SettingsFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        savingUpload.dispose()
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(): Fragment {
-            return SettingsFragment()
-        }
+        savingUpload?.dispose()
     }
 }

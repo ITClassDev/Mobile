@@ -1,7 +1,6 @@
 package ru.slavapmk.shtp.ui;
 
 import static ru.slavapmk.shtp.Values.ENDPOINT_URL;
-import static ru.slavapmk.shtp.ui.MainActivity.fmanager;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -28,7 +28,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater);
 
-        binding.imageButton11.setOnClickListener(view -> fmanager.beginTransaction().replace(R.id.fragmentContainer, SettingsFragment.newInstance()).addToBackStack(null).commit());
+        binding.imageButton11.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_profile_to_settings));
         binding.userNameLastName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
         binding.textView6.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
 
@@ -78,9 +78,5 @@ public class ProfileFragment extends Fragment {
             binding.techStack.setVisibility(View.GONE);
 
         return binding.getRoot();
-    }
-
-    public static ProfileFragment newInstance() {
-        return new ProfileFragment();
     }
 }
