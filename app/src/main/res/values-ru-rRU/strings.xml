@@ -44,4 +44,9 @@
     <string name="no_internet">Нет доступа к серверу</string>
     <string name="network_error">Неопознаная сетевая ошибка</string>
     <string name="tech_stack">Технологии</string>
+    <string name="profile">Профиль</string>
+    <string name="achievements">Достижения</string>
+    <string name="tasks">Задачи</string>
+    <string name="events">Мероприятия</string>
+    <string name="notification">Уведомления</string>
 </resources>

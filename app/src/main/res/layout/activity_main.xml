@@ -12,91 +12,35 @@
         android:id="@+id/frameLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/panelContainer"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_panel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainer"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/main_navigation"
             tools:layout="@layout/fragment_profile" />
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/panelContainer"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_panel"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@color/panel"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        app:itemIconSize="35dp"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:id="@+id/panel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:divider="@drawable/divider_20"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            tools:ignore="UselessParent">
-
-            <ImageButton
-                android:id="@+id/open_profile_button"
-                android:layout_width="55dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/panel"
-                android:contentDescription="@string/home_open_profile"
-                android:onClick="onPanelClick"
-                app:srcCompat="@drawable/panel_user" />
-
-            <ImageButton
-                android:id="@+id/open_achievements_button"
-                android:layout_width="55dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/panel"
-                android:contentDescription="@string/home_open_achievements"
-                android:onClick="onPanelClick"
-                app:srcCompat="@drawable/panel_star" />
-
-            <ImageButton
-                android:id="@+id/open_tasks_button"
-                android:layout_width="55dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/panel"
-                android:contentDescription="@string/home_open_tasks"
-                android:onClick="onPanelClick"
-                app:srcCompat="@drawable/panel_code" />
-
-            <ImageButton
-                android:id="@+id/open_events_button"
-                android:layout_width="55dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/panel"
-                android:contentDescription="@string/home_open_events"
-                android:onClick="onPanelClick"
-                app:srcCompat="@drawable/panel_calendar" />
-
-            <ImageButton
-                android:id="@+id/open_notifications_button"
-                android:layout_width="55dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/panel"
-                android:contentDescription="@string/home_open_notifications"
-                android:onClick="onPanelClick"
-                app:srcCompat="@drawable/panel_bell" />
-
-        </LinearLayout>
-    </FrameLayout>
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/panel_menu" />
 
     <FrameLayout
         android:id="@+id/saving_progressbar"

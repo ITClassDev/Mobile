@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@+id/profile">
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="ru.slavapmk.shtp.ui.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/achievements"
+        android:name="ru.slavapmk.shtp.ui.AchievementsFragment"
+        android:label="achievements"
+        tools:layout="@layout/fragment_achievements" />
+    <fragment
+        android:id="@+id/tasks"
+        android:name="ru.slavapmk.shtp.ui.TasksFragment"
+        android:label="tasks"
+        tools:layout="@layout/fragment_tasks" />
+    <fragment
+        android:id="@+id/events"
+        android:name="ru.slavapmk.shtp.ui.EventsFragment"
+        android:label="tasks"
+        tools:layout="@layout/fragment_events" />
+    <fragment
+        android:id="@+id/notification"
+        android:name="ru.slavapmk.shtp.ui.NotificationsFragment"
+        android:label="tasks"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>

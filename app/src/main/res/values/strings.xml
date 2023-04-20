@@ -49,4 +49,9 @@
     <string name="no_internet">No access to the server</string>
     <string name="network_error">Unidentified network error</string>
     <string name="tech_stack">Tech Stack</string>
+    <string name="profile">Profile</string>
+    <string name="achievements">Achievements</string>
+    <string name="tasks">Tasks</string>
+    <string name="events">Events</string>
+    <string name="notification">Notification</string>
 </resources>
