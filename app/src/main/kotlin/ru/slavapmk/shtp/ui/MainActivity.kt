@@ -3,7 +3,7 @@ package ru.slavapmk.shtp.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.slavapmk.shtp.R
@@ -21,9 +21,11 @@ class MainActivity : AppCompatActivity() {
         fmanager = supportFragmentManager
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val navController = this.findNavController(R.id.fragmentContainer)
-        val navView: BottomNavigationView = findViewById(R.id.bottom_panel)
-        navView.setupWithNavController(navController)
+        findViewById<BottomNavigationView>(R.id.bottom_panel).setupWithNavController(
+            (supportFragmentManager.findFragmentById(
+                R.id.fragmentContainer
+            ) as NavHostFragment).navController
+        )
     }
 
 }
