@@ -56,4 +56,5 @@
     <string name="notification">Notification</string>
     <string name="settings_tech_stack_hint">Tech stack</string>
     <string name="data_entered_incorrectly">Data entered incorrectly</string>
+    <string name="hello">Hello!</string>
 </resources>

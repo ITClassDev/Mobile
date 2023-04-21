@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.HttpException
+import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.ActivityLoginBinding
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
@@ -21,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.login_activity_bar_color)
         setContentView(binding.root)
 
         val prefs = getSharedPreferences(Values.APP_ID, MODE_PRIVATE)

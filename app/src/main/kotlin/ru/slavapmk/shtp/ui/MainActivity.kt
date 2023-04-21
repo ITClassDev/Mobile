@@ -2,6 +2,7 @@ package ru.slavapmk.shtp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.fragmentContainer
             ) as NavHostFragment).navController
         )
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.panel)
     }
 
 }

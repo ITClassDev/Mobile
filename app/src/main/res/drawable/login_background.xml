@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="104dp"
+    android:height="200dp"
+    android:viewportWidth="411"
+    android:viewportHeight="792">
+    <path
+        android:fillColor="@color/login_activity_bar_color"
+        android:pathData="M0,0H411.3V461.38L0,791.94V0Z" />
+</vector>

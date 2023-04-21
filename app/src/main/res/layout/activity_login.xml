@@ -7,6 +7,40 @@
     android:background="@color/background"
     tools:context=".ui.LoginActivity">
 
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/app_full_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/logo_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/hello"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_full_logo" />
+
     <LinearLayout
         android:id="@+id/login_layout"
         android:layout_width="match_parent"
@@ -14,31 +48,51 @@
         android:layout_marginEnd="128dp"
         android:orientation="vertical"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/background_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55"
         tools:visibility="visible">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/login_field_email">
+            android:hint="@string/login_field_email"
+            app:boxCornerRadiusBottomEnd="0dp"
+            app:boxCornerRadiusBottomStart="0dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="0dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_email"
                 style="@style/TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textWebEmailAddress" />
+                android:inputType="textWebEmailAddress"
+                app:counterEnabled="false" />
+
         </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#AFAFAF" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/login_field_password">
+            android:hint="@string/login_field_password"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="0dp"
+            app:boxCornerRadiusTopEnd="0dp"
+            app:boxCornerRadiusTopStart="0dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_password"
@@ -54,11 +108,11 @@
         android:id="@+id/button_login"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:text="@string/login_field_login_button"
-        android:visibility="gone"
+        android:background="@null"
         android:contentDescription="@string/login_field_login_button"
         android:src="@drawable/login_button"
-        android:background="#0000"
+        android:text="@string/login_field_login_button"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/login_layout"
         app:layout_constraintEnd_toEndOf="@+id/login_layout"
         app:layout_constraintStart_toEndOf="@+id/login_layout"
