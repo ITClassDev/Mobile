@@ -14,55 +14,69 @@
         android:hapticFeedbackEnabled="true">
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:id="@+id/avatar_header"
+            android:layout_width="360dp"
+            android:layout_height="134dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:contentDescription="@string/default_user_name"
-            android:src="@drawable/default_avatar"
+            android:src="@drawable/avatar_header"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="108dp"
-            android:layout_height="108dp"
+            android:id="@+id/avatar"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="47dp"
+            android:contentDescription="@string/default_user_name"
+            android:src="@drawable/avatar_default"
+            app:layout_constraintEnd_toEndOf="@id/avatar_header"
+            app:layout_constraintStart_toStartOf="@id/avatar_header"
+            app:layout_constraintTop_toTopOf="@id/avatar_header" />
+
+        <ImageView
+            android:layout_width="183dp"
+            android:layout_height="183dp"
             android:contentDescription="@string/default_user_name"
             android:src="@drawable/avatar_border"
-            app:layout_constraintBottom_toBottomOf="@id/imageView2"
-            app:layout_constraintEnd_toEndOf="@id/imageView2"
-            app:layout_constraintStart_toStartOf="@id/imageView2"
-            app:layout_constraintTop_toTopOf="@id/imageView2" />
+            app:layout_constraintBottom_toBottomOf="@id/avatar"
+            app:layout_constraintEnd_toEndOf="@id/avatar"
+            app:layout_constraintStart_toStartOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="@id/avatar" />
 
         <ImageButton
-            android:id="@+id/imageButton11"
+            android:id="@+id/button_open_settings"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@color/settings_button_background"
             android:contentDescription="@string/settings_button_description"
             android:src="@drawable/setting_button"
-            app:layout_constraintEnd_toEndOf="@id/imageView2"
-            app:layout_constraintTop_toTopOf="@id/imageView2" />
+            app:layout_constraintEnd_toEndOf="@id/avatar_header"
+            app:layout_constraintTop_toTopOf="@id/avatar_header" />
 
         <ImageButton
-            android:id="@+id/logout_button"
+            android:id="@+id/button_logout"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
             android:background="@color/settings_button_background"
             android:contentDescription="@string/settings_button_description"
             android:src="@drawable/logout"
-            app:layout_constraintEnd_toStartOf="@id/imageButton11"
-            app:layout_constraintTop_toTopOf="@id/imageButton11"
-            android:layout_marginEnd="12dp"/>
+            app:layout_constraintEnd_toStartOf="@id/button_open_settings"
+            app:layout_constraintTop_toTopOf="@id/button_open_settings" />
 
         <TextView
-            android:id="@+id/userNameLastName"
+            android:id="@+id/profile_user_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="42dp"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:text="@string/default_user_name"
@@ -71,10 +85,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/avatar" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/user_social_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -83,7 +97,7 @@
             android:showDividers="middle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userNameLastName">
+            app:layout_constraintTop_toBottomOf="@+id/profile_user_name">
 
             <ImageButton
                 android:id="@+id/user_personal_github"
@@ -147,19 +161,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="48dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+            app:layout_constraintTop_toBottomOf="@id/user_social_container" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/user_statistic_container"
             android:layout_width="333dp"
             android:layout_height="113dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/rounded_bg3"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -173,7 +187,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/user_statistic_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -199,7 +213,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/user_statistic_solved"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -225,7 +239,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/user_statistic_position"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -246,32 +260,34 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/tech_stack"
+            android:id="@+id/tech_stack_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_bg3"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="@id/linearLayout2"
-            app:layout_constraintStart_toStartOf="@id/linearLayout2"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+            app:layout_constraintEnd_toEndOf="@id/user_statistic_container"
+            app:layout_constraintStart_toStartOf="@id/user_statistic_container"
+            app:layout_constraintTop_toBottomOf="@id/user_statistic_container"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/tech_stack"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/tech_stack_chips"
+                android:id="@+id/tech_stack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
                 app:chipSpacingHorizontal="5dp" />

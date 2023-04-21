@@ -29,9 +29,9 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater);
 
-        binding.imageButton11.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_profile_to_settings));
-        binding.userNameLastName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
-        binding.textView6.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
+        binding.buttonOpenSettings.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_profile_to_settings));
+        binding.profileUserName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
+        binding.userStatisticScore.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
 
         if (Values.user.getUserGithub() == null || Values.user.getUserGithub().equals(""))
             binding.userPersonalGithub.setVisibility(View.GONE);
@@ -48,37 +48,27 @@ public class ProfileFragment extends Fragment {
         binding.userPersonalTelegram.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
         binding.userPersonalStepik.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getUserStepik()))));
         binding.userPersonalKaggle.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getUserKaggle()))));
-        binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
-                !Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ?
-                        "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()
-        ))));
+        binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(!Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ? "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()))));
 
         RequestManager with = Glide.with(this);
         if (Values.user.getUserAvatarPath().endsWith(".gif"))
-            with
-                    .asGif()
-                    .circleCrop()
-                    .load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath())
-                    .into(binding.imageView2);
+            with.asGif().circleCrop().load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath()).into(binding.avatar);
         else
-            with
-                    .asBitmap()
-                    .circleCrop()
-                    .load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath())
-                    .into(binding.imageView2);
+            with.asBitmap().circleCrop().load(ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath()).into(binding.avatar);
 
-        binding.aboutText.setText(Values.user.getUserAboutText());
+        if ("".equals(Values.user.getUserAboutText())) binding.aboutText.setVisibility(View.GONE);
+        else binding.aboutText.setText(Values.user.getUserAboutText());
 
-        if (Values.user.getTechStack() != null)
+        if (Values.user.getTechStack() == null || Values.user.getTechStack().equals(""))
+            binding.techStack.setVisibility(View.GONE);
+        else
             for (String s : Values.user.getTechStack().split(",")) {
                 Chip chip = new Chip(getContext());
                 chip.setText(s);
-                binding.techStackChips.addView(chip);
+                binding.techStack.addView(chip);
             }
-        if (Values.user.getTechStack() == null || Values.user.getTechStack().split(",").length == 0)
-            binding.techStack.setVisibility(View.GONE);
 
-        binding.logoutButton.setOnClickListener(view -> {
+        binding.buttonLogout.setOnClickListener(view -> {
             requireActivity().getSharedPreferences(Values.APP_ID, MODE_PRIVATE).edit().remove(Values.AUTH_ID).apply();
             Intent myIntent = new Intent(requireContext(), LoginActivity.class);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
