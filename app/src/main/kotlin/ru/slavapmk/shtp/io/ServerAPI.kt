@@ -11,6 +11,7 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 import ru.slavapmk.shtp.io.dto.PatchResult
+import ru.slavapmk.shtp.io.dto.achievements.AllAchievements
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
@@ -59,5 +60,8 @@ interface ServerAPI {
 
     @PATCH("users/avatar/")
     suspend fun uploadAvatar(@Body image: RequestBody)
+
+    @GET("achievements/")
+    fun getAchievements(@Header("Authorization") token: String): Observable<AllAchievements>
 
 }
