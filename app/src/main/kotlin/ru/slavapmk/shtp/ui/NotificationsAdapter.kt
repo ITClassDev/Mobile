@@ -24,7 +24,16 @@ class NotificationsAdapter(private val myDataset: List<Notification>) :
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
         val notification = myDataset[position]
-        holder.notificationTitle.text = "Получено достижение"
+        holder.notificationTitle.text = when (notification.type) {
+            0 -> "Получено достижение"
+            1 -> "Достижение отклонено"
+            else -> ""
+        }
+
+        holder.itemView.isSelected = when (notification.type) {
+            0 -> true
+            else -> false
+        }
         holder.notificationText.text = notification.data.name
     }
 

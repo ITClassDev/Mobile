@@ -67,17 +67,40 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/received_from"
+
                 android:scaleType="centerInside"
                 android:src="@drawable/achievement_star" />
 
             <TextView
+                android:id="@+id/achievement_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="10"
                 android:textColor="@color/white"
                 android:textSize="15.25sp" />
         </LinearLayout>
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:divider="@drawable/divider_10"-->
+        <!--            android:showDividers="middle">-->
+
+        <!--            <ImageView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:scaleType="centerInside"-->
+        <!--                android:src="@drawable/achievement_globus" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/achievement_info"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:fontFamily="@font/montserrat_medium"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textSize="15.25sp" />-->
+        <!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,35 +111,15 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:scaleType="centerInside"
-                android:src="@drawable/achievement_globus" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Информация"
-                android:textColor="@color/white"
-                android:textSize="15.25sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divider_10"
-            android:showDividers="middle">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:contentDescription="@string/type_of"
                 android:scaleType="centerInside"
                 android:src="@drawable/achievement_diploma" />
 
             <TextView
+                android:id="@+id/achievement_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Диплом"
                 android:textColor="@color/white"
                 android:textSize="15.25sp" />
         </LinearLayout>
@@ -130,14 +133,15 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/received_at"
                 android:scaleType="centerInside"
                 android:src="@drawable/achievement_created" />
 
             <TextView
+                android:id="@+id/achievement_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="17.12.2022"
                 android:textColor="@color/white"
                 android:textSize="15.25sp" />
         </LinearLayout>

@@ -1,7 +1,6 @@
 package ru.slavapmk.shtp.io.dto.achievements
 
-data class AllAchievements(
+data class AchievementsResponse(
     val achievements: Achievements,
-    val base: Achievements,
     val status: Boolean
 )

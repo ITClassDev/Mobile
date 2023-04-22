@@ -6,7 +6,7 @@
     <string name="button_personal_stepik">Stepik Account</string>
     <string name="button_personal_kaggle">Kaggle Account</string>
     <string name="button_personal_link">Personal Site</string>
-    <string name="default_user_values" translatable="false">1</string>
+    <string name="default_user_values" translatable="false">N/A</string>
     <string name="user_score">Score</string>
     <string name="user_solved">Solved</string>
     <string name="user_position">Position</string>
@@ -57,4 +57,7 @@
     <string name="settings_tech_stack_hint">Tech stack</string>
     <string name="data_entered_incorrectly">Data entered incorrectly</string>
     <string name="hello">Hello!</string>
+    <string name="received_from">Points received</string>
+    <string name="type_of">Type of</string>
+    <string name="received_at">Received at</string>
 </resources>

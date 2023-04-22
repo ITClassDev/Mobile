@@ -51,4 +51,8 @@
     <string name="notification">Уведомления</string>
     <string name="settings_tech_stack_hint">Навыки</string>
     <string name="data_entered_incorrectly">Некорректно введены данные</string>
+    <string name="hello">Привет!</string>
+    <string name="received_from">Заработано</string>
+    <string name="type_of">Тип</string>
+    <string name="received_at">Получено</string>
 </resources>

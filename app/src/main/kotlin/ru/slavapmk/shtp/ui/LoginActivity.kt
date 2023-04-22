@@ -1,6 +1,5 @@
 package ru.slavapmk.shtp.ui
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,18 +7,31 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.HttpException
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.ActivityLoginBinding
+import ru.slavapmk.shtp.io.dto.achievements.AchievementsResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
+import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
+import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
+import ru.slavapmk.shtp.io.dto.tasks.DailyChallenge
+import ru.slavapmk.shtp.io.dto.user.LeaderBoard
 import java.net.ConnectException
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private val loadings = ArrayList<Disposable>()
 
-    @SuppressLint("CheckResult")
+    override fun onStop() {
+        super.onStop()
+        for (loading in loadings)
+            loading.dispose()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -27,19 +39,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val prefs = getSharedPreferences(Values.APP_ID, MODE_PRIVATE)
-        val loadedToken = prefs.getString(Values.AUTH_ID, null)
+        val loadedToken = prefs.getString(Values.AUTH_KEY_ID, null)
         loadedToken?.let {
             Values.token = it
-            Values.api.getMe(it)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe { me ->
-                    Values.user = me.user
-                    val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
-                    myIntent.flags =
-                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(myIntent)
-                }
+            downloadDataAndRun()
             return
         }
 
@@ -57,47 +60,73 @@ class LoginActivity : AppCompatActivity() {
             hideErrors()
             binding.statusProgressBar.visibility = View.VISIBLE
 
-            Values.api.login(
-                AuthLoginRequest(
-                    binding.inputEmail.text.toString(), binding.inputPassword.text.toString()
+            loadings.add(
+                Values.api.login(
+                    AuthLoginRequest(
+                        binding.inputEmail.text.toString(), binding.inputPassword.text.toString()
+                    )
                 )
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({ loginResponse ->
+                        Values.token = "Bearer ${loginResponse.accessToken}"
+                        getSharedPreferences(Values.APP_ID, MODE_PRIVATE).edit {
+                            putString(Values.AUTH_KEY_ID, Values.token).apply()
+                        }
+                        downloadDataAndRun()
+                    }, {
+                        when (it) {
+                            is ConnectException -> binding.messageNoServerAccess.visibility =
+                                View.VISIBLE
+
+                            is HttpException -> when (it.code()) {
+                                401 ->
+                                    binding.messageIncorrectCredentials.visibility = View.VISIBLE
+
+                                422 ->
+                                    binding.messageIncorrectInput.visibility = View.VISIBLE
+                            }
+
+                            else -> binding.messageNetworkError.visibility = View.VISIBLE
+                        }
+                        binding.statusProgressBar.visibility = View.GONE
+                    })
+            )
+        }
+    }
+
+    private fun downloadDataAndRun() {
+        loadings.add(
+            Observable.concatArray(
+                Values.api.getMe(Values.token),
+                Values.api.getLeaderBoard(),
+                Values.api.getAchievements(Values.token),
+                Values.api.getNotifications(Values.token),
+                Values.api.getDailyChallenge(Values.token)
             )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe({ loginResponse ->
-                    Values.token = "Bearer ${loginResponse.accessToken}"
-
-                    Values.api.getMe(Values.token)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe { me ->
-                            Values.user = me.user
-                            getSharedPreferences(Values.APP_ID, MODE_PRIVATE).edit {
-                                this.putString(Values.AUTH_ID, Values.token).apply()
-                            }
-                            val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
-                            myIntent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(myIntent)
-                        }
-                }, {
+                .subscribe({
                     when (it) {
-                        is ConnectException -> binding.messageNoServerAccess.visibility =
-                            View.VISIBLE
+                        is AuthMeResponse -> Values.user = it.user
 
-                        is HttpException -> when (it.code()) {
-                            401 ->
-                                binding.messageIncorrectCredentials.visibility = View.VISIBLE
+                        is LeaderBoard -> Values.leaderboard = it
 
-                            422 ->
-                                binding.messageIncorrectInput.visibility = View.VISIBLE
-                        }
+                        is AchievementsResponse -> Values.achievements = it.achievements
 
-                        else -> binding.messageNetworkError.visibility = View.VISIBLE
+                        is AllNotifications -> Values.notifications = it
+
+                        is DailyChallenge -> Values.dailyChallenge = it
                     }
-                    binding.statusProgressBar.visibility = View.GONE
+                }, {
+                    throw RuntimeException(it)
+                }, {
+                    val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
+                    myIntent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(myIntent)
                 })
-        }
+        )
     }
 
     private fun hideErrors() {

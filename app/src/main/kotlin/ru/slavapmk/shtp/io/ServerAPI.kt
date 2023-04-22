@@ -7,11 +7,12 @@ import retrofit2.http.Header
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import ru.slavapmk.shtp.io.dto.PatchResult
-import ru.slavapmk.shtp.io.dto.achievements.AllAchievements
+import ru.slavapmk.shtp.io.dto.achievements.AchievementsResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
+import ru.slavapmk.shtp.io.dto.tasks.DailyChallenge
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 
@@ -33,12 +34,15 @@ interface ServerAPI {
     ): Observable<PatchResult>
 
     @GET("achievements/")
-    fun getAchievements(@Header("Authorization") token: String): Observable<AllAchievements>
+    fun getAchievements(@Header("Authorization") token: String): Observable<AchievementsResponse>
 
     @GET("users/my_notifications/")
     fun getNotifications(@Header("Authorization") token: String): Observable<AllNotifications>
 
     @GET("users/get_leaderboard/")
     fun getLeaderBoard(): Observable<LeaderBoard>
+
+    @GET("programming_tasks/day_challenge/current/")
+    fun getDailyChallenge(@Header("Authorization") token: String): Observable<DailyChallenge>
 
 }

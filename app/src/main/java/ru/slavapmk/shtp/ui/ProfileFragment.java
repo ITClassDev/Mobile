@@ -21,11 +21,10 @@ import com.google.android.material.chip.Chip;
 
 import java.util.Locale;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import ru.slavapmk.shtp.R;
 import ru.slavapmk.shtp.Values;
 import ru.slavapmk.shtp.databinding.FragmentProfileBinding;
+import ru.slavapmk.shtp.io.dto.user.LeaderBoardItem;
 
 public class ProfileFragment extends Fragment {
     @SuppressLint("CheckResult")
@@ -35,7 +34,6 @@ public class ProfileFragment extends Fragment {
 
         binding.buttonOpenSettings.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_profile_to_settings));
         binding.profileUserName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
-        binding.userStatisticScore.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
 
         if (Values.user.getUserGithub() == null || Values.user.getUserGithub().equals(""))
             binding.userPersonalGithub.setVisibility(View.GONE);
@@ -73,16 +71,22 @@ public class ProfileFragment extends Fragment {
             }
 
         binding.buttonLogout.setOnClickListener(view -> {
-            requireActivity().getSharedPreferences(Values.APP_ID, MODE_PRIVATE).edit().remove(Values.AUTH_ID).apply();
+            requireActivity().getSharedPreferences(Values.APP_ID, MODE_PRIVATE).edit().remove(Values.AUTH_KEY_ID).apply();
             Intent myIntent = new Intent(requireContext(), LoginActivity.class);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(myIntent);
         });
 
-        Values.INSTANCE.getApi().getLeaderBoard()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(leaderBoardItems -> binding.userStatisticPosition.setText(leaderBoardItems.get(Values.user.getId()).toString()));
+
+        //Statistic
+        binding.userStatisticScore.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
+        for (int i = 0; i < Values.leaderboard.size(); i++) {
+            LeaderBoardItem leaderBoardItem = Values.leaderboard.get(i);
+            if (leaderBoardItem.getId() == Values.user.getId()) {
+                binding.userStatisticPosition.setText(String.format(Locale.getDefault(), "%d", i + 1));
+                break;
+            }
+        }
 
         return binding.getRoot();
     }

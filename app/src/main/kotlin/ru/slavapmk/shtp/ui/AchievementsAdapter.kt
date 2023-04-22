@@ -7,25 +7,36 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.io.dto.achievements.Achievement
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class AchievementsAdapter(private val myDataset: List<Achievement>) :
     RecyclerView.Adapter<AchievementsAdapter.AchievementViewHolder>() {
 
-    class AchievementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val achievementTitle: TextView = itemView.findViewById(R.id.title)
-        val achievementText: TextView = itemView.findViewById(R.id.text)
-    }
+    class AchievementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AchievementViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.view_achievement, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.view_achievement, parent, false)
         return AchievementViewHolder(itemView)
     }
 
+    private val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+
     override fun onBindViewHolder(holder: AchievementViewHolder, position: Int) {
         val achievement = myDataset[position]
-        holder.achievementTitle.text = achievement.title
-        holder.achievementText.text = achievement.description
+        holder.itemView.findViewById<TextView?>(R.id.title).text = achievement.title
+        holder.itemView.findViewById<TextView?>(R.id.text).text = achievement.description
+        holder.itemView.findViewById<TextView?>(R.id.achievement_date).text =
+            LocalDateTime.parse(achievement.received_at).format(formatter)
+        holder.itemView.findViewById<TextView?>(R.id.achievement_score).text =
+            achievement.points.toString()
+        holder.itemView.findViewById<TextView?>(R.id.achievement_type).text =
+            when (achievement.type) {
+                0 -> "Олимпиады / Конкурсы"
+                1 -> "Мероприятия"
+                else -> ""
+            }
     }
 
     override fun getItemCount() = myDataset.size
