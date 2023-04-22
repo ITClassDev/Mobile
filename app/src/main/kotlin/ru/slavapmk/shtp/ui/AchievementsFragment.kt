@@ -1,7 +1,7 @@
 package ru.slavapmk.shtp.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +15,8 @@ import ru.slavapmk.shtp.databinding.FragmentAchievementsBinding
 
 class AchievementsFragment : Fragment() {
     private lateinit var inflate: FragmentAchievementsBinding
+
+    @SuppressLint("CheckResult")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

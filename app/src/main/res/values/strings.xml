@@ -6,7 +6,7 @@
     <string name="button_personal_stepik">Stepik Account</string>
     <string name="button_personal_kaggle">Kaggle Account</string>
     <string name="button_personal_link">Personal Site</string>
-    <string name="default_user_values" translatable="false">NaN</string>
+    <string name="default_user_values" translatable="false">1</string>
     <string name="user_score">Score</string>
     <string name="user_solved">Solved</string>
     <string name="user_position">Position</string>
