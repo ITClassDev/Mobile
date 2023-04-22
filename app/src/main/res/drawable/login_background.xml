@@ -1,9 +1,4 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="104dp"
-    android:height="200dp"
-    android:viewportWidth="411"
-    android:viewportHeight="792">
-    <path
-        android:fillColor="@color/login_activity_bar_color"
-        android:pathData="M0,0H411.3V461.38L0,791.94V0Z" />
+<vector android:height="130dp" android:viewportHeight="300"
+    android:viewportWidth="370" android:width="160.33333dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#1D2023" android:pathData="M0,0l370,0l-370,300z"/>
 </vector>
