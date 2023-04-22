@@ -12,6 +12,7 @@ import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
+import ru.slavapmk.shtp.io.dto.user.LeaderBoard
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 
 interface ServerAPI {
@@ -36,5 +37,8 @@ interface ServerAPI {
 
     @GET("users/my_notifications/")
     fun getNotifications(@Header("Authorization") token: String): Observable<AllNotifications>
+
+    @GET("users/get_leaderboard/")
+    fun getLeaderBoard(): Observable<LeaderBoard>
 
 }

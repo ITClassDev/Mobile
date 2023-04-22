@@ -3,6 +3,7 @@ package ru.slavapmk.shtp.ui;
 import static android.content.Context.MODE_PRIVATE;
 import static ru.slavapmk.shtp.Values.ENDPOINT_URL;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,11 +21,14 @@ import com.google.android.material.chip.Chip;
 
 import java.util.Locale;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import ru.slavapmk.shtp.R;
 import ru.slavapmk.shtp.Values;
 import ru.slavapmk.shtp.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
+    @SuppressLint("CheckResult")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater);
@@ -74,6 +78,11 @@ public class ProfileFragment extends Fragment {
             myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(myIntent);
         });
+
+        Values.INSTANCE.getApi().getLeaderBoard()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(leaderBoardItems -> binding.userStatisticPosition.setText(leaderBoardItems.get(Values.user.getId()).toString()));
 
         return binding.getRoot();
     }
