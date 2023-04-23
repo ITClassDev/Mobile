@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/panel_calendar_unselected" android:state_selected="false" />
-    <item android:drawable="@drawable/panel_calendar_selected" android:state_selected="true" />
-</selector>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="38dp"
+    android:height="38dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M880,184L712,184v-64c0,-4.4 -3.6,-8 -8,-8h-56c-4.4,0 -8,3.6 -8,8v64L384,184v-64c0,-4.4 -3.6,-8 -8,-8h-56c-4.4,0 -8,3.6 -8,8v64L144,184c-17.7,0 -32,14.3 -32,32v664c0,17.7 14.3,32 32,32h736c17.7,0 32,-14.3 32,-32L912,216c0,-17.7 -14.3,-32 -32,-32zM840,840L184,840L184,460h656v380zM184,392L184,256h128v48c0,4.4 3.6,8 8,8h56c4.4,0 8,-3.6 8,-8v-48h256v48c0,4.4 3.6,8 8,8h56c4.4,0 8,-3.6 8,-8v-48h128v136L184,392z" />
+</vector>

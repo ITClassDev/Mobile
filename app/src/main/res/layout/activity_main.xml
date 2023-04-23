@@ -36,6 +36,7 @@
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
         app:itemIconSize="35dp"
+        app:itemIconTint="@color/icon_color"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
