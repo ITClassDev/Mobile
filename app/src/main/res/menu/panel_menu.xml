@@ -12,10 +12,10 @@
         android:id="@+id/tasks"
         android:icon="@drawable/panel_code"
         android:title="@string/tasks" />
-    <item
-        android:id="@+id/events"
-        android:icon="@drawable/panel_calendar"
-        android:title="@string/events" />
+<!--    <item-->
+<!--        android:id="@+id/events"-->
+<!--        android:icon="@drawable/panel_calendar"-->
+<!--        android:title="@string/events" />-->
     <item
         android:id="@+id/notification"
         android:icon="@drawable/panel_bell"
