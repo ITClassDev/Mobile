@@ -60,4 +60,5 @@
     <string name="received_from">Points received</string>
     <string name="type_of">Type of</string>
     <string name="received_at">Received at</string>
+    <string name="data_expired">Session expired</string>
 </resources>

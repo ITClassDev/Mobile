@@ -119,7 +119,14 @@ class LoginActivity : AppCompatActivity() {
                         is DailyChallenge -> Values.dailyChallenge = it
                     }
                 }, {
-                    throw RuntimeException(it)
+                    if (it is HttpException) {
+                        when (it.code()) {
+                            403 -> {
+                                binding.messageExpired.visibility = View.VISIBLE
+                            }
+                        }
+                    } else
+                        throw RuntimeException(it)
                 }, {
                     val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
                     myIntent.flags =
@@ -134,5 +141,6 @@ class LoginActivity : AppCompatActivity() {
         binding.messageNoServerAccess.visibility = View.GONE
         binding.messageNetworkError.visibility = View.GONE
         binding.messageIncorrectInput.visibility = View.GONE
+        binding.messageExpired.visibility = View.GONE
     }
 }
