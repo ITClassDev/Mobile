@@ -17,7 +17,7 @@ import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import retrofit2.adapter.rxjava3.HttpException
+import retrofit2.HttpException
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.FragmentSettingsBinding
