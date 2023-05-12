@@ -35,6 +35,7 @@ class AchievementsAdapter(private val myDataset: List<Achievement>) :
             when (achievement.type) {
                 0 -> "Олимпиады / Конкурсы"
                 1 -> "Мероприятия"
+                2 -> "Системное"
                 else -> ""
             }
     }

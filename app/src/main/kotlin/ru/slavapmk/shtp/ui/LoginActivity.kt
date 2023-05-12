@@ -101,8 +101,8 @@ class LoginActivity : AppCompatActivity() {
                 Values.api.getMe(Values.token),
                 Values.api.getLeaderBoard(),
                 Values.api.getAchievements(Values.token),
-                Values.api.getNotifications(Values.token),
-                Values.api.getDailyChallenge(Values.token)
+                Values.api.getNotifications(Values.token)
+//                Values.api.getDailyChallenge(Values.token)
             )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -116,7 +116,7 @@ class LoginActivity : AppCompatActivity() {
 
                         is AllNotifications -> Values.notifications = it
 
-                        is DailyChallenge -> Values.dailyChallenge = it
+//                        is DailyChallenge -> Values.dailyChallenge = it
                     }
                 }, {
                     if (it is HttpException) {

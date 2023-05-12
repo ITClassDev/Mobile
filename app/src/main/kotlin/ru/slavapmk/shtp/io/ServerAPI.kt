@@ -12,7 +12,6 @@ import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
-import ru.slavapmk.shtp.io.dto.tasks.DailyChallenge
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 
@@ -42,7 +41,7 @@ interface ServerAPI {
     @GET("users/get_leaderboard/")
     fun getLeaderBoard(): Observable<LeaderBoard>
 
-    @GET("programming_tasks/day_challenge/current/")
-    fun getDailyChallenge(@Header("Authorization") token: String): Observable<DailyChallenge>
+//    @GET("programming/day_challenge/")
+//    fun getDailyChallenge(@Header("Authorization") token: String): Observable<DailyChallenge>
 
 }
