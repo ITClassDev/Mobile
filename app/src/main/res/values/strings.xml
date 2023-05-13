@@ -61,4 +61,6 @@
     <string name="type_of">Type of</string>
     <string name="received_at">Received at</string>
     <string name="data_expired">Session expired</string>
+    <string name="avatar_close_image">Close image</string>
+    <string name="avatar_image">User Avatar</string>
 </resources>

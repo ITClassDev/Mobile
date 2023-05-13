@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,293 +7,344 @@
     android:background="@color/background"
     tools:context=".ui.ProfileFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#1668DC"
-        android:hapticFeedbackEnabled="true">
 
-        <ImageView
-            android:id="@+id/avatar_header"
-            android:layout_width="360dp"
-            android:layout_height="134dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:contentDescription="@string/default_user_name"
-            android:src="@drawable/avatar_header"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#1668DC"
+            android:hapticFeedbackEnabled="true">
+
+            <ImageView
+                android:id="@+id/avatar_header"
+                android:layout_width="360dp"
+                android:layout_height="134dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:contentDescription="@string/default_user_name"
+                android:src="@drawable/avatar_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/avatar"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginTop="47dp"
+                android:background="#0000"
+                android:contentDescription="@string/default_user_name"
+                android:scaleType="fitXY"
+                android:src="@drawable/avatar_default"
+                app:layout_constraintEnd_toEndOf="@id/avatar_header"
+                app:layout_constraintStart_toStartOf="@id/avatar_header"
+                app:layout_constraintTop_toTopOf="@id/avatar_header" />
+
+            <ImageView
+                android:layout_width="183dp"
+                android:layout_height="183dp"
+                android:contentDescription="@string/default_user_name"
+                android:src="@drawable/avatar_border"
+                app:layout_constraintBottom_toBottomOf="@id/avatar"
+                app:layout_constraintEnd_toEndOf="@id/avatar"
+                app:layout_constraintStart_toStartOf="@id/avatar"
+                app:layout_constraintTop_toTopOf="@id/avatar" />
+
+            <ImageButton
+                android:id="@+id/button_open_settings"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/settings_button_background"
+                android:contentDescription="@string/settings_button_description"
+                android:src="@drawable/setting_button"
+                app:layout_constraintEnd_toEndOf="@id/avatar_header"
+                app:layout_constraintTop_toTopOf="@id/avatar_header" />
+
+            <ImageButton
+                android:id="@+id/button_logout"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@color/settings_button_background"
+                android:contentDescription="@string/settings_button_description"
+                android:src="@drawable/logout"
+                app:layout_constraintEnd_toStartOf="@id/button_open_settings"
+                app:layout_constraintTop_toTopOf="@id/button_open_settings" />
+
+            <TextView
+                android:id="@+id/profile_user_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="42dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="@string/default_user_name"
+                android:textColor="#FFFFFF"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/avatar" />
+
+            <LinearLayout
+                android:id="@+id/user_social_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:divider="@drawable/divider_05"
+                android:orientation="horizontal"
+                android:showDividers="middle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_user_name">
+
+                <ImageButton
+                    android:id="@+id/user_personal_github"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_bg1"
+                    android:contentDescription="@string/button_personal_github"
+                    android:contextClickable="true"
+                    android:src="@drawable/soc_github_30"
+                    android:tooltipText="@string/button_personal_github" />
+
+                <ImageButton
+                    android:id="@+id/user_personal_telegram"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_bg1"
+                    android:contentDescription="@string/button_personal_telegram"
+                    android:contextClickable="true"
+                    android:src="@drawable/soc_telegram_30"
+                    android:tooltipText="@string/button_personal_telegram" />
+
+                <ImageButton
+                    android:id="@+id/user_personal_stepik"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_bg1"
+                    android:contentDescription="@string/button_personal_stepik"
+                    android:contextClickable="true"
+                    android:src="@drawable/soc_stepik_30"
+                    android:tooltipText="@string/button_personal_stepik" />
+
+                <ImageButton
+                    android:id="@+id/user_personal_kaggle"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_bg1"
+                    android:contentDescription="@string/button_personal_kaggle"
+                    android:contextClickable="true"
+                    android:src="@drawable/soc_kaggle_30"
+                    android:tooltipText="@string/button_personal_kaggle" />
+
+                <ImageButton
+                    android:id="@+id/user_personal_website"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_bg1"
+                    android:contentDescription="@string/button_personal_link"
+                    android:contextClickable="true"
+                    android:src="@drawable/soc_personal_30"
+                    android:tooltipText="@string/button_personal_link" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/about_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="48dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_social_container" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/user_statistic_container"
+                android:layout_width="333dp"
+                android:layout_height="113dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_bg3"
+                android:orientation="horizontal"
+                app:justifyContent="space_evenly"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about_text">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_statistic_position"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/default_user_values"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/user_position"
+                        android:textColor="#BABBBC"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_statistic_score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/default_user_values"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/user_score"
+                        android:textColor="#BABBBC"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/user_statistic_solved"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/default_user_values"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/user_solved"
+                        android:textColor="#BABBBC"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <LinearLayout
+                android:id="@+id/tech_stack_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_bg3"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/user_statistic_container"
+                app:layout_constraintStart_toStartOf="@id/user_statistic_container"
+                app:layout_constraintTop_toBottomOf="@id/user_statistic_container">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/tech_stack"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/tech_stack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="10dp"
+                    app:chipSpacingHorizontal="5dp" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fullscreen_avatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black_08"
+        android:clickable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/fullscreen_avatar_close"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/close"
+            android:alpha="1"
+            android:background="#0000"
+            android:contentDescription="@string/avatar_close_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:layout_marginTop="47dp"
-            android:contentDescription="@string/default_user_name"
-            android:src="@drawable/avatar_default"
-            app:layout_constraintEnd_toEndOf="@id/avatar_header"
-            app:layout_constraintStart_toStartOf="@id/avatar_header"
-            app:layout_constraintTop_toTopOf="@id/avatar_header" />
-
-        <ImageView
-            android:layout_width="183dp"
-            android:layout_height="183dp"
-            android:contentDescription="@string/default_user_name"
-            android:src="@drawable/avatar_border"
-            app:layout_constraintBottom_toBottomOf="@id/avatar"
-            app:layout_constraintEnd_toEndOf="@id/avatar"
-            app:layout_constraintStart_toStartOf="@id/avatar"
-            app:layout_constraintTop_toTopOf="@id/avatar" />
-
-        <ImageButton
-            android:id="@+id/button_open_settings"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@color/settings_button_background"
-            android:contentDescription="@string/settings_button_description"
-            android:src="@drawable/setting_button"
-            app:layout_constraintEnd_toEndOf="@id/avatar_header"
-            app:layout_constraintTop_toTopOf="@id/avatar_header" />
-
-        <ImageButton
-            android:id="@+id/button_logout"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="4dp"
-            android:background="@color/settings_button_background"
-            android:contentDescription="@string/settings_button_description"
-            android:src="@drawable/logout"
-            app:layout_constraintEnd_toStartOf="@id/button_open_settings"
-            app:layout_constraintTop_toTopOf="@id/button_open_settings" />
-
-        <TextView
-            android:id="@+id/profile_user_name"
+            android:id="@+id/fullscreen_avatar_image"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="42dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
-            android:text="@string/default_user_name"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/avatar" />
-
-        <LinearLayout
-            android:id="@+id/user_social_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:divider="@drawable/divider_05"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_user_name">
-
-            <ImageButton
-                android:id="@+id/user_personal_github"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
-                android:contentDescription="@string/button_personal_github"
-                android:contextClickable="true"
-                android:src="@drawable/soc_github_30"
-                android:tooltipText="@string/button_personal_github" />
-
-            <ImageButton
-                android:id="@+id/user_personal_telegram"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
-                android:contentDescription="@string/button_personal_telegram"
-                android:contextClickable="true"
-                android:src="@drawable/soc_telegram_30"
-                android:tooltipText="@string/button_personal_telegram" />
-
-            <ImageButton
-                android:id="@+id/user_personal_stepik"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
-                android:contentDescription="@string/button_personal_stepik"
-                android:contextClickable="true"
-                android:src="@drawable/soc_stepik_30"
-                android:tooltipText="@string/button_personal_stepik" />
-
-            <ImageButton
-                android:id="@+id/user_personal_kaggle"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
-                android:contentDescription="@string/button_personal_kaggle"
-                android:contextClickable="true"
-                android:src="@drawable/soc_kaggle_30"
-                android:tooltipText="@string/button_personal_kaggle" />
-
-            <ImageButton
-                android:id="@+id/user_personal_website"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
-                android:contentDescription="@string/button_personal_link"
-                android:contextClickable="true"
-                android:src="@drawable/soc_personal_30"
-                android:tooltipText="@string/button_personal_link" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/about_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="48dp"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_social_container" />
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/user_statistic_container"
-            android:layout_width="333dp"
-            android:layout_height="113dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_bg3"
-            android:orientation="horizontal"
-            app:justifyContent="space_evenly"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/about_text">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/user_statistic_position"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/default_user_values"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/user_position"
-                    android:textColor="#BABBBC"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/user_statistic_score"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/default_user_values"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/user_score"
-                    android:textColor="#BABBBC"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/user_statistic_solved"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/default_user_values"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/user_solved"
-                    android:textColor="#BABBBC"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </com.google.android.flexbox.FlexboxLayout>
-
-        <LinearLayout
-            android:id="@+id/tech_stack_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_bg3"
-            android:orientation="vertical"
+            android:contentDescription="@string/avatar_image"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/user_statistic_container"
-            app:layout_constraintStart_toStartOf="@id/user_statistic_container"
-            app:layout_constraintTop_toBottomOf="@id/user_statistic_container">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/tech_stack"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/tech_stack"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="10dp"
-                app:chipSpacingHorizontal="5dp" />
-        </LinearLayout>
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
