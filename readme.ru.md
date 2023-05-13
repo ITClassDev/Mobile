@@ -8,7 +8,7 @@
 * Пользовательский интерфейс основан на [макете Figma](https://www.figma.com/file/k45gvSrwIiGPbaLBunFHw9/Android?node-id=160%3A174&t=RIWBJ2Qv6cmYgMKH-1)
 
 Пример альфа-версии приложения:
-![](https://i.imgur.com/R5tsqiO.jpg)
+![](https://i.imgur.com/ny1Pyvc.png)
 
 ## Сборка
 
