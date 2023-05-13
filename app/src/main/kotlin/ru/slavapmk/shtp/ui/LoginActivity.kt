@@ -18,7 +18,6 @@ import ru.slavapmk.shtp.io.dto.achievements.AchievementsResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
-import ru.slavapmk.shtp.io.dto.tasks.DailyChallenge
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
 import java.net.ConnectException
 
@@ -37,14 +36,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         window.statusBarColor = ContextCompat.getColor(this, R.color.login_activity_bar_color)
         setContentView(binding.root)
-
-        val prefs = getSharedPreferences(Values.APP_ID, MODE_PRIVATE)
-        val loadedToken = prefs.getString(Values.AUTH_KEY_ID, null)
-        loadedToken?.let {
-            Values.token = it
-            downloadDataAndRun()
-            return
-        }
 
         binding.loginLayout.visibility = View.VISIBLE
         binding.buttonLogin.visibility = View.VISIBLE
@@ -93,6 +84,14 @@ class LoginActivity : AppCompatActivity() {
                     })
             )
         }
+
+        val prefs = getSharedPreferences(Values.APP_ID, MODE_PRIVATE)
+        val loadedToken = prefs.getString(Values.AUTH_KEY_ID, null)
+        loadedToken?.let {
+            Values.token = it
+            downloadDataAndRun()
+            return
+        }
     }
 
     private fun downloadDataAndRun() {
@@ -121,10 +120,11 @@ class LoginActivity : AppCompatActivity() {
                 }, {
                     if (it is HttpException) {
                         when (it.code()) {
-                            403 -> {
-                                binding.messageExpired.visibility = View.VISIBLE
-                            }
+                            403 -> binding.messageExpired.visibility = View.VISIBLE
+
+                            else -> binding.messageNetworkError.visibility = View.VISIBLE
                         }
+                        binding.statusProgressBar.visibility = View.INVISIBLE
                     } else
                         throw RuntimeException(it)
                 }, {
