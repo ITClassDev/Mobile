@@ -7,8 +7,7 @@
 * RxJava3 + Retrofit2 are used to exchange messages, which allows executing requests asynchronously.
 * The user interface is based on the [Figma design](https://www.figma.com/file/k45gvSrwIiGPbaLBunFHw9/Android?node-id=160%3A174&t=RIWBJ2Qv6cmYgMKH-1)
 
-Example of the alpha version of the application:
-![](https://i.imgur.com/ny1Pyvc.png)
+[Example of the alpha version of the application](https://i.imgur.com/ny1Pyvc.png)
 
 ## Build
 By default, the project is built with every git push request and sent to [releases](https://github.com/ITClassDev/Mobile/releases).

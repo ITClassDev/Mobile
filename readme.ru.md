@@ -7,8 +7,7 @@
 * Для обмена сообщений используется связка RxJava3 + Retrofit2, что позволяет асинхронно выполнять запросы.
 * Пользовательский интерфейс основан на [макете Figma](https://www.figma.com/file/k45gvSrwIiGPbaLBunFHw9/Android?node-id=160%3A174&t=RIWBJ2Qv6cmYgMKH-1)
 
-Пример альфа-версии приложения:
-![](https://i.imgur.com/ny1Pyvc.png)
+[Пример альфа-версии приложения](https://i.imgur.com/ny1Pyvc.png)
 
 ## Сборка
 
