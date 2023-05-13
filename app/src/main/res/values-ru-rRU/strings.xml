@@ -55,7 +55,7 @@
     <string name="received_from">Заработано</string>
     <string name="type_of">Тип</string>
     <string name="received_at">Получено</string>
-    <string name="data_expired">Session expired</string>
+    <string name="data_expired">Сессия истекла</string>
     <string name="avatar_close_image">Закрыть изображение</string>
     <string name="avatar_image">Аватар пользователя</string>
 </resources>
