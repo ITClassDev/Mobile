@@ -53,7 +53,7 @@ public class ProfileFragment extends Fragment {
         binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(!Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ? "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()))));
 
         RequestManager with = Glide.with(this);
-        String avatar_web_path = ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath();
+        String avatar_web_path = ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath() + "?nocache=" + Values.INSTANCE.getLastAvatarUpdate();
         if (Values.user.getUserAvatarPath().endsWith(".gif"))
             with.asGif().circleCrop().load(avatar_web_path).into(binding.avatar);
         else

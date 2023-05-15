@@ -89,6 +89,7 @@ class LoginActivity : AppCompatActivity() {
         val loadedToken = prefs.getString(Values.AUTH_KEY_ID, null)
         loadedToken?.let {
             Values.token = it
+            binding.statusProgressBar.visibility = View.VISIBLE
             downloadDataAndRun()
             return
         }

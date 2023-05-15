@@ -29,6 +29,7 @@ object Values {
     lateinit var dailyChallenge: DailyChallenge
 
     private var httpLoggingInterceptor = HttpLoggingInterceptor()
+    var lastAvatarUpdate = System.currentTimeMillis()
 
     init {
         httpLoggingInterceptor.level = when (LOG_REQUESTS) {

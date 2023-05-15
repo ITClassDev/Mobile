@@ -1,11 +1,14 @@
 package ru.slavapmk.shtp.io
 
 import io.reactivex.rxjava3.core.Observable
+import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Part
 import ru.slavapmk.shtp.io.dto.PatchResult
 import ru.slavapmk.shtp.io.dto.achievements.AchievementsResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
@@ -13,6 +16,7 @@ import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
+import ru.slavapmk.shtp.io.dto.user.patch.PatchAvatarResponse
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 
 interface ServerAPI {
@@ -31,6 +35,13 @@ interface ServerAPI {
         @Header("Authorization") token: String,
         @Body user: PatchUserRequest
     ): Observable<PatchResult>
+
+    @PATCH("users/avatar/")
+    @Multipart
+    fun updateAvatar(
+        @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part
+    ): Observable<PatchAvatarResponse>
 
     @GET("achievements/")
     fun getAchievements(@Header("Authorization") token: String): Observable<AchievementsResponse>

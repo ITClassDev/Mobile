@@ -314,16 +314,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/settings_avatar_buttons" />
 
+
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:importantForAccessibility="no"
                 android:src="@drawable/avatar_border"
                 app:layout_constraintBottom_toBottomOf="@id/settings_avatar_image"
                 app:layout_constraintEnd_toEndOf="@id/settings_avatar_image"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/settings_avatar_image"
                 app:layout_constraintTop_toTopOf="@id/settings_avatar_image"
-                android:importantForAccessibility="no" />
-
+                app:layout_constraintVertical_bias="0.0" />
 
             <LinearLayout
                 android:id="@+id/settings_avatar_buttons"
