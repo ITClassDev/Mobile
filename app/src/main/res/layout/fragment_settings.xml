@@ -276,6 +276,93 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settings_avatar_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#434648"
+            android:paddingBottom="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bio_group_info">
+
+
+            <TextView
+                android:id="@+id/settings_avatar_header"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#5A5D60"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="@string/avatar"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/settings_avatar_image"
+                android:layout_width="90dp"
+                android:contentDescription="@string/user_avatar_description"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/avatar_default"
+                app:layout_constraintBottom_toBottomOf="@id/settings_avatar_buttons"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/settings_avatar_buttons" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/avatar_border"
+                app:layout_constraintBottom_toBottomOf="@id/settings_avatar_image"
+                app:layout_constraintEnd_toEndOf="@id/settings_avatar_image"
+                app:layout_constraintStart_toStartOf="@id/settings_avatar_image"
+                app:layout_constraintTop_toTopOf="@id/settings_avatar_image"
+                android:importantForAccessibility="no" />
+
+
+            <LinearLayout
+                android:id="@+id/settings_avatar_buttons"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/settings_avatar_image"
+                app:layout_constraintTop_toBottomOf="@id/settings_avatar_header">
+
+                <Button
+                    android:id="@+id/settings_avatar_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/avatar_photo"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/settings_avatar_gallary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/avatar_gallary"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/auth_group_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -286,7 +373,7 @@
             android:paddingBottom="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bio_group_info">
+            app:layout_constraintTop_toBottomOf="@id/settings_avatar_container">
 
             <TextView
                 android:id="@+id/auth_profile_header"

@@ -58,4 +58,8 @@
     <string name="data_expired">Сессия истекла</string>
     <string name="avatar_close_image">Закрыть изображение</string>
     <string name="avatar_image">Аватар пользователя</string>
+    <string name="avatar">Аватар</string>
+    <string name="avatar_photo">Сделать фотографию</string>
+    <string name="avatar_gallary">Выбрать из галереии</string>
+    <string name="user_avatar_description">Аватар пользователя</string>
 </resources>

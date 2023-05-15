@@ -63,4 +63,8 @@
     <string name="data_expired">Session expired</string>
     <string name="avatar_close_image">Close image</string>
     <string name="avatar_image">User Avatar</string>
+    <string name="avatar">Avatar</string>
+    <string name="avatar_photo">Take photo</string>
+    <string name="avatar_gallary">Upload from gallary</string>
+    <string name="user_avatar_description">User avatar</string>
 </resources>
