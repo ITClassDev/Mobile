@@ -21,6 +21,7 @@ import com.google.android.material.chip.Chip;
 
 import java.util.Locale;
 
+import ru.slavapmk.shtp.FullScreenImageActivity;
 import ru.slavapmk.shtp.R;
 import ru.slavapmk.shtp.Values;
 import ru.slavapmk.shtp.databinding.FragmentProfileBinding;
@@ -53,11 +54,12 @@ public class ProfileFragment extends Fragment {
         binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(!Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ? "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()))));
 
         RequestManager with = Glide.with(this);
-        String avatar_web_path = ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath() + "?nocache=" + Values.INSTANCE.getLastAvatarUpdate();
-        if (Values.user.getUserAvatarPath().endsWith(".gif"))
-            with.asGif().circleCrop().load(avatar_web_path).into(binding.avatar);
+        String avatarWebPath = ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath() + "?nocache=" + Values.INSTANCE.getLastAvatarUpdate();
+        boolean avatarIsGif = Values.user.getUserAvatarPath().endsWith(".gif");
+        if (avatarIsGif)
+            with.asGif().circleCrop().load(avatarWebPath).into(binding.avatar);
         else
-            with.asBitmap().circleCrop().load(avatar_web_path).into(binding.avatar);
+            with.asBitmap().circleCrop().load(avatarWebPath).into(binding.avatar);
 
         if ("".equals(Values.user.getUserAboutText())) binding.aboutText.setVisibility(View.GONE);
         else binding.aboutText.setText(Values.user.getUserAboutText());
@@ -90,11 +92,12 @@ public class ProfileFragment extends Fragment {
         }
 
         binding.avatar.setOnClickListener(view -> {
-            if (avatar_web_path.endsWith(".gif"))
-                with.asGif().load(avatar_web_path).into(binding.fullscreenAvatarImage);
-            else
-                with.asBitmap().load(avatar_web_path).into(binding.fullscreenAvatarImage);
-            binding.fullscreenAvatar.setVisibility(View.VISIBLE);
+            Bundle options = new Bundle();
+            options.putString("uri", avatarWebPath);
+            options.putBoolean("as_gif", avatarIsGif);
+            requireActivity().startActivity(
+                    new Intent(requireActivity(), FullScreenImageActivity.class), options
+            );
         });
         binding.fullscreenAvatarClose.setOnClickListener(view -> binding.fullscreenAvatar.setVisibility(View.GONE));
 

@@ -11,14 +11,17 @@
         android:theme="@style/Theme.ShTP"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".FullScreenImageActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
