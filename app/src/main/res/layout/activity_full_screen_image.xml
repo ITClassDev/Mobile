@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:maxZoom="2.5"
+        app:maxZoom="5"
         app:maxZoomType="zoom"
         app:minZoom="1"
         app:minZoomType="zoom"
@@ -37,11 +37,10 @@
         app:zoomEnabled="true">
 
         <ImageView
-            android:contentDescription="@string/full_user_avatar"
             android:id="@+id/avatar_fullscreen_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#F00" />
+            android:contentDescription="@string/full_user_avatar" />
 
     </com.otaliastudios.zoom.ZoomLayout>
 
