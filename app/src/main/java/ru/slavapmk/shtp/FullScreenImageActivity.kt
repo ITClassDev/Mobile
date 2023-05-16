@@ -2,6 +2,7 @@ package ru.slavapmk.shtp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import com.bumptech.glide.Glide
 import ru.slavapmk.shtp.databinding.ActivityFullScreenImageBinding
 
@@ -18,5 +19,12 @@ class FullScreenImageActivity : AppCompatActivity() {
         inflate.fullscreenAvatarClose.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.navigationBarColor = 0
+        window.statusBarColor = 0
     }
 }
