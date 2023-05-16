@@ -67,4 +67,5 @@
     <string name="avatar_photo">Take photo</string>
     <string name="avatar_gallary">Upload from gallary</string>
     <string name="user_avatar_description">User avatar</string>
+    <string name="full_user_avatar">Full User Avatar</string>
 </resources>

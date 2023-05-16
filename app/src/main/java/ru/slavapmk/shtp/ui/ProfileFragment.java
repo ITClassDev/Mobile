@@ -54,7 +54,7 @@ public class ProfileFragment extends Fragment {
         binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(!Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ? "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()))));
 
         RequestManager with = Glide.with(this);
-        String avatarWebPath = ENDPOINT_URL + "/storage/avatars/" + Values.user.getUserAvatarPath() + "?nocache=" + Values.INSTANCE.getLastAvatarUpdate();
+        String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + Values.user.getUserAvatarPath() + "?nocache=" + Values.INSTANCE.getLastAvatarUpdate();
         boolean avatarIsGif = Values.user.getUserAvatarPath().endsWith(".gif");
         if (avatarIsGif)
             with.asGif().circleCrop().load(avatarWebPath).into(binding.avatar);
@@ -92,14 +92,11 @@ public class ProfileFragment extends Fragment {
         }
 
         binding.avatar.setOnClickListener(view -> {
-            Bundle options = new Bundle();
-            options.putString("uri", avatarWebPath);
-            options.putBoolean("as_gif", avatarIsGif);
-            requireActivity().startActivity(
-                    new Intent(requireActivity(), FullScreenImageActivity.class), options
-            );
+            Intent intent = new Intent(requireActivity(), FullScreenImageActivity.class);
+            intent.putExtra("uri", avatarWebPath);
+            intent.putExtra("as_gif", avatarIsGif);
+            requireActivity().startActivity(intent);
         });
-        binding.fullscreenAvatarClose.setOnClickListener(view -> binding.fullscreenAvatar.setVisibility(View.GONE));
 
         return binding.getRoot();
     }

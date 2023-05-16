@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".FullScreenImageActivity">
 
     <com.otaliastudios.zoom.ZoomLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical|horizontal"
+        android:scrollbars="none"
         app:alignment="center"
         app:animationDuration="280"
-        app:flingEnabled="true"
+        app:flingEnabled="false"
         app:hasClickableChildren="false"
         app:horizontalPanEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:maxZoom="2.5"
         app:maxZoomType="zoom"
-        app:minZoom="0.7"
+        app:minZoom="1"
         app:minZoomType="zoom"
         app:oneFingerScrollEnabled="true"
         app:overPinchable="true"
@@ -36,11 +37,25 @@
         app:zoomEnabled="true">
 
         <ImageView
+            android:contentDescription="@string/full_user_avatar"
             android:id="@+id/avatar_fullscreen_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/avatar_default" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#F00" />
 
     </com.otaliastudios.zoom.ZoomLayout>
+
+    <ImageButton
+        android:id="@+id/fullscreen_avatar_close"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:alpha="1"
+        android:background="#0000"
+        android:contentDescription="@string/avatar_close_image"
+        android:src="@drawable/close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,4 +62,5 @@
     <string name="avatar_photo">Сделать фотографию</string>
     <string name="avatar_gallary">Выбрать из галереии</string>
     <string name="user_avatar_description">Аватар пользователя</string>
+    <string name="full_user_avatar">Развёрнутый аватар пользователя</string>
 </resources>
