@@ -1,5 +1,7 @@
 package ru.slavapmk.shtp.ui
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.InputType
@@ -46,6 +48,7 @@ class SettingsFragment : Fragment() {
 
     private val stack = ArrayList<String>()
 
+    @SuppressLint("CheckResult")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -157,7 +160,6 @@ class SettingsFragment : Fragment() {
                     )
                 ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe {
                     Values.user.userAvatarPath = it.avatar
-                    Values.lastAvatarUpdate = System.currentTimeMillis()
                     loadAvatar()
                 }
             }
@@ -165,20 +167,21 @@ class SettingsFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
                 uri?.let {
                     val mime = requireContext().contentResolver.getType(uri)!!
-                    val extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime)
-                    Values.api.updateAvatar(
-                        Values.token, MultipartBody.Part.createFormData(
-                            "file", "avatar.$extension", RequestBody.create(
-                                MediaType.parse(mime),
-                                requireContext().contentResolver.openInputStream(uri)!!.readBytes()
+                    requireActivity().contentResolver.openInputStream(uri)!!.use {
+                        val extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime)
+                        Values.api.updateAvatar(
+                            Values.token, MultipartBody.Part.createFormData(
+                                "file", "avatar.$extension", RequestBody.create(
+                                    MediaType.parse(mime),
+                                    it.readBytes()
+                                )
                             )
-                        )
-                    ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                        .subscribe {
-                            Values.user.userAvatarPath = it.avatar
-                            Values.lastAvatarUpdate = System.currentTimeMillis()
-                            loadAvatar()
-                        }
+                        ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
+                            .subscribe { response ->
+                                Values.user.userAvatarPath = response.avatar
+                                loadAvatar()
+                            }
+                    }
                 }
 
             }
@@ -188,6 +191,11 @@ class SettingsFragment : Fragment() {
         binding.settingsAvatarGallary.setOnClickListener {
             getPhotoRegistration.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
+        binding.settingsAvatarImage.setOnClickListener {
+            val intent = Intent(requireActivity(), FullScreenImageActivity::class.java)
+            intent.putExtra("uri", ENDPOINT_URL + "/storage/avatars/" + Values.user.userAvatarPath)
+            requireActivity().startActivity(intent)
+        }
 
         return binding.root
     }
@@ -195,13 +203,10 @@ class SettingsFragment : Fragment() {
     private fun loadAvatar() {
         val with = Glide.with(this)
         val avatarPath: String =
-            ENDPOINT_URL + "/storage/avatars/" + Values.user.userAvatarPath + "?nocache=${Values.lastAvatarUpdate}"
+            ENDPOINT_URL + "/storage/avatars/" + Values.user.userAvatarPath
         val builder =
             if (Values.user.userAvatarPath.endsWith(".gif")) with.asGif() else with.asBitmap()
-        builder
-            .circleCrop()
-            .load(avatarPath)
-            .into(binding.settingsAvatarImage)
+        builder.load(avatarPath).circleCrop().into(binding.settingsAvatarImage)
     }
 
     private fun reloadChips(stacks: ArrayList<String>) {

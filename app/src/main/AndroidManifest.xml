@@ -11,7 +11,7 @@
         android:theme="@style/Theme.ShTP"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".FullScreenImageActivity"
+            android:name=".ui.FullScreenImageActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

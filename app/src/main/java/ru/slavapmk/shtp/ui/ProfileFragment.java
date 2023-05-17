@@ -21,7 +21,6 @@ import com.google.android.material.chip.Chip;
 
 import java.util.Locale;
 
-import ru.slavapmk.shtp.FullScreenImageActivity;
 import ru.slavapmk.shtp.R;
 import ru.slavapmk.shtp.Values;
 import ru.slavapmk.shtp.databinding.FragmentProfileBinding;
@@ -54,9 +53,8 @@ public class ProfileFragment extends Fragment {
         binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(!Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ? "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()))));
 
         RequestManager with = Glide.with(this);
-        String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + Values.user.getUserAvatarPath() + "?nocache=" + Values.INSTANCE.getLastAvatarUpdate();
-        boolean avatarIsGif = Values.user.getUserAvatarPath().endsWith(".gif");
-        if (avatarIsGif)
+        String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + Values.user.getUserAvatarPath();
+        if (Values.user.getUserAvatarPath().endsWith(".gif"))
             with.asGif().circleCrop().load(avatarWebPath).into(binding.avatar);
         else
             with.asBitmap().circleCrop().load(avatarWebPath).into(binding.avatar);
@@ -94,7 +92,6 @@ public class ProfileFragment extends Fragment {
         binding.avatar.setOnClickListener(view -> {
             Intent intent = new Intent(requireActivity(), FullScreenImageActivity.class);
             intent.putExtra("uri", avatarWebPath);
-            intent.putExtra("as_gif", avatarIsGif);
             requireActivity().startActivity(intent);
         });
 

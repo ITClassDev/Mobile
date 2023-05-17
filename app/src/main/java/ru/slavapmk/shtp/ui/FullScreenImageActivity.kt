@@ -1,4 +1,4 @@
-package ru.slavapmk.shtp
+package ru.slavapmk.shtp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,8 +12,7 @@ class FullScreenImageActivity : AppCompatActivity() {
         val inflate = ActivityFullScreenImageBinding.inflate(layoutInflater)
         setContentView(inflate.root)
         val uri = intent.extras!!.getString("uri")!!
-        val isGif = intent.extras!!.getBoolean("as_gif", false)
-        (if (isGif) Glide.with(this).asGif() else Glide.with(this).asBitmap())
+        (if (uri.endsWith(".gif")) Glide.with(this).asGif() else Glide.with(this).asBitmap())
             .load(uri).into(inflate.avatarFullscreenImage)
 
         inflate.fullscreenAvatarClose.setOnClickListener {

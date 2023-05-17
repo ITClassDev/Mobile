@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".FullScreenImageActivity">
+    tools:context=".ui.FullScreenImageActivity">
 
     <com.otaliastudios.zoom.ZoomLayout
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
         android:id="@+id/fullscreen_avatar_close"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
         android:alpha="1"
         android:background="#0000"
