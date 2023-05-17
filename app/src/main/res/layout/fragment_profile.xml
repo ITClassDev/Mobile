@@ -50,15 +50,22 @@
             app:layout_constraintStart_toStartOf="@id/avatar"
             app:layout_constraintTop_toTopOf="@id/avatar" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
+            android:theme="@style/Widget.Material3.Button"
             android:id="@+id/button_open_settings"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:background="@color/settings_button_background"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            app:icon="@drawable/setting_button"
+            app:iconSize="0dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:backgroundTint="#0000"
+            app:cornerRadius="24dp"
             android:contentDescription="@string/settings_button_description"
-            android:src="@drawable/setting_button"
             app:layout_constraintEnd_toEndOf="@id/avatar_header"
             app:layout_constraintTop_toTopOf="@id/avatar_header" />
 

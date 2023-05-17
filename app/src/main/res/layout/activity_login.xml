@@ -79,7 +79,7 @@
             android:hint="@string/login_field_email"
             app:boxCornerRadiusBottomEnd="0dp"
             app:boxCornerRadiusBottomStart="0dp"
-            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopEnd="45dp"
             app:boxCornerRadiusTopStart="0dp"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp">
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_field_password"
-            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomEnd="45dp"
             app:boxCornerRadiusBottomStart="0dp"
             app:boxCornerRadiusTopEnd="0dp"
             app:boxCornerRadiusTopStart="0dp"
@@ -121,18 +121,22 @@
 
     </LinearLayout>
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_login"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@null"
+        android:theme="@style/Widget.Material3.Button"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        app:cornerRadius="25dp"
+        app:icon="@drawable/login_button_arrow"
+        app:iconSize="50dp"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        android:layout_marginEnd="-15dp"
         android:contentDescription="@string/login_field_login_button"
-        android:src="@drawable/login_button"
-        android:text="@string/login_field_login_button"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/login_layout"
         app:layout_constraintEnd_toEndOf="@+id/login_layout"
-        app:layout_constraintStart_toEndOf="@+id/login_layout"
         app:layout_constraintTop_toTopOf="@+id/login_layout"
         tools:visibility="visible" />
 
