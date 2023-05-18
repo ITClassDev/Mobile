@@ -306,27 +306,24 @@
             <ImageButton
                 android:id="@+id/settings_avatar_image"
                 android:layout_width="90dp"
-                android:contentDescription="@string/user_avatar_description"
-                android:layout_height="0dp"
-                android:background="#0000"
+                android:layout_height="90dp"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/avatar_default"
+                android:background="#0000"
+                android:contentDescription="@string/user_avatar_description"
                 app:layout_constraintBottom_toBottomOf="@id/settings_avatar_buttons"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/settings_avatar_buttons" />
 
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="97dp"
+                android:layout_height="97dp"
                 android:importantForAccessibility="no"
                 android:src="@drawable/avatar_border"
                 app:layout_constraintBottom_toBottomOf="@id/settings_avatar_image"
                 app:layout_constraintEnd_toEndOf="@id/settings_avatar_image"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/settings_avatar_image"
-                app:layout_constraintTop_toTopOf="@id/settings_avatar_image"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="@id/settings_avatar_image" />
 
             <LinearLayout
                 android:id="@+id/settings_avatar_buttons"
@@ -341,7 +338,7 @@
                 app:layout_constraintStart_toEndOf="@id/settings_avatar_image"
                 app:layout_constraintTop_toBottomOf="@id/settings_avatar_header">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/settings_avatar_photo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -349,9 +346,11 @@
                     android:gravity="center"
                     android:text="@string/avatar_photo"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:theme="@style/Widget.Material3.Button"
+                    app:cornerRadius="100dp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/settings_avatar_gallary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -359,7 +358,9 @@
                     android:gravity="center"
                     android:text="@string/avatar_gallary"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:theme="@style/Widget.Material3.Button"
+                    app:cornerRadius="100dp" />
             </LinearLayout>
 
 
@@ -457,7 +458,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/save_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -468,6 +469,8 @@
             android:text="@string/save_button"
             android:textColor="@android:color/white"
             android:textSize="20sp"
+            android:theme="@style/Widget.Material3.Button"
+            app:cornerRadius="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/auth_group_info"
             app:layout_constraintStart_toStartOf="@id/auth_group_info"

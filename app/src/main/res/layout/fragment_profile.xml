@@ -35,7 +35,6 @@
             android:background="#0000"
             android:contentDescription="@string/user_avatar_description"
             android:scaleType="fitXY"
-            android:src="@drawable/avatar_default"
             app:layout_constraintEnd_toEndOf="@id/avatar_header"
             app:layout_constraintStart_toStartOf="@id/avatar_header"
             app:layout_constraintTop_toTopOf="@id/avatar_header" />
@@ -51,34 +50,47 @@
             app:layout_constraintTop_toTopOf="@id/avatar" />
 
         <com.google.android.material.button.MaterialButton
-            android:theme="@style/Widget.Material3.Button"
             android:id="@+id/button_open_settings"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:insetBottom="0dp"
+            android:contentDescription="@string/settings_button_description"
             android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:stateListAnimator="@null"
+            android:theme="@style/Widget.Material3.Button"
+            app:backgroundTint="#0fff"
+            app:cornerRadius="12dp"
             app:icon="@drawable/setting_button"
-            app:iconSize="0dp"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
-            app:backgroundTint="#0000"
-            app:cornerRadius="24dp"
-            android:contentDescription="@string/settings_button_description"
+            app:iconSize="0dp"
+            app:iconTint="#fff"
             app:layout_constraintEnd_toEndOf="@id/avatar_header"
-            app:layout_constraintTop_toTopOf="@id/avatar_header" />
+            app:layout_constraintTop_toTopOf="@id/avatar_header"
+            app:rippleColor="#6b6b6b" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_logout"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="4dp"
-            android:background="@color/settings_button_background"
-            android:contentDescription="@string/settings_button_description"
-            android:src="@drawable/logout"
+            android:contentDescription="@string/logout_button_description"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:stateListAnimator="@null"
+            android:theme="@style/Widget.Material3.Button"
+            app:backgroundTint="#0fff"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/logout"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="0dp"
+            app:iconTint="#fff"
             app:layout_constraintEnd_toStartOf="@id/button_open_settings"
-            app:layout_constraintTop_toTopOf="@id/button_open_settings" />
+            app:layout_constraintTop_toTopOf="@id/button_open_settings"
+            app:rippleColor="#6b6b6b" />
 
         <TextView
             android:id="@+id/profile_user_name"
@@ -109,60 +121,107 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_user_name">
 
-            <ImageButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/user_personal_github"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
                 android:contentDescription="@string/button_personal_github"
-                android:contextClickable="true"
-                android:src="@drawable/soc_github_30"
-                android:tooltipText="@string/button_personal_github" />
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:stateListAnimator="@null"
+                android:theme="@style/Widget.Material3.Button"
+                android:tooltipText="@string/button_personal_github"
+                app:backgroundTint="#000"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/soc_github_30"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:iconTint="#fff"
+                app:rippleColor="#6b6b6b" />
 
-            <ImageButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/user_personal_telegram"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
                 android:contentDescription="@string/button_personal_telegram"
-                android:contextClickable="true"
-                android:src="@drawable/soc_telegram_30"
-                android:tooltipText="@string/button_personal_telegram" />
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:stateListAnimator="@null"
+                android:theme="@style/Widget.Material3.Button"
+                android:tooltipText="@string/button_personal_telegram"
+                app:backgroundTint="#000"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/soc_telegram_30"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:iconTint="#fff"
+                app:rippleColor="#6b6b6b" />
 
-            <ImageButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/user_personal_stepik"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
                 android:contentDescription="@string/button_personal_stepik"
-                android:contextClickable="true"
-                android:src="@drawable/soc_stepik_30"
-                android:tooltipText="@string/button_personal_stepik" />
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:stateListAnimator="@null"
+                android:theme="@style/Widget.Material3.Button"
+                android:tooltipText="@string/button_personal_stepik"
+                app:backgroundTint="#000"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/soc_stepik_30"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:iconTint="#fff"
+                app:rippleColor="#6b6b6b" />
 
-            <ImageButton
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/user_personal_kaggle"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
                 android:contentDescription="@string/button_personal_kaggle"
-                android:contextClickable="true"
-                android:src="@drawable/soc_kaggle_30"
-                android:tooltipText="@string/button_personal_kaggle" />
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:stateListAnimator="@null"
+                android:theme="@style/Widget.Material3.Button"
+                android:tooltipText="@string/button_personal_kaggle"
+                app:backgroundTint="#000"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/soc_kaggle_30"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:iconTint="#fff"
+                app:rippleColor="#6b6b6b" />
 
-            <ImageButton
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/user_personal_website"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_bg1"
                 android:contentDescription="@string/button_personal_link"
-                android:contextClickable="true"
-                android:src="@drawable/soc_personal_30"
-                android:tooltipText="@string/button_personal_link" />
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:stateListAnimator="@null"
+                android:theme="@style/Widget.Material3.Button"
+                android:tooltipText="@string/button_personal_link"
+                app:backgroundTint="#000"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/soc_personal_30"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:iconTint="#fff"
+                app:rippleColor="#6b6b6b" />
 
         </LinearLayout>
 

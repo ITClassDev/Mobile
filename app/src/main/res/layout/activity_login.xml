@@ -26,7 +26,6 @@
         android:src="@drawable/login_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_view" />
 
@@ -127,6 +126,7 @@
         android:layout_height="50dp"
         android:theme="@style/Widget.Material3.Button"
         android:insetBottom="0dp"
+        app:iconTint="#fff"
         android:insetTop="0dp"
         app:cornerRadius="25dp"
         app:icon="@drawable/login_button_arrow"

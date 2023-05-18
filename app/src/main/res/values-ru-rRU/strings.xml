@@ -63,4 +63,5 @@
     <string name="avatar_gallary">Выбрать из галереии</string>
     <string name="user_avatar_description">Аватар пользователя</string>
     <string name="full_user_avatar">Развёрнутый аватар пользователя</string>
+    <string name="logout_button_description">Выйти из аккаунт</string>
 </resources>

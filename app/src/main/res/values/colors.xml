@@ -2,8 +2,8 @@
 <resources>
     <color name="background">#2D2F31</color>
     <color name="panel">#1E1E1E</color>
-    <color name="colorPrimary">#4500DE</color>
-    <color name="colorSecondary">#4500DE</color>
+    <color name="colorPrimary">#1667DA</color>
+    <color name="colorSecondary">#234678</color>
     <color name="login_activity_bar_color">#1D2124</color>
 
     <color name="black">#FF000000</color>

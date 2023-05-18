@@ -44,17 +44,27 @@
 
     </com.otaliastudios.zoom.ZoomLayout>
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/fullscreen_avatar_close"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
-        android:alpha="1"
-        android:background="#0000"
         android:contentDescription="@string/avatar_close_image"
-        android:src="@drawable/close"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:stateListAnimator="@null"
+        android:theme="@style/Widget.Material3.Button"
+        app:backgroundTint="#0fff"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/close"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="0dp"
+        app:iconTint="#fff"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="#6b6b6b" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@
     <string name="user_position">Position</string>
     <string name="user_open_more">Open more</string>
     <string name="settings_button_description">Settings</string>
+    <string name="logout_button_description">Logout</string>
     <string name="upcoming_event">Upcoming event</string>
     <string name="settings_header">Account Settings</string>
     <string name="save_button">Save</string>
