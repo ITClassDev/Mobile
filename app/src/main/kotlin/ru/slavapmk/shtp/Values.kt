@@ -5,6 +5,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.slavapmk.shtp.components.versions.VersionManager
+import ru.slavapmk.shtp.components.versions.github.GithubVersionManager
 import ru.slavapmk.shtp.io.ServerAPI
 import ru.slavapmk.shtp.io.dto.achievements.Achievements
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
@@ -28,7 +30,7 @@ object Values {
     lateinit var notifications: AllNotifications
     lateinit var dailyChallenge: DailyChallenge
 
-    private var httpLoggingInterceptor = HttpLoggingInterceptor()
+    val httpLoggingInterceptor = HttpLoggingInterceptor()
 
     init {
         httpLoggingInterceptor.level = when (LOG_REQUESTS) {
@@ -36,6 +38,8 @@ object Values {
             false -> HttpLoggingInterceptor.Level.NONE
         }
     }
+
+    val versionManager: VersionManager = GithubVersionManager("ITClassDev", "Mobile")
 
     private val retrofit: Retrofit = Retrofit
         .Builder()
