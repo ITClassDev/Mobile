@@ -2,7 +2,6 @@ package ru.slavapmk.shtp.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
@@ -38,7 +37,6 @@ import ru.slavapmk.shtp.io.dto.ErrorResponse
 import ru.slavapmk.shtp.io.dto.user.SocialLinks
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserPassword
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.net.ConnectException
 
@@ -152,59 +150,26 @@ class SettingsFragment : Fragment() {
 
         val file = File(
             requireActivity().cacheDir,
-            "images/${System.currentTimeMillis()}.png"
+            "${System.currentTimeMillis()}.png"
         ).apply {
             createNewFile()
             deleteOnExit()
         }
-        val uri = FileProvider.getUriForFile(
+        val cacheUri = FileProvider.getUriForFile(
             requireContext(),
             requireContext().packageName + ".provider",
             file
         )
         val takePhotoRegistration =
             registerForActivityResult(ActivityResultContracts.TakePicture()) {
-                val mime = requireContext().contentResolver.getType(uri)!!
-                requireActivity().contentResolver.openInputStream(uri)!!.use {
-                    val extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime)
-                    Values.api.updateAvatar(
-                        Values.token, MultipartBody.Part.createFormData(
-                            "file", "avatar.$extension", RequestBody.create(
-                                MediaType.parse(mime),
-                                it.readBytes()
-                            )
-                        )
-                    ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                        .subscribe { response ->
-                            Values.user.userAvatarPath = response.avatar
-                            loadAvatar()
-                        }
-                }
+                updateAvatar(cacheUri)
             }
         val getPhotoRegistration =
-            registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-                uri?.let {
-                    val mime = requireContext().contentResolver.getType(uri)!!
-                    requireActivity().contentResolver.openInputStream(uri)!!.use {
-                        val extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime)
-                        Values.api.updateAvatar(
-                            Values.token, MultipartBody.Part.createFormData(
-                                "file", "avatar.$extension", RequestBody.create(
-                                    MediaType.parse(mime),
-                                    it.readBytes()
-                                )
-                            )
-                        ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                            .subscribe { response ->
-                                Values.user.userAvatarPath = response.avatar
-                                loadAvatar()
-                            }
-                    }
-                }
-
+            registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { galleryUri ->
+                galleryUri?.let { updateAvatar(galleryUri) }
             }
         binding.settingsAvatarPhoto.setOnClickListener {
-            takePhotoRegistration.launch(uri)
+            takePhotoRegistration.launch(cacheUri)
         }
         binding.settingsAvatarGallary.setOnClickListener {
             getPhotoRegistration.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -216,6 +181,25 @@ class SettingsFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun updateAvatar(uri: Uri) {
+        val mime = requireContext().contentResolver.getType(uri)!!
+        requireActivity().contentResolver.openInputStream(uri)!!.use {
+            val extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime)
+            Values.api.updateAvatar(
+                Values.token, MultipartBody.Part.createFormData(
+                    "file", "avatar.$extension", RequestBody.create(
+                        MediaType.parse(mime),
+                        it.readBytes()
+                    )
+                )
+            ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
+                .subscribe { response ->
+                    Values.user.userAvatarPath = response.avatar
+                    loadAvatar()
+                }
+        }
     }
 
     private fun loadAvatar() {
