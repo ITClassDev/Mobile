@@ -63,7 +63,6 @@ dependencies {
 
 task generateVersions {
     doLast {
-        file("./version.txt").text = android.defaultConfig.versionName +
-                "\n" + $ { android.defaultConfig.versionCode }
+        file("./version.txt").text = android.defaultConfig.versionName + "\n" + android.defaultConfig.versionCode
     }
 }
