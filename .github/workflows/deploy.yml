@@ -20,8 +20,9 @@ jobs:
       run: ./gradlew --daemon
     - name: Generate release version
       run: |
-        ./gradlew generateVersionTxt
-        echo "RELEASE=v$(cat app/version.txt)" >> $GITHUB_ENV
+        ./gradlew generateVersions
+        echo "RELEASE_NAME=$(sed '1!d' app/version.txt)" >> $GITHUB_ENV
+        echo "RELEASE_CODE=$(sed '2!d' app/version.txt)" >> $GITHUB_ENV
     - name: Build with Gradle
       run: ./gradlew build -Penv=production --parallel
     - name: Create Release
@@ -30,8 +31,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ env.RELEASE }}
-        release_name: Release ${{ env.RELEASE }}
+        tag_name: ${{ env.RELEASE_CODE }}
+        release_name: Release v${{ env.RELEASE_NAME }}
         draft: false
         prerelease: false
     - name: Upload Release Asset
