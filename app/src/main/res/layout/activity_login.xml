@@ -63,13 +63,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="128dp"
         android:orientation="vertical"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/top_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/bottom_view"
-        app:layout_constraintVertical_bias="0.55"
-        tools:visibility="visible">
+        app:layout_constraintVertical_bias="0.55">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/TextInputLayout"
@@ -124,36 +122,22 @@
         android:id="@+id/button_login"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:theme="@style/Widget.Material3.Button"
-        android:insetBottom="0dp"
-        app:iconTint="#fff"
-        android:insetTop="0dp"
-        app:cornerRadius="25dp"
-        app:icon="@drawable/login_button_arrow"
-        app:iconSize="50dp"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
         android:layout_marginEnd="-15dp"
         android:contentDescription="@string/login_field_login_button"
+        android:elevation="0dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:stateListAnimator="@null"
+        android:theme="@style/Widget.Material3.Button"
+        app:cornerRadius="25dp"
+        app:icon="@drawable/login_button_arrow"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="50dp"
+        app:iconTint="#fff"
         app:layout_constraintBottom_toBottomOf="@+id/login_layout"
         app:layout_constraintEnd_toEndOf="@+id/login_layout"
-        app:layout_constraintTop_toTopOf="@+id/login_layout"
-        tools:visibility="visible" />
-
-    <FrameLayout
-        android:id="@+id/status_progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black_04"
-        android:clickable="true"
-        tools:visibility="gone">
-
-        <ProgressBar
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="@+id/login_layout" />
 
     <TextView
         android:id="@+id/message_incorrect_credentials"
@@ -219,5 +203,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_layout" />
+
+    <FrameLayout
+        android:id="@+id/status_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_04"
+        android:clickable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

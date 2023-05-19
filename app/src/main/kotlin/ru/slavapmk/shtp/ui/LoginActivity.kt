@@ -37,10 +37,6 @@ class LoginActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.login_activity_bar_color)
         setContentView(binding.root)
 
-        binding.loginLayout.visibility = View.VISIBLE
-        binding.buttonLogin.visibility = View.VISIBLE
-        binding.statusProgressBar.visibility = View.GONE
-
         binding.inputEmail.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
             hideErrors()
         }
