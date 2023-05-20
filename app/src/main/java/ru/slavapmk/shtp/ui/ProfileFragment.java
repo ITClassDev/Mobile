@@ -1,6 +1,5 @@
 package ru.slavapmk.shtp.ui;
 
-import static android.content.Context.MODE_PRIVATE;
 import static ru.slavapmk.shtp.Values.ENDPOINT_URL;
 
 import android.annotation.SuppressLint;
@@ -13,6 +12,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
@@ -72,10 +73,10 @@ public class ProfileFragment extends Fragment {
             }
 
         binding.buttonLogout.setOnClickListener(view -> {
-            requireActivity().getSharedPreferences(Values.APP_ID, MODE_PRIVATE).edit().remove(Values.AUTH_KEY_ID).apply();
-            Intent myIntent = new Intent(requireContext(), LoginActivity.class);
-            myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(myIntent);
+            QuitDialog quitDialog = new QuitDialog();
+            FragmentManager manager = getChildFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            quitDialog.show(transaction, "quit_dialog");
         });
 
 

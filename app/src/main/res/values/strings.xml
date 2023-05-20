@@ -70,4 +70,7 @@
     <string name="user_avatar_description">User avatar</string>
     <string name="full_user_avatar">Full User Avatar</string>
     <string name="add_button_text" translatable="false">+</string>
+    <string name="alert_confirm_quit">Do you really want to get out?</string>
+    <string name="alert_button_cancel">Отмена</string>
+    <string name="alert_button_quit">Logout</string>
 </resources>

@@ -2,7 +2,6 @@ package ru.slavapmk.shtp.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
@@ -11,7 +10,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import ru.slavapmk.shtp.BuildConfig
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.ActivityMainBinding
@@ -40,10 +38,10 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe {
-                if (BuildConfig.VERSION_CODE < it.code)
-                    Toast
-                        .makeText(this, "New version ${it.name} available", Toast.LENGTH_SHORT)
-                        .show()
+//                if (BuildConfig.VERSION_CODE < it.code)
+//                    Toast
+//                        .makeText(this, "New version ${it.name} available", Toast.LENGTH_SHORT)
+//                        .show()
             }
     }
 

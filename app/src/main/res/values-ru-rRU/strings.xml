@@ -64,4 +64,7 @@
     <string name="user_avatar_description">Аватар пользователя</string>
     <string name="full_user_avatar">Развёрнутый аватар пользователя</string>
     <string name="logout_button_description">Выйти из аккаунт</string>
+    <string name="alert_confirm_quit">Вы действительно хотите выйти?</string>
+    <string name="alert_button_quit">Выйти</string>
+    <string name="alert_button_cancel">Cancel</string>
 </resources>

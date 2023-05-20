@@ -50,7 +50,7 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="40sp"
-        app:drawableTopCompat="@drawable/logo_header"
+        app:drawableTopCompat="@drawable/logo_full"
         app:layout_constraintBottom_toTopOf="@id/login_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
