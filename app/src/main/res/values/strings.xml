@@ -71,6 +71,10 @@
     <string name="full_user_avatar">Full User Avatar</string>
     <string name="add_button_text" translatable="false">+</string>
     <string name="alert_confirm_quit">Do you really want to get out?</string>
-    <string name="alert_button_cancel">Отмена</string>
+    <string name="alert_button_cancel">Cancel</string>
     <string name="alert_button_quit">Logout</string>
+    <string name="dialog_new_version_title">A new version is available</string>
+    <string name="dialog_new_version_description">Since the last check, a new version of the application %1$s has been released (Build #%2$d)</string>
+    <string name="dialog_new_version_button_later">Later</string>
+    <string name="dialog_new_version_button_download">Download</string>
 </resources>

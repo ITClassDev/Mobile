@@ -66,5 +66,9 @@
     <string name="logout_button_description">Выйти из аккаунт</string>
     <string name="alert_confirm_quit">Вы действительно хотите выйти?</string>
     <string name="alert_button_quit">Выйти</string>
-    <string name="alert_button_cancel">Cancel</string>
+    <string name="alert_button_cancel">Отмена</string>
+    <string name="dialog_new_version_title">Доступна новая версия</string>
+    <string name="dialog_new_version_description">С момента последней проверки вышла новая версия приложения %1$s (Билд #%2$d)</string>
+    <string name="dialog_new_version_button_later">Позже</string>
+    <string name="dialog_new_version_button_download">Скачать</string>
 </resources>
