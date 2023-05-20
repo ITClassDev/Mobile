@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/alert_background"
     android:paddingTop="20dp"
-    android:paddingBottom="15dp">
+    android:paddingBottom="20dp">
 
     <TextView
         android:id="@+id/header"
@@ -25,10 +25,10 @@
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:justifyContent="space_between"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        app:justifyContent="space_between"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header">
@@ -36,9 +36,11 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_cancel"
             android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="@string/alert_button_cancel"
             android:textColor="@android:color/white"
             android:textSize="12sp"
@@ -48,9 +50,11 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_quit"
             android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="@string/alert_button_quit"
             android:textColor="@android:color/white"
             android:textSize="12sp"
