@@ -25,14 +25,22 @@ jobs:
         echo "RELEASE_CODE=$(sed '2!d' app/version.txt)" >> $GITHUB_ENV
     - name: Build with Gradle
       run: ./gradlew build -Penv=production --parallel
+    - name: Get Changelog Entry
+      id: changelog_reader
+      uses: mindsers/changelog-reader-action@v2
+      with:
+        validation_level: warn
+        version: ${{ env.RELEASE_CODE }}
+        path: ./CHANGELOG.md
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: build${{ env.RELEASE_CODE }}
+        tag_name: ${{ env.RELEASE_CODE }}
         release_name: Release v${{ env.RELEASE_NAME }}
+        body: ${{ steps.changelog_reader.outputs.changes }}
         draft: false
         prerelease: false
     - name: Upload Release Asset

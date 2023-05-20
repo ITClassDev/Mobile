@@ -28,9 +28,7 @@ public class GithubVersionManager implements VersionManager {
     public Observable<Version> getLastVersion() {
         return api.login(author, repo)
                 .map(versions -> new Version(
-                        Integer.parseInt(
-                                versions.get(0).tag.replaceFirst("build", "")
-                        ),
+                        Integer.parseInt(versions.get(0).tag),
                         versions.get(0).name.replaceFirst("Release v", ""),
                         versions.get(0).downloadUrl
                 ));
