@@ -73,10 +73,19 @@ public class ProfileFragment extends Fragment {
             }
 
         binding.buttonLogout.setOnClickListener(view -> {
-            QuitDialog quitDialog = new QuitDialog();
             FragmentManager manager = getChildFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
-            quitDialog.show(transaction, "quit_dialog");
+            new Dialog(
+                    getResources().getString(R.string.dialog_title_quit),
+                    getResources().getString(R.string.dialog_description_quit),
+                    getResources().getString(R.string.dialog_button_quit),
+                    view1 -> {
+                        requireActivity().getSharedPreferences(Values.APP_ID, 0).edit().remove(Values.AUTH_KEY_ID).apply();
+                        Intent intent = new Intent(requireContext(), LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+            ).show(transaction, "quit_dialog");
         });
 
 

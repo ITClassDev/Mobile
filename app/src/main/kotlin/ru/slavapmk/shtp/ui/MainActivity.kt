@@ -1,6 +1,8 @@
 package ru.slavapmk.shtp.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -50,17 +52,15 @@ class MainActivity : AppCompatActivity() {
         Values.versionManager.lastVersion
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe({
-                if (BuildConfig.VERSION_CODE < it.code) {
-                    val dialog = NewVersionDialog()
-                    val manager: FragmentManager = supportFragmentManager
-                    val transaction = manager.beginTransaction()
-                    val args = Bundle()
-                    args.putString("version_name", it.name)
-                    args.putInt("version_code", it.code)
-                    args.putString("version_url", it.downloadUrl)
-                    dialog.arguments = args
-                    dialog.show(transaction, "new_version_dialog")
+            .subscribe({ version ->
+                if (BuildConfig.VERSION_CODE < version.code) {
+                    Dialog(
+                        resources.getString(R.string.dialog_title_new_version),
+                        resources.getString(R.string.dialog_description_new_version, version.name),
+                        resources.getString(R.string.dialog_button_new_version)
+                    ) {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(version.downloadUrl)))
+                    }.show(supportFragmentManager.beginTransaction(), "new_version_dialog")
                 }
             }, {})
     }

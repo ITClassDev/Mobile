@@ -11,27 +11,41 @@
         android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
         android:minWidth="100dp"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
-        android:text="@string/alert_confirm_quit"
         android:textColor="@color/white"
         android:textSize="24.4sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/description_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:paddingStart="30dp"
+        android:paddingBottom="10dp"
+        android:paddingEnd="30dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         app:justifyContent="space_between"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header">
+        app:layout_constraintTop_toBottomOf="@id/description_message">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_cancel"
@@ -41,21 +55,20 @@
             android:gravity="center"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="@string/alert_button_cancel"
+            android:text="@string/dialog_button_cancel"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:theme="@style/Widget.Material3.Button"
             app:cornerRadius="100dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_quit"
+            android:id="@+id/button_ok"
             android:layout_width="130dp"
             android:layout_height="40dp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="@string/alert_button_quit"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:theme="@style/Widget.Material3.Button"

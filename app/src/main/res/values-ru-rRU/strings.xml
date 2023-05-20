@@ -64,13 +64,13 @@
     <string name="user_avatar_description">Аватар пользователя</string>
     <string name="full_user_avatar">Развёрнутый аватар пользователя</string>
     <string name="logout_button_description">Выйти из аккаунт</string>
-    <string name="alert_confirm_quit">Вы действительно хотите выйти?</string>
-    <string name="alert_button_quit">Выйти</string>
-    <string name="alert_button_cancel">Отмена</string>
-    <string name="dialog_new_version_title">Доступна новая версия</string>
-    <string name="dialog_new_version_description">С момента последней проверки вышла новая версия приложения %1$s (Билд #%2$d)</string>
-    <string name="dialog_new_version_button_later">Позже</string>
-    <string name="dialog_new_version_button_download">Скачать</string>
+    <string name="dialog_title_quit">Вы действительно хотите выйти?</string>
+    <string name="dialog_title_new_version">Доступна новая версия</string>
+    <string name="dialog_button_cancel">Отмена</string>
+    <string name="dialog_button_quit">Выйти</string>
+    <string name="dialog_button_new_version">Скачать</string>
+    <string name="dialog_description_new_version">С момента последней проверки вышла новая версия приложения %1$s. Открыть страницу загрузки?</string>
+    <string name="dialog_description_quit" />
     <string name="admin_panel">Панель Администратора</string>
     <string name="admin_panel_header">Панель Администратора</string>
 </resources>
