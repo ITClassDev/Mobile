@@ -11,8 +11,8 @@ android {
         applicationId "ru.slavapmk.shtp"
         minSdk 27
         targetSdk 33
-        versionCode 1
-        versionName "0.2.13"
+        versionCode 34
+        versionName "0.2.14"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
