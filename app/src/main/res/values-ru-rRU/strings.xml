@@ -5,7 +5,7 @@
     <string name="default_user_name">Имя Пользователя</string>
     <string name="button_personal_github">Аккаунт GitHub</string>
     <string name="button_personal_telegram">Аккаунт Telegram</string>
-    <string name="button_personal_stepik">Аккаунт Stepik</string>
+    <string name="button_personal_stepik">ID Stepik</string>
     <string name="button_personal_kaggle">Аккаунт Kaggle</string>
     <string name="button_personal_link">Персональный сайт</string>
     <string name="user_score">Очков</string>

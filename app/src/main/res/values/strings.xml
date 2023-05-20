@@ -27,7 +27,7 @@
     <string name="logo_description_personal">Personal website</string>
     <string name="personal_input_github">GitHub Username</string>
     <string name="personal_input_telegram">Telegram Nickname</string>
-    <string name="personal_input_stepik">Stepik Nickname</string>
+    <string name="personal_input_stepik">Stepik ID</string>
     <string name="personal_input_kaggle">Kaggle Nickname</string>
     <string name="personal_input_personal">Personal URL</string>
     <string name="achievements_header">Achievements</string>
