@@ -29,7 +29,7 @@ public class GithubVersionManager implements VersionManager {
         return api.login(author, repo)
                 .map(versions -> new Version(
                         Integer.parseInt(
-                                versions.get(0).tag.replaceFirst("build ", "")
+                                versions.get(0).tag.replaceFirst("build", "")
                         ),
                         versions.get(0).name.replaceFirst("Release v", ""),
                         versions.get(0).downloadUrl
