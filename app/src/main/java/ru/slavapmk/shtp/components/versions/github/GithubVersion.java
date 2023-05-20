@@ -1,7 +1,11 @@
 package ru.slavapmk.shtp.components.versions.github;
 
+import com.google.gson.annotations.SerializedName;
+
 public class GithubVersion {
-    String tag_name;
+    @SerializedName("tag_name")
+    String tag;
     String name;
-    String html_url;
+    @SerializedName("html_url")
+    String downloadUrl;
 }

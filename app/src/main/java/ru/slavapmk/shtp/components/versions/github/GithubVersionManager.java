@@ -27,10 +27,12 @@ public class GithubVersionManager implements VersionManager {
     @Override
     public Observable<Version> getLastVersion() {
         return api.login(author, repo)
-                .map(githubVersion -> new Version(
-                        Integer.parseInt(githubVersion.get(0).tag_name),
-                        githubVersion.get(0).name.replaceFirst("Release v", ""),
-                        githubVersion.get(0).html_url
+                .map(versions -> new Version(
+                        Integer.parseInt(
+                                versions.get(0).tag.replaceFirst("build ", "")
+                        ),
+                        versions.get(0).name.replaceFirst("Release v", ""),
+                        versions.get(0).downloadUrl
                 ));
     }
 }
