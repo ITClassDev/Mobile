@@ -35,6 +35,18 @@ class MainActivity : AppCompatActivity() {
         )
         window.navigationBarColor = ContextCompat.getColor(this, R.color.panel)
 
+        when (Values.user.userRole) {
+            0 -> intArrayOf(R.id.admin)
+
+            1 -> intArrayOf(R.id.tasks, R.id.achievements)
+
+            2 -> intArrayOf(R.id.tasks, R.id.achievements)
+
+            else -> intArrayOf()
+        }.forEach {
+            binding.bottomPanel.menu.findItem(it).isVisible = false
+        }
+
         Values.versionManager.lastVersion
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())

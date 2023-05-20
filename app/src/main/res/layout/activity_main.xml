@@ -28,7 +28,7 @@
 
     </FrameLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <ru.slavapmk.shtp.ui.LongNavigationBar
         android:id="@+id/bottom_panel"
         android:layout_width="match_parent"
         android:layout_height="55dp"

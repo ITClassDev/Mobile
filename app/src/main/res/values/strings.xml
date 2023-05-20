@@ -77,4 +77,6 @@
     <string name="dialog_new_version_description">Since the last check, a new version of the application %1$s has been released (Build #%2$d)</string>
     <string name="dialog_new_version_button_later">Later</string>
     <string name="dialog_new_version_button_download">Download</string>
+    <string name="admin_panel">Admin Panel</string>
+    <string name="admin_panel_header">Admin Panel</string>
 </resources>

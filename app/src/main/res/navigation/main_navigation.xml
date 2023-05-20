@@ -39,4 +39,9 @@
         android:name="ru.slavapmk.shtp.ui.SettingsFragment"
         android:label="settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/admin"
+        android:name="ru.slavapmk.shtp.ui.AdminFragment"
+        android:label="admin"
+        tools:layout="@layout/fragment_admin" />
 </navigation>
