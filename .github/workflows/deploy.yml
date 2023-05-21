@@ -26,7 +26,6 @@ jobs:
           ./gradlew generateVersions
           echo "RELEASE_NAME=$(sed '1!d' app/version.txt)" >> $GITHUB_OUTPUT
           echo "RELEASE_CODE=$(sed '2!d' app/version.txt)" >> $GITHUB_OUTPUT
-          echo "RELEASE_BODY=$(cat release.md)" >> $GITHUB_OUTPUT
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -35,7 +34,7 @@ jobs:
         with:
           tag_name: ${{ steps.version.outputs.RELEASE_CODE }}
           release_name: Release v${{ steps.version.outputs.RELEASE_NAME }}
-          body: ${{ steps.version.outputs.RELEASE_BODY }}
+          body_path: release.md
           draft: false
           prerelease: false
       - name: Upload Release Asset
