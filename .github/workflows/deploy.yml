@@ -23,6 +23,7 @@ jobs:
         ./gradlew generateVersions
         echo "RELEASE_NAME=$(sed '1!d' app/version.txt)" >> $GITHUB_ENV
         echo "RELEASE_CODE=$(sed '2!d' app/version.txt)" >> $GITHUB_ENV
+        echo "RELEASE_BODY=\"$(cat app/CHANGELOG.md)\"" >> $GITHUB_ENV
     - name: Build with Gradle
       run: ./gradlew build -Penv=production --parallel
     - name: Create Release
@@ -33,7 +34,7 @@ jobs:
       with:
         tag_name: ${{ env.RELEASE_CODE }}
         release_name: Release v${{ env.RELEASE_NAME }}
-        body: ${{ github.event.head_commit.message }}
+        body: ${{ env.RELEASE_BODY }}
         draft: false
         prerelease: false
     - name: Upload Release Asset
