@@ -23,7 +23,7 @@ jobs:
         ./gradlew generateVersions
         echo "RELEASE_NAME=$(sed '1!d' app/version.txt)" >> $GITHUB_ENV
         echo "RELEASE_CODE=$(sed '2!d' app/version.txt)" >> $GITHUB_ENV
-        echo "RELEASE_BODY=\"$(cat app/CHANGELOG.md)\"" >> $GITHUB_ENV
+        echo "RELEASE_BODY=$(cat app/CHANGELOG.md)" >> $GITHUB_ENV
     - name: Build with Gradle
       run: ./gradlew build -Penv=production --parallel
     - name: Create Release
