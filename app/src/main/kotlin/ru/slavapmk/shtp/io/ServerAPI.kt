@@ -8,6 +8,7 @@ import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import ru.slavapmk.shtp.io.dto.PatchResult
 import ru.slavapmk.shtp.io.dto.achievements.AchievementsResponse
@@ -15,6 +16,7 @@ import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
+import ru.slavapmk.shtp.io.dto.notifications.PostNotification
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
 import ru.slavapmk.shtp.io.dto.user.get.UsersAll
 import ru.slavapmk.shtp.io.dto.user.patch.PatchAvatarResponse
@@ -54,6 +56,12 @@ interface ServerAPI {
 
     @GET("users/my_notifications/")
     fun getNotifications(@Header("Authorization") token: String): Observable<AllNotifications>
+
+    @PUT("notifications/")
+    fun sendNotification(
+        @Header("Authorization") token: String,
+        @Body notification: PostNotification
+    ): Observable<Void>
 
     @GET("users/get_leaderboard/")
     fun getLeaderBoard(): Observable<LeaderBoard>
