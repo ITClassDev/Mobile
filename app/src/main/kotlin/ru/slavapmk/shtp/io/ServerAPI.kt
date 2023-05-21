@@ -16,6 +16,7 @@ import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
+import ru.slavapmk.shtp.io.dto.user.get.UsersAll
 import ru.slavapmk.shtp.io.dto.user.patch.PatchAvatarResponse
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 
@@ -35,6 +36,11 @@ interface ServerAPI {
         @Header("Authorization") token: String,
         @Body user: PatchUserRequest
     ): Observable<PatchResult>
+
+    @GET("users/")
+    fun allUsers(
+        @Header("Authorization") token: String
+    ): Observable<UsersAll>
 
     @PATCH("users/avatar/")
     @Multipart
