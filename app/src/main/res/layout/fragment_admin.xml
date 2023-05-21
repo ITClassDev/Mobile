@@ -13,15 +13,113 @@
         android:background="@color/background">
 
         <TextView
+            android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/admin_panel_header"
             android:textColor="@android:color/white"
+            android:gravity="center"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="30dp"
+            app:dividerDrawable="@drawable/divider_10"
+            app:flexDirection="column"
+            app:justifyContent="space_between"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:showDivider="middle">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Groups"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button"
+                app:cornerRadius="100dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Users"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button"
+                app:cornerRadius="100dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Achievements"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button"
+                app:cornerRadius="100dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Tasks"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button"
+                app:cornerRadius="100dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Notifications"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button"
+                app:cornerRadius="100dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="System"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:theme="@style/Widget.Material3.Button"
+                app:cornerRadius="100dp" />
+
+
+        </com.google.android.flexbox.FlexboxLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
