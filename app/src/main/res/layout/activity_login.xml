@@ -66,8 +66,7 @@
         app:layout_constraintBottom_toBottomOf="@id/top_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bottom_view"
-        app:layout_constraintVertical_bias="0.55">
+        app:layout_constraintTop_toTopOf="@id/bottom_view">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/TextInputLayout"
