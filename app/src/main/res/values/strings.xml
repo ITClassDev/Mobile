@@ -79,4 +79,6 @@
     <string name="dialog_description_quit" />
     <string name="admin_panel">Admin Panel</string>
     <string name="admin_panel_header">Admin Panel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

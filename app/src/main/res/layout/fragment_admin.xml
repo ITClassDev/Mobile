@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ui.AdminFragment">
+    tools:context=".ui.admin.AdminFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,9 +18,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
             android:text="@string/admin_panel_header"
             android:textColor="@android:color/white"
-            android:gravity="center"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +41,7 @@
             app:showDivider="middle">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/admin_panel_button_groups"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:fontFamily="@font/montserrat_bold"
@@ -54,6 +55,7 @@
                 app:cornerRadius="100dp" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/admin_panel_button_users"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:fontFamily="@font/montserrat_bold"
@@ -67,6 +69,7 @@
                 app:cornerRadius="100dp" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/admin_panel_button_achievements"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:fontFamily="@font/montserrat_bold"
@@ -80,6 +83,7 @@
                 app:cornerRadius="100dp" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/admin_panel_button_tasks"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:fontFamily="@font/montserrat_bold"
@@ -93,6 +97,7 @@
                 app:cornerRadius="100dp" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/admin_panel_button_notifications"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:fontFamily="@font/montserrat_bold"
@@ -106,6 +111,7 @@
                 app:cornerRadius="100dp" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/admin_panel_button_system"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:fontFamily="@font/montserrat_bold"

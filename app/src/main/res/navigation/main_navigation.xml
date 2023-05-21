@@ -9,7 +9,7 @@
         android:id="@+id/profile"
         android:name="ru.slavapmk.shtp.ui.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profile_to_settings"
             app:destination="@id/settings" />
@@ -41,7 +41,56 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/admin"
-        android:name="ru.slavapmk.shtp.ui.AdminFragment"
+        android:name="ru.slavapmk.shtp.ui.admin.AdminFragment"
         android:label="admin"
-        tools:layout="@layout/fragment_admin" />
+        tools:layout="@layout/fragment_admin" >
+        <action
+            android:id="@+id/action_admin_to_admin_tasks"
+            app:destination="@id/admin_tasks" />
+        <action
+            android:id="@+id/action_admin_to_admin_system"
+            app:destination="@id/admin_system" />
+        <action
+            android:id="@+id/action_admin_to_admin_notifications"
+            app:destination="@id/admin_notifications" />
+        <action
+            android:id="@+id/action_admin_to_admin_group"
+            app:destination="@id/admin_group" />
+        <action
+            android:id="@+id/action_admin_to_admin_achievements"
+            app:destination="@id/admin_achievements" />
+        <action
+            android:id="@+id/action_admin_to_admin_users"
+            app:destination="@id/admin_users" />
+    </fragment>
+    <fragment
+        android:id="@+id/admin_achievements"
+        android:name="ru.slavapmk.shtp.ui.admin.AdminAchievementsFragment"
+        android:label="admin_achievements"
+        tools:layout="@layout/fragment_admin_achievements" />
+    <fragment
+        android:id="@+id/admin_group"
+        android:name="ru.slavapmk.shtp.ui.admin.AdminGroupFragment"
+        android:label="admin_group"
+        tools:layout="@layout/fragment_admin_group" />
+    <fragment
+        android:id="@+id/admin_notifications"
+        android:name="ru.slavapmk.shtp.ui.admin.AdminNotificationsFragment"
+        android:label="admin_notifications"
+        tools:layout="@layout/fragment_admin_notifications" />
+    <fragment
+        android:id="@+id/admin_system"
+        android:name="ru.slavapmk.shtp.ui.admin.AdminSystemFragment"
+        android:label="admin_system"
+        tools:layout="@layout/fragment_admin_system" />
+    <fragment
+        android:id="@+id/admin_tasks"
+        android:name="ru.slavapmk.shtp.ui.admin.AdminTasksFragment"
+        android:label="admin_tasks"
+        tools:layout="@layout/fragment_admin_tasks" />
+    <fragment
+        android:id="@+id/admin_users"
+        android:name="ru.slavapmk.shtp.ui.admin.AdminUsersFragment"
+        android:label="admin_users"
+        tools:layout="@layout/fragment_admin_users" />
 </navigation>
