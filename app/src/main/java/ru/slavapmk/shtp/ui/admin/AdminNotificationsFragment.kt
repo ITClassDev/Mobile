@@ -24,7 +24,7 @@ class AdminNotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentAdminNotificationsBinding.inflate(inflater)
-        val groups: HashMap<String, Int> = HashMap()
+        var groups: Map<String, Int> = mapOf()
         val types = mapOf(
             Pair(resources.getString(R.string.admin_panel_notifications_type_notification), 4),
             Pair(resources.getString(R.string.admin_panel_notifications_type_warning), 5)
@@ -34,7 +34,7 @@ class AdminNotificationsFragment : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({ allUsers ->
-                groups.putAll(allUsers.userGroups.associateBy({ it.name }, { it.id }))
+                groups = allUsers.userGroups.associate { it.name to it.id }
 
                 (binding.adminPanelNotificationsGroups.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
                     groups.keys.toTypedArray()
