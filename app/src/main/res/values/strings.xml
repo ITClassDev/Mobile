@@ -89,4 +89,19 @@
     <string name="dialog_title_notified">Success</string>
     <string name="dialog_description_notified">The notification successfully sended</string>
     <string name="dialog_button_notified">Quit</string>
+    <string name="dialog_title_user_delete">Delete user?</string>
+    <string name="dialog_description_user_delete" />
+    <string name="dialog_button_user_delete">Delete</string>
+    <string name="add_user">Add user</string>
+    <string name="name">Name</string>
+    <string name="family">Family</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password">Password</string>
+    <string name="role">Role</string>
+    <string name="learn_year">Class</string>
+    <string name="user_group">User group</string>
+    <string name="create_user">Create user</string>
+    <string name="student">Student</string>
+    <string name="teacher">Teacher</string>
+    <string name="administrator">Administrator</string>
 </resources>

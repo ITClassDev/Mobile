@@ -3,22 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ab_b">
+    android:background="@drawable/default_background_card">
+
+
+    <ImageButton
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#0000"
+        android:contentDescription="@string/user_avatar_description"
+        android:minWidth="80dp"
+        android:minHeight="80dp"
+        app:layout_constraintBottom_toBottomOf="@id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/name" />
+
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/avatar_border"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="@id/avatar"
+        app:layout_constraintStart_toStartOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar" />
+
 
     <TextView
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/montserrat_bold"
+        android:text="@string/default_user_name"
         android:textColor="@color/white"
+        android:breakStrategy="simple"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/delete"
+        app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/delete"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:contentDescription="@string/avatar_close_image"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:stateListAnimator="@null"
+        android:theme="@style/Widget.Material3.Button"
+        app:backgroundTint="#0fff"
+        app:cornerRadius="13.5dp"
+        app:icon="@drawable/close"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="0dp"
+        app:iconTint="#fff"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        app:rippleColor="#6b6b6b" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

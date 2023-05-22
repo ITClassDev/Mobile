@@ -81,4 +81,18 @@
     <string name="dialog_title_notified">Успех</string>
     <string name="dialog_description_notified">Уведомление успешно отправлено</string>
     <string name="dialog_button_notified">Выйти</string>
+    <string name="dialog_title_user_delete">Удалить пользователя?</string>
+    <string name="dialog_description_user_delete" />
+    <string name="dialog_button_user_delete">Удалить</string>
+    <string name="add_user">Зарегестрировать пользователя</string>
+    <string name="name">Ммя</string>
+    <string name="family">Фамилия</string>
+    <string name="password">Пароль</string>
+    <string name="role">Роль</string>
+    <string name="learn_year">Класс обучения</string>
+    <string name="user_group">Группа пользователя</string>
+    <string name="create_user">Зарегестрировать</string>
+    <string name="student">Ученик</string>
+    <string name="teacher">Учитель</string>
+    <string name="administrator">Администратор</string>
 </resources>
