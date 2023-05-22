@@ -18,8 +18,12 @@ jobs:
         run: chmod +x ./gradlew
       - name: Run gradle daemon
         run: ./gradlew --daemon
-      - name: Build with Gradle
+      - name: Build Unsigned Apk
         run: ./gradlew build -Penv=production --parallel
+      - name: Compress APK
+        run: zipalign -v -p 4 app/build/outputs/apk/debug/app-debug.apk shtp-unsigned-aligned.apk
+      - name: Sign APK
+        run: apksigner sign --ks sertificate.jks --ks-pass pass:${{ secrets.SERTIFICATE_PASS }} --out shtp.apk shtp-unsigned-aligned.apk
       - name: Generate release version
         id: version
         run: |
@@ -44,6 +48,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: app/build/outputs/apk/debug/app-debug.apk
+          asset_path: shtp.apk
           asset_name: ShTP.apk
           asset_content_type: application/zip
