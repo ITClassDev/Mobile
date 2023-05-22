@@ -95,4 +95,10 @@
     <string name="student">Ученик</string>
     <string name="teacher">Учитель</string>
     <string name="administrator">Администратор</string>
+    <string name="groups">Группы</string>
+    <string name="users">Пользователи</string>
+    <string name="achievements_admin_page">Достижения</string>
+    <string name="tasks_admin_page">Задачи</string>
+    <string name="notifications_admin_page">Уведомления</string>
+    <string name="system_admin_page">Системное</string>
 </resources>

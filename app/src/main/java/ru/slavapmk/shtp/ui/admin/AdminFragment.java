@@ -20,10 +20,10 @@ public class AdminFragment extends Fragment {
 
         binding.adminPanelButtonGroups.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_admin_to_admin_group));
         binding.adminPanelButtonUsers.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_admin_to_admin_users));
-        binding.adminPanelButtonAchievements.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_admin_to_admin_achievements));
-        binding.adminPanelButtonTasks.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_admin_to_admin_tasks));
+//        binding.adminPanelButtonAchievements.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_admin_to_admin_achievements));
+//        binding.adminPanelButtonTasks.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_admin_to_admin_tasks));
         binding.adminPanelButtonNotifications.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_admin_to_admin_notifications));
-        binding.adminPanelButtonSystem.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_admin_to_admin_system));
+//        binding.adminPanelButtonSystem.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_admin_to_admin_system));
 
         return binding.getRoot();
     }

@@ -104,4 +104,10 @@
     <string name="student">Student</string>
     <string name="teacher">Teacher</string>
     <string name="administrator">Administrator</string>
+    <string name="groups">Groups</string>
+    <string name="users">Users</string>
+    <string name="achievements_admin_page">Achievements</string>
+    <string name="tasks_admin_page">Tasks</string>
+    <string name="notifications_admin_page">Notifications</string>
+    <string name="system_admin_page">System</string>
 </resources>
