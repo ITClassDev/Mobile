@@ -111,4 +111,7 @@
     <string name="notifications_admin_page">Notifications</string>
     <string name="system_admin_page">System</string>
     <string name="create_group">Create group</string>
+    <string name="a2">Свободно мест: %1$d/%2$d</string>
+    <string name="a3">Дата проведения: %1$s %2$s</string>
+    <string name="a4">Длительность: %1$sh</string>
 </resources>

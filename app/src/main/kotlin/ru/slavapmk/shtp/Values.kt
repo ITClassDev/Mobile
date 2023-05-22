@@ -7,6 +7,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.slavapmk.shtp.components.versions.VersionManager
 import ru.slavapmk.shtp.components.versions.github.GithubVersionManager
+import ru.slavapmk.shtp.io.EventsAPI
 import ru.slavapmk.shtp.io.ServerAPI
 import ru.slavapmk.shtp.io.dto.achievements.Achievements
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
@@ -16,6 +17,7 @@ import ru.slavapmk.shtp.io.dto.user.UserFull
 
 object Values {
     const val ENDPOINT_URL = "https://shtp.1561.ru/api/"
+    private const val EVENTS_ENDPOINT_URL = "https://regs.temocenter.ru/"
     private const val LOG_REQUESTS = true
 
     //System constants and variables
@@ -41,12 +43,19 @@ object Values {
 
     val versionManager: VersionManager = GithubVersionManager("ITClassDev", "Mobile")
 
-    private val retrofit: Retrofit = Retrofit
+    val api: ServerAPI = Retrofit
         .Builder()
         .client(OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build())
         .baseUrl(ENDPOINT_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-        .build()
-    val api: ServerAPI = retrofit.create(ServerAPI::class.java)
+        .build().create(ServerAPI::class.java)
+
+    val eventsApi: EventsAPI = Retrofit
+        .Builder()
+        .client(OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build())
+        .baseUrl(EVENTS_ENDPOINT_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+        .build().create(EventsAPI::class.java)
 }
