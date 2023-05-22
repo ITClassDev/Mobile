@@ -110,4 +110,5 @@
     <string name="tasks_admin_page">Tasks</string>
     <string name="notifications_admin_page">Notifications</string>
     <string name="system_admin_page">System</string>
+    <string name="create_group">Create group</string>
 </resources>

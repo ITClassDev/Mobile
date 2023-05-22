@@ -18,6 +18,7 @@ import ru.slavapmk.shtp.io.dto.achievements.AchievementsResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
+import ru.slavapmk.shtp.io.dto.groups.GroupPut
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
 import ru.slavapmk.shtp.io.dto.notifications.PostNotification
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
@@ -52,6 +53,18 @@ interface ServerAPI {
     fun registerUser(
         @Header("Authorization") token: String,
         @Body user: UserPut
+    ): Completable
+
+    @PUT("users/groups/")
+    fun createGroup(
+        @Header("Authorization") token: String,
+        @Body group: GroupPut
+    ): Completable
+
+    @DELETE("users/groups/{group_id}/")
+    fun deleteGroup(
+        @Header("Authorization") token: String,
+        @Path("group_id") groupId: Int
     ): Completable
 
     @PATCH("users/avatar/")
