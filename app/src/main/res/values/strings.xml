@@ -76,9 +76,17 @@
     <string name="dialog_button_quit">Logout</string>
     <string name="dialog_button_new_version">Download</string>
     <string name="dialog_description_new_version">Since the last check, a new version of the application %1$s has been released. Open download page?</string>
-    <string name="dialog_description_quit" />
+    <string name="dialog_description_quit" translatable="false" />
     <string name="admin_panel">Admin Panel</string>
     <string name="admin_panel_header">Admin Panel</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="admin_panel_notifications_type">Тип уведомления</string>
+    <string name="admin_panel_notifications_groups">Целевая группа пользователей</string>
+    <string name="admin_panel_notifications_text">Сообщение</string>
+    <string name="admin_panel_notifications_button_send">Send</string>
+    <string name="admin_panel_notifications_type_notification">Information</string>
+    <string name="admin_panel_notifications_type_warning">Warning</string>
+    <string name="dialog_title_notified">Success</string>
+    <string name="dialog_description_notified">The notification successfully sended</string>
+    <string name="dialog_button_notified">Quit</string>
 </resources>

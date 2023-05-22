@@ -4,66 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ui.admin.AdminNotificationsFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/admin_panel_notifications_type"
+        style="@style/ShTP.Dropdown"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:hint="@string/admin_panel_notifications_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/admin_panel_notifications_groups"
+        style="@style/ShTP.Dropdown"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="@string/admin_panel_notifications_groups"
+        app:layout_constraintEnd_toEndOf="@id/admin_panel_notifications_type"
+        app:layout_constraintStart_toStartOf="@id/admin_panel_notifications_type"
+        app:layout_constraintTop_toBottomOf="@id/admin_panel_notifications_type">
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/admin_panel_notifications_text"
+        style="@style/ShTP.TextInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="@id/admin_panel_notifications_groups"
+        app:layout_constraintStart_toStartOf="@id/admin_panel_notifications_groups"
+        app:layout_constraintTop_toBottomOf="@id/admin_panel_notifications_groups">
+
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Notification message" />
+            android:hint="@string/admin_panel_notifications_text" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Spinner
-        android:id="@+id/groups"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
-
-    <Spinner
-        android:id="@+id/type"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groups" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/admin_panel_notifications_button_send"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        android:text="Send"
+        android:text="@string/admin_panel_notifications_button_send"
         android:textColor="@android:color/white"
         android:textSize="12sp"
         android:theme="@style/Widget.Material3.Button"
         app:cornerRadius="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/type" />
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/admin_panel_notifications_text"
+        app:layout_constraintStart_toStartOf="@id/admin_panel_notifications_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

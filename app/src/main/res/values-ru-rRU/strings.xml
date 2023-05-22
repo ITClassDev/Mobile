@@ -70,7 +70,15 @@
     <string name="dialog_button_quit">Выйти</string>
     <string name="dialog_button_new_version">Скачать</string>
     <string name="dialog_description_new_version">С момента последней проверки вышла новая версия приложения %1$s. Открыть страницу загрузки?</string>
-    <string name="dialog_description_quit" />
     <string name="admin_panel">Панель Администратора</string>
     <string name="admin_panel_header">Панель Администратора</string>
+    <string name="admin_panel_notifications_type">Тип уведомления</string>
+    <string name="admin_panel_notifications_groups">Целевая группа пользователей</string>
+    <string name="admin_panel_notifications_text">Сообщение</string>
+    <string name="admin_panel_notifications_button_send">Отправить</string>
+    <string name="admin_panel_notifications_type_notification">Информация</string>
+    <string name="admin_panel_notifications_type_warning">Предупреждение</string>
+    <string name="dialog_title_notified">Успех</string>
+    <string name="dialog_description_notified">Уведомление успешно отправлено</string>
+    <string name="dialog_button_notified">Выйти</string>
 </resources>

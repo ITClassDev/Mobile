@@ -1,5 +1,6 @@
 package ru.slavapmk.shtp.io
 
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.MultipartBody
 import retrofit2.http.Body
@@ -61,7 +62,7 @@ interface ServerAPI {
     fun sendNotification(
         @Header("Authorization") token: String,
         @Body notification: PostNotification
-    ): Observable<Void>
+    ): Completable
 
     @GET("users/get_leaderboard/")
     fun getLeaderBoard(): Observable<LeaderBoard>
