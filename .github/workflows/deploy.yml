@@ -22,10 +22,8 @@ jobs:
         run: ./gradlew --daemon
       - name: Build Unsigned Apk
         run: ./gradlew build -Penv=production --parallel
-      - name: Compress APK
-        run: zipalign -v -p 4 app/build/outputs/apk/debug/app-debug.apk shtp-unsigned-aligned.apk
       - name: Sign APK
-        run: apksigner sign --ks sertificate.jks --ks-pass pass:${{ secrets.SERTIFICATE_PASS }} --out shtp.apk shtp-unsigned-aligned.apk
+        run: apksigner sign --ks sertificate.jks --ks-pass pass:${{ secrets.SERTIFICATE_PASS }} --out shtp.apk app/build/outputs/apk/debug/app-debug.apk
       - name: Generate release version
         id: version
         run: |
