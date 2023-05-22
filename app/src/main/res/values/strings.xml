@@ -114,4 +114,10 @@
     <string name="a2">Свободно мест: %1$d/%2$d</string>
     <string name="a3">Дата проведения: %1$s %2$s</string>
     <string name="a4">Длительность: %1$sh</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="send_achievement">Send achievement</string>
+    <string name="dialog_title_achievement">Success</string>
+    <string name="dialog_button_achievement">OK</string>
+    <string name="dialog_description_achievement">Your achievement has been successfully submitted for moderation. As soon as it is reviewed, you will receive a notification.</string>
 </resources>

@@ -14,6 +14,7 @@ import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 import ru.slavapmk.shtp.io.dto.PatchResult
+import ru.slavapmk.shtp.io.dto.achievements.AchievementPut
 import ru.slavapmk.shtp.io.dto.achievements.AchievementsResponse
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
@@ -71,6 +72,14 @@ interface ServerAPI {
     @Multipart
     fun updateAvatar(
         @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part
+    ): Observable<PatchAvatarResponse>
+
+    @PUT("achievements/")
+    @Multipart
+    fun putAchievement(
+        @Header("Authorization") token: String,
+        @Part("achievement") achievement: AchievementPut,
         @Part file: MultipartBody.Part
     ): Observable<PatchAvatarResponse>
 

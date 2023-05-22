@@ -30,7 +30,10 @@ class Dialog(
             inflate.findViewById<MaterialButton>(R.id.button_cancel)
                 .setOnClickListener { dialog?.cancel() }
             inflate.findViewById<MaterialButton>(R.id.button_ok)
-                .setOnClickListener(onSuccess)
+                .setOnClickListener { view ->
+                    dialog?.cancel()
+                    onSuccess.onClick(view)
+                }
 
             builder.setView(inflate).create()
         } ?: throw IllegalStateException("Activity cannot be null")
