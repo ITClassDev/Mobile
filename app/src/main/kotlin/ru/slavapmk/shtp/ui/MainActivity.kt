@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         window.navigationBarColor = ContextCompat.getColor(this, R.color.panel)
 
         when (Values.user.userRole) {
-            0 -> intArrayOf(R.id.admin)
+            0 -> intArrayOf(R.id.tasks, R.id.admin)
 
             1 -> intArrayOf(R.id.tasks, R.id.achievements)
 
