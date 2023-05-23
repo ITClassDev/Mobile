@@ -33,6 +33,8 @@ class AdminGroupFragment : Fragment() {
                 resources.getString(R.string.dialog_description_group_delete),
                 resources.getString(R.string.dialog_button_group_delete)
             ) {
+                requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.VISIBLE
+                binding.addUserFrame.visibility = View.GONE
                 Values.api.deleteGroup(Values.token, deleteGroup.id)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
@@ -40,9 +42,11 @@ class AdminGroupFragment : Fragment() {
                         val indexOf = groups.indexOf(deleteGroup)
                         groups.removeAt(indexOf)
                         binding.list.adapter?.notifyItemRemoved(indexOf)
+                        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.GONE
                     }, {
                         Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG)
                             .show()
+                        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.GONE
                     })
             }.show(childFragmentManager.beginTransaction(), "delete_group")
         }
@@ -68,6 +72,8 @@ class AdminGroupFragment : Fragment() {
             })
 
         binding.applyAddGroupButton.setOnClickListener {
+            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.VISIBLE
+            binding.addUserFrame.visibility = View.GONE
             val name = binding.vreojfickdp.editText?.text.toString()
             Values.api.createGroup(Values.token, GroupPut(name))
                 .observeOn(AndroidSchedulers.mainThread())
@@ -80,11 +86,12 @@ class AdminGroupFragment : Fragment() {
                             groups.clear()
                             groups.addAll(it.userGroups)
                             binding.list.adapter?.notifyItemRangeChanged(0, groups.size)
+                            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.GONE
                         }, {
                             Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG)
                                 .show()
+                            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.GONE
                         })
-                    binding.addUserFrame.visibility = View.GONE
                 }, {
                     Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG).show()
                 })

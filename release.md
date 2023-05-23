@@ -1,1 +1,1 @@
-Now events will be show correctly duration
+Internet fixes

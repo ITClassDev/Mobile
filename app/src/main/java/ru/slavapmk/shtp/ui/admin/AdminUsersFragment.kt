@@ -36,6 +36,9 @@ class AdminUsersFragment : Fragment() {
                 resources.getString(R.string.dialog_description_user_delete),
                 resources.getString(R.string.dialog_button_user_delete)
             ) {
+                requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                    View.VISIBLE
+                binding.addUserFrame.visibility = View.GONE
                 Values.api.deleteUser(Values.token, delete_user.id)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
@@ -43,6 +46,8 @@ class AdminUsersFragment : Fragment() {
                         val indexOf = usersList.indexOf(delete_user)
                         usersList.removeAt(indexOf)
                         binding.list.adapter?.notifyItemRemoved(indexOf)
+                        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                            View.GONE
                     }, {
                         if (it is HttpException && it.code() == 500)
                             Toast.makeText(
@@ -56,6 +61,8 @@ class AdminUsersFragment : Fragment() {
                                 "Internet Error",
                                 Toast.LENGTH_SHORT
                             ).show()
+                        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                            View.GONE
                     })
             }.show(childFragmentManager.beginTransaction(), "delete_user")
         }
@@ -118,6 +125,7 @@ class AdminUsersFragment : Fragment() {
 
 
         binding.applyRegisterButton.setOnClickListener {
+            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.VISIBLE
             val name = binding.vreojfickdp.editText?.text.toString()
             val lastname = binding.eoirk.editText?.text.toString()
             val email = binding.njikm.editText?.text.toString()
@@ -129,7 +137,7 @@ class AdminUsersFragment : Fragment() {
             val group = groups[
                     (binding.groupSelector.editText as? MaterialAutoCompleteTextView)?.text.toString()
             ]!!
-
+            binding.addUserFrame.visibility = View.GONE
             Values.api.registerUser(
                 Values.token,
                 UserPut(email, name, group, lastname, year, password, role)
@@ -146,12 +154,16 @@ class AdminUsersFragment : Fragment() {
                             usersList.clear()
                             usersList.addAll(it.users)
                             binding.list.adapter?.notifyItemRangeChanged(0, it.users.size)
+                            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                                View.GONE
                         }, {
                             Toast.makeText(
                                 requireContext(),
                                 "Internet Error",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                                View.GONE
                         })
                 }
 
