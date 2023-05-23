@@ -41,7 +41,8 @@
         android:contentDescription="@string/add_user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_plus_24" />
+        app:srcCompat="@drawable/ic_plus_24"
+        app:tint="@android:color/white" />
 
     <FrameLayout
         android:id="@+id/add_user_frame"
