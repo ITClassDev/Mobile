@@ -17,6 +17,7 @@ import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.FragmentAdminGroupBinding
 import ru.slavapmk.shtp.io.dto.groups.GroupPut
 import ru.slavapmk.shtp.io.dto.user.get.UserGroup
+import ru.slavapmk.shtp.ui.Dialog
 
 class AdminGroupFragment : Fragment() {
     @SuppressLint("CheckResult")
@@ -27,17 +28,23 @@ class AdminGroupFragment : Fragment() {
         val binding = FragmentAdminGroupBinding.inflate(inflater)
         val groups = ArrayList<UserGroup>()
         binding.list.adapter = GroupAdapter(groups) { deleteGroup ->
-            Values.api.deleteGroup(Values.token, deleteGroup.id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({
-                    val indexOf = groups.indexOf(deleteGroup)
-                    groups.removeAt(indexOf)
-                    binding.list.adapter?.notifyItemRemoved(indexOf)
-                }, {
-                    Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG)
-                        .show()
-                })
+            Dialog(
+                resources.getString(R.string.dialog_title_group_delete),
+                resources.getString(R.string.dialog_description_group_delete),
+                resources.getString(R.string.dialog_button_group_delete)
+            ) {
+                Values.api.deleteGroup(Values.token, deleteGroup.id)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({
+                        val indexOf = groups.indexOf(deleteGroup)
+                        groups.removeAt(indexOf)
+                        binding.list.adapter?.notifyItemRemoved(indexOf)
+                    }, {
+                        Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG)
+                            .show()
+                    })
+            }.show(childFragmentManager.beginTransaction(), "delete_group")
         }
         binding.list.layoutManager = LinearLayoutManager(context)
         val dividerItemDecoration =
