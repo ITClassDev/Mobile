@@ -43,11 +43,17 @@ class EventsAdapter(private val myDataset: List<Event>) :
             atZone.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
             atZone.format(DateTimeFormatter.ofPattern("HH:mm"))
         )
+        val d = d(parse, finish)
+
+        holder.itemView.findViewById<TextView>(R.id.a4).text = holder.res.getString(
+            R.string.a4,
+            if (d % 1 == 0.0) d.toInt().toString() else d.toString()
+        )
+    }
+
+    private fun d(parse: ZonedDateTime?, finish: ZonedDateTime?): Double {
         val d = Duration.between(parse, finish).toMinutes().toDouble() / 60
-        if (d % 1 == 0.0)
-            holder.itemView.findViewById<TextView>(R.id.a4).text = holder.res.getString(R.string.a4, d.toInt())
-        else
-            holder.itemView.findViewById<TextView>(R.id.a4).text = holder.res.getString(R.string.a4, d)
+        return d
     }
 
     override fun getItemCount() = myDataset.size
