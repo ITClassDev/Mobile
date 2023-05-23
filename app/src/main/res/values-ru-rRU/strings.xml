@@ -85,7 +85,7 @@
     <string name="dialog_description_user_delete" />
     <string name="dialog_button_user_delete">Удалить</string>
     <string name="add_user">Зарегестрировать пользователя</string>
-    <string name="name">Ммя</string>
+    <string name="name">Имя</string>
     <string name="family">Фамилия</string>
     <string name="password">Пароль</string>
     <string name="role">Роль</string>
