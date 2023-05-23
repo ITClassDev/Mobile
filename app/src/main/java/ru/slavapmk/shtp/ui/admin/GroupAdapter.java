@@ -45,8 +45,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
 
     @Override
     public void onBindViewHolder(@NonNull GroupAdapter.GroupViewHolder holder, int position) {
-        holder.textView.setText(groups.get(position).getName());
-        holder.button.setOnClickListener(view -> onDelete.accept(groups.get(position)));
+        UserGroup group = groups.get(position);
+        holder.textView.setText(group.getName());
+        holder.button.setOnClickListener(view -> onDelete.accept(group));
     }
 
     @Override

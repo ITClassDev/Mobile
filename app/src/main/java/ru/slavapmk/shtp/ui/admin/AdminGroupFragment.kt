@@ -16,6 +16,7 @@ import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.FragmentAdminGroupBinding
 import ru.slavapmk.shtp.io.dto.groups.GroupPut
+import ru.slavapmk.shtp.io.dto.user.get.UserGroup
 
 class AdminGroupFragment : Fragment() {
     @SuppressLint("CheckResult")
@@ -24,12 +25,40 @@ class AdminGroupFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentAdminGroupBinding.inflate(inflater)
-
-        updateUsers(binding)
-
-        binding.addGroupButton.setOnClickListener {
-            binding.addUserFrame.visibility = View.VISIBLE
+        val groups = ArrayList<UserGroup>()
+        binding.list.adapter = GroupAdapter(groups) { deleteGroup ->
+            Values.api.deleteGroup(Values.token, deleteGroup.id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                    val indexOf = groups.indexOf(deleteGroup)
+                    groups.removeAt(indexOf)
+                    binding.list.adapter?.notifyItemRemoved(indexOf)
+                }, {
+                    Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG)
+                        .show()
+                })
         }
+        binding.list.layoutManager = LinearLayoutManager(context)
+        val dividerItemDecoration =
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        dividerItemDecoration.setDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.divider_20
+            )!!
+        )
+        binding.list.addItemDecoration(dividerItemDecoration)
+
+        Values.api.allUsers(Values.token)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({
+                groups.addAll(it.userGroups)
+                binding.list.adapter?.notifyItemRangeInserted(0, groups.size)
+            }, {
+                Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG).show()
+            })
 
         binding.applyAddGroupButton.setOnClickListener {
             val name = binding.vreojfickdp.editText?.text.toString()
@@ -37,45 +66,27 @@ class AdminGroupFragment : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
-                    updateUsers(binding)
+                    Values.api.allUsers(Values.token)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe({
+                            groups.clear()
+                            groups.addAll(it.userGroups)
+                            binding.list.adapter?.notifyItemRangeChanged(0, groups.size)
+                        }, {
+                            Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG)
+                                .show()
+                        })
                     binding.addUserFrame.visibility = View.GONE
                 }, {
                     Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG).show()
                 })
         }
 
-        return binding.root
-    }
+        binding.addGroupButton.setOnClickListener {
+            binding.addUserFrame.visibility = View.VISIBLE
+        }
 
-    @SuppressLint("CheckResult")
-    private fun updateUsers(binding: FragmentAdminGroupBinding) {
-        Values.api.allUsers(Values.token)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe({
-                binding.list.adapter = GroupAdapter(it.userGroups) { deleteGroup ->
-                    Values.api.deleteGroup(Values.token, deleteGroup.id)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe({
-                            updateUsers(binding)
-                        }, {
-                            Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG)
-                                .show()
-                        })
-                }
-                binding.list.layoutManager = LinearLayoutManager(context)
-                val dividerItemDecoration =
-                    DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-                dividerItemDecoration.setDrawable(
-                    ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.divider_20
-                    )!!
-                )
-                binding.list.addItemDecoration(dividerItemDecoration)
-            }, {
-                Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG).show()
-            })
+        return binding.root
     }
 }

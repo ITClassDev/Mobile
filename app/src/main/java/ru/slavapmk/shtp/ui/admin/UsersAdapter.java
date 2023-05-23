@@ -58,13 +58,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.GroupViewHol
 
     @Override
     public void onBindViewHolder(@NonNull UsersAdapter.GroupViewHolder holder, int position) {
-        holder.textView.setText(holder.resources.getString(R.string.user_name, groups.get(position).getFirstName(), groups.get(position).getLastName()));
-        String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + groups.get(position).getUserAvatarPath();
+        User user = groups.get(position);
+        holder.textView.setText(holder.resources.getString(R.string.user_name, user.getFirstName(), user.getLastName()));
+        String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + user.getUserAvatarPath();
         if (Values.user.getUserAvatarPath().endsWith(".gif"))
             holder.glide.asGif().circleCrop().load(avatarWebPath).into(holder.imageView);
         else
             holder.glide.asBitmap().circleCrop().load(avatarWebPath).into(holder.imageView);
-        holder.delete.setOnClickListener(view -> onDeleteUser.accept(groups.get(position)));
+        holder.delete.setOnClickListener(view -> onDeleteUser.accept(user));
     }
 
     @Override
