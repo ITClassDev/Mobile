@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -12,9 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import retrofit2.HttpException
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.FragmentAdminUsersBinding
+import ru.slavapmk.shtp.io.dto.user.get.User
 import ru.slavapmk.shtp.io.dto.user.put.UserPut
 import ru.slavapmk.shtp.ui.Dialog
 
@@ -26,34 +29,61 @@ class AdminUsersFragment : Fragment() {
     ): View {
         val binding = FragmentAdminUsersBinding.inflate(inflater)
         var groups: Map<String, Int> = mapOf()
+        val usersList: ArrayList<User> = ArrayList()
+        val usersAdapter = UsersAdapter(usersList) { delete_user ->
+            Dialog(
+                resources.getString(R.string.dialog_title_user_delete),
+                resources.getString(R.string.dialog_description_user_delete),
+                resources.getString(R.string.dialog_button_user_delete)
+            ) {
+                Values.api.deleteUser(Values.token, delete_user.id)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({
+                        val indexOf = usersList.indexOf(delete_user)
+                        usersList.removeAt(indexOf)
+                        binding.list.adapter?.notifyItemRemoved(indexOf)
+                    }, {
+                        if (it is HttpException && it.code() == 500)
+                            Toast.makeText(
+                                requireContext(),
+                                "500 Internal Server Error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        else
+                            Toast.makeText(
+                                requireContext(),
+                                "Internet Error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                    })
+            }.show(childFragmentManager.beginTransaction(), "delete_user")
+        }
+        binding.list.adapter = usersAdapter
+        binding.list.layoutManager = LinearLayoutManager(context)
+        val dividerItemDecoration =
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        dividerItemDecoration.setDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.divider_20
+            )!!
+        )
+        binding.list.addItemDecoration(dividerItemDecoration)
 
         Values.api.allUsers(Values.token)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({
-                binding.list.adapter = UsersAdapter(it.users) { delete_user ->
-                    Dialog(
-                        resources.getString(R.string.dialog_title_user_delete),
-                        resources.getString(R.string.dialog_description_user_delete),
-                        resources.getString(R.string.dialog_button_user_delete)
-                    ) {
-                        Values.api.deleteUser(Values.token, delete_user.id)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribeOn(Schedulers.io())
-                            .subscribe({}, {})
-                    }.show(childFragmentManager.beginTransaction(), "delete_user")
-                }
-                binding.list.layoutManager = LinearLayoutManager(context)
-                val dividerItemDecoration =
-                    DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-                dividerItemDecoration.setDrawable(
-                    ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.divider_20
-                    )!!
-                )
-                binding.list.addItemDecoration(dividerItemDecoration)
-            }, {})
+                usersList.addAll(it.users)
+                binding.list.adapter?.notifyItemRangeInserted(0, it.users.size - 1)
+            }, {
+                Toast.makeText(
+                    requireContext(),
+                    "Internet Error",
+                    Toast.LENGTH_SHORT
+                ).show()
+            })
 
         binding.addUserButton.setOnClickListener {
             binding.addUserFrame.visibility = View.VISIBLE
@@ -78,7 +108,13 @@ class AdminUsersFragment : Fragment() {
                 (binding.groupSelector.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
                     groups.keys.toTypedArray()
                 )
-            }, {})
+            }, {
+                Toast.makeText(
+                    requireContext(),
+                    "Internet Error",
+                    Toast.LENGTH_SHORT
+                ).show()
+            })
 
 
         binding.applyRegisterButton.setOnClickListener {
@@ -102,33 +138,21 @@ class AdminUsersFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .subscribe {
                     binding.addUserFrame.visibility = View.GONE
+
                     Values.api.allUsers(Values.token)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe({
-                            binding.list.adapter = UsersAdapter(it.users) { delete_user ->
-                                Dialog(
-                                    resources.getString(R.string.dialog_title_user_delete),
-                                    resources.getString(R.string.dialog_description_user_delete),
-                                    resources.getString(R.string.dialog_button_user_delete)
-                                ) {
-                                    Values.api.deleteUser(Values.token, delete_user.id)
-                                        .observeOn(AndroidSchedulers.mainThread())
-                                        .subscribeOn(Schedulers.io())
-                                        .subscribe({}, {})
-                                }.show(childFragmentManager.beginTransaction(), "delete_user")
-                            }
-                            binding.list.layoutManager = LinearLayoutManager(context)
-                            val dividerItemDecoration =
-                                DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-                            dividerItemDecoration.setDrawable(
-                                ContextCompat.getDrawable(
-                                    requireContext(),
-                                    R.drawable.divider_20
-                                )!!
-                            )
-                            binding.list.addItemDecoration(dividerItemDecoration)
-                        }, {})
+                            usersList.clear()
+                            usersList.addAll(it.users)
+                            binding.list.adapter?.notifyItemRangeChanged(0, it.users.size)
+                        }, {
+                            Toast.makeText(
+                                requireContext(),
+                                "Internet Error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        })
                 }
 
         }
