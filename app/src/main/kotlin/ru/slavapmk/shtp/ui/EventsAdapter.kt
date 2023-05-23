@@ -43,8 +43,11 @@ class EventsAdapter(private val myDataset: List<Event>) :
             atZone.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
             atZone.format(DateTimeFormatter.ofPattern("HH:mm"))
         )
-        holder.itemView.findViewById<TextView>(R.id.a4).text =
-            holder.res.getString(R.string.a4, Duration.between(parse, finish).toHours())
+        val d = Duration.between(parse, finish).toMinutes().toDouble() / 60
+        if (d % 1 == 0.0)
+            holder.itemView.findViewById<TextView>(R.id.a4).text = holder.res.getString(R.string.a4, d.toInt())
+        else
+            holder.itemView.findViewById<TextView>(R.id.a4).text = holder.res.getString(R.string.a4, d)
     }
 
     override fun getItemCount() = myDataset.size

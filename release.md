@@ -1,1 +1,1 @@
-Now all the colors of the Floating Action Button icons have a distinct color (changed from black, which is the default to white)
+Now events will be show correctly duration
