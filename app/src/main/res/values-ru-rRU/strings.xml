@@ -104,7 +104,7 @@
     <string name="create_group">Создать группу</string>
     <string name="a2">Свободно мест: %1$d/%2$d</string>
     <string name="a3">Дата проведения: %1$s %2$s</string>
-    <string name="a4">Длительность: %1$sч</string>
+    <string name="a4">Длительность: %1$dч</string>
     <string name="description">Описание</string>
     <string name="title">Заголовок</string>
     <string name="send_achievement">Отправить</string>
