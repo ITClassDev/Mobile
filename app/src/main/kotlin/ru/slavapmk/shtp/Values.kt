@@ -10,6 +10,7 @@ import ru.slavapmk.shtp.components.versions.github.GithubVersionManager
 import ru.slavapmk.shtp.io.EventsAPI
 import ru.slavapmk.shtp.io.ServerAPI
 import ru.slavapmk.shtp.io.dto.achievements.Achievements
+import ru.slavapmk.shtp.io.dto.events.mos.Event
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
 import ru.slavapmk.shtp.io.dto.tasks.DailyChallenge
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
@@ -31,6 +32,7 @@ object Values {
     lateinit var achievements: Achievements
     lateinit var notifications: AllNotifications
     lateinit var dailyChallenge: DailyChallenge
+    val events: List<Event> = ArrayList()
 
     val httpLoggingInterceptor = HttpLoggingInterceptor()
 
