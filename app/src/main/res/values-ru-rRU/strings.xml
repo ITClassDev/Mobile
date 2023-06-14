@@ -114,4 +114,7 @@
     <string name="dialog_button_group_delete">Удалить</string>
     <string name="events_not_available">Сейчас нет доступных мероприятий</string>
     <string name="achievements_not_available" >Вы не добавили ни одного достижения</string>
+    <string name="user_role_student">Ученик</string>
+    <string name="user_role_teacher">Учитель</string>
+    <string name="user_role_administrator">Администратор</string>
 </resources>

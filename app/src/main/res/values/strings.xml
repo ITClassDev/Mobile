@@ -125,4 +125,7 @@
     <string name="dialog_button_group_delete">Delete</string>
     <string name="events_not_available">No events available right now</string>
     <string name="achievements_not_available" >You haven\'t added any achievements</string>
+    <string name="user_role_student">Student</string>
+    <string name="user_role_teacher">Teacher</string>
+    <string name="user_role_administrator">Administrator</string>
 </resources>

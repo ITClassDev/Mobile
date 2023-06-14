@@ -53,6 +53,15 @@ public class ProfileFragment extends Fragment {
         binding.userPersonalKaggle.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getUserKaggle()))));
         binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(!Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ? "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()))));
 
+        boolean socialBlock = false;
+        for (int i = 0; i < binding.userSocialContainer.getChildCount(); i++)
+            if (binding.userSocialContainer.getChildAt(i).getVisibility() == View.VISIBLE)
+                socialBlock = true;
+        if (socialBlock)
+            binding.userSocialContainer.setVisibility(View.VISIBLE);
+        else
+            binding.userSocialContainer.setVisibility(View.GONE);
+
         RequestManager with = Glide.with(this);
         String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + Values.user.getUserAvatarPath();
         if (Values.user.getUserAvatarPath().endsWith(".gif"))
@@ -60,7 +69,8 @@ public class ProfileFragment extends Fragment {
         else
             with.asBitmap().circleCrop().load(avatarWebPath).into(binding.avatar);
 
-        if ("".equals(Values.user.getUserAboutText())) binding.aboutText.setVisibility(View.GONE);
+        if (Values.user.getUserAboutText() == null || "".equals(Values.user.getUserAboutText()))
+            binding.aboutText.setVisibility(View.GONE);
         else binding.aboutText.setText(Values.user.getUserAboutText());
 
         if (Values.user.getTechStack() == null || Values.user.getTechStack().equals(""))
@@ -71,6 +81,16 @@ public class ProfileFragment extends Fragment {
                 chip.setText(s);
                 binding.techStack.addView(chip);
             }
+
+        binding.accountStatus.setText(getResources().getString(
+                switch (Values.user.getUserRole()) {
+                    case 0 -> R.string.user_role_student;
+                    case 1 -> R.string.user_role_teacher;
+                    case 2 -> R.string.user_role_administrator;
+                    default ->
+                            throw new IllegalStateException("Unexpected value: " + Values.user.getUserRole());
+                }
+        ));
 
         binding.buttonLogout.setOnClickListener(view -> {
             FragmentManager manager = getChildFragmentManager();

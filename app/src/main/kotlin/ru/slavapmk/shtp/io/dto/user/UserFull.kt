@@ -11,7 +11,7 @@ data class UserFull(
     val rating: Int,
     val systemAchievements: Any,
     val techStack: String?,
-    val userAboutText: String,
+    val userAboutText: String?,
     var userAvatarPath: String,
     val userGithub: String?,
     val userKaggle: String?,
