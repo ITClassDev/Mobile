@@ -61,6 +61,13 @@ public class EventsFragment extends Fragment {
                             Values.INSTANCE.getEvents().size()
                     );
                     binding.swipe.setRefreshing(false);
+
+                    if (Values.INSTANCE.getEvents().size() == 0) {
+                        binding.eventsEmpty.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        binding.eventsEmpty.setVisibility(View.GONE);
+                    }
                 });
     }
 }
