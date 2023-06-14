@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.HttpException
 import ru.slavapmk.shtp.R
@@ -22,14 +23,16 @@ import ru.slavapmk.shtp.io.dto.user.put.UserPut
 import ru.slavapmk.shtp.ui.Dialog
 
 class AdminUsersFragment : Fragment() {
+    private val usersList = ArrayList<User>()
+    private val groups: MutableMap<String, Int> = mutableMapOf()
+    private lateinit var binding: FragmentAdminUsersBinding
+
     @SuppressLint("CheckResult")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentAdminUsersBinding.inflate(inflater)
-        var groups: Map<String, Int> = mapOf()
-        val usersList: ArrayList<User> = ArrayList()
+        binding = FragmentAdminUsersBinding.inflate(inflater)
         val usersAdapter = UsersAdapter(usersList) { delete_user ->
             Dialog(
                 resources.getString(R.string.dialog_title_user_delete),
@@ -78,20 +81,6 @@ class AdminUsersFragment : Fragment() {
         )
         binding.list.addItemDecoration(dividerItemDecoration)
 
-        Values.api.allUsers(Values.token)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe({
-                usersList.addAll(it.users)
-                binding.list.adapter?.notifyItemRangeInserted(0, it.users.size - 1)
-            }, {
-                Toast.makeText(
-                    requireContext(),
-                    "Internet Error",
-                    Toast.LENGTH_SHORT
-                ).show()
-            })
-
         binding.addUserButton.setOnClickListener {
             binding.addUserFrame.visibility = View.VISIBLE
         }
@@ -105,23 +94,6 @@ class AdminUsersFragment : Fragment() {
         (binding.roleSelector.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
             roles.keys.toTypedArray()
         )
-
-        Values.api.allUsers(Values.token)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe({ allUsers ->
-                groups = allUsers.userGroups.associate { it.name to it.id }
-
-                (binding.groupSelector.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
-                    groups.keys.toTypedArray()
-                )
-            }, {
-                Toast.makeText(
-                    requireContext(),
-                    "Internet Error",
-                    Toast.LENGTH_SHORT
-                ).show()
-            })
 
 
         binding.applyRegisterButton.setOnClickListener {
@@ -144,31 +116,51 @@ class AdminUsersFragment : Fragment() {
             )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe {
-                    binding.addUserFrame.visibility = View.GONE
-
-                    Values.api.allUsers(Values.token)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe({
-                            usersList.clear()
-                            usersList.addAll(it.users)
-                            binding.list.adapter?.notifyItemRangeChanged(0, it.users.size)
-                            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
-                                View.GONE
-                        }, {
-                            Toast.makeText(
-                                requireContext(),
-                                "Internet Error",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
-                                View.GONE
-                        })
-                }
+                .subscribe({
+                    loadData()
+                }, {
+                    Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG).show()
+                })
 
         }
+        binding.swipe.setOnRefreshListener {
+            loadData()
+        }
+
+        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.VISIBLE
+        loadData()
 
         return binding.root
+    }
+
+    private fun loadData(): Disposable {
+        return Values.api.allUsers(Values.token)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({ users ->
+                groups.clear()
+                groups.putAll(users.userGroups.associate { group -> group.name to group.id })
+                (binding.groupSelector.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
+                    groups.keys.toTypedArray()
+                )
+
+                val oldSize = usersList.size
+                usersList.clear()
+                binding.list.adapter?.notifyItemRangeRemoved(0, oldSize)
+                usersList.addAll(users.users)
+                binding.list.adapter?.notifyItemRangeInserted(0, users.users.size)
+                requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                    View.GONE
+                binding.swipe.isRefreshing = false
+            }, {
+                Toast.makeText(
+                    requireContext(),
+                    "Internet Error",
+                    Toast.LENGTH_SHORT
+                ).show()
+                requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                    View.GONE
+                binding.swipe.isRefreshing = false
+            })
     }
 }
