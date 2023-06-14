@@ -29,10 +29,7 @@
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
             android:layout_marginTop="38dp"
-            android:layout_marginEnd="30dp"
-            app:dividerDrawable="@drawable/divider_10"
             app:flexDirection="column"
             app:justifyContent="space_between"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,86 +40,100 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/admin_panel_button_groups"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/background"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:text="@string/groups"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:theme="@style/Widget.Material3.Button"
-                app:cornerRadius="100dp" />
+                app:cornerRadius="0dp"
+                app:icon="@drawable/menu_usergroup"
+                app:iconSize="25dp"
+                app:iconTint="@color/white" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/admin_panel_button_users"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/background"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:text="@string/users"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:theme="@style/Widget.Material3.Button"
-                app:cornerRadius="100dp" />
+                app:cornerRadius="0dp"
+                app:icon="@drawable/panel_user"
+                app:iconSize="25dp"
+                app:iconTint="@color/white" />
 
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/admin_panel_button_achievements"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/montserrat_bold"-->
-<!--                android:gravity="center"-->
-<!--                android:insetTop="0dp"-->
-<!--                android:insetBottom="0dp"-->
-<!--                android:text="@string/achievements_admin_page"-->
-<!--                android:textColor="@android:color/white"-->
-<!--                android:textSize="12sp"-->
-<!--                android:theme="@style/Widget.Material3.Button"-->
-<!--                app:cornerRadius="100dp" />-->
-
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/admin_panel_button_tasks"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/montserrat_bold"-->
-<!--                android:gravity="center"-->
-<!--                android:insetTop="0dp"-->
-<!--                android:insetBottom="0dp"-->
-<!--                android:text="@string/tasks_admin_page"-->
-<!--                android:textColor="@android:color/white"-->
-<!--                android:textSize="12sp"-->
-<!--                android:theme="@style/Widget.Material3.Button"-->
-<!--                app:cornerRadius="100dp" />-->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/admin_panel_button_notifications"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/background"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:text="@string/notifications_admin_page"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:theme="@style/Widget.Material3.Button"
-                app:cornerRadius="100dp" />
+                app:cornerRadius="0dp"
+                app:icon="@drawable/panel_bell"
+                app:iconSize="25dp"
+                app:iconTint="@color/white" />
 
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/admin_panel_button_system"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/montserrat_bold"-->
-<!--                android:gravity="center"-->
-<!--                android:insetTop="0dp"-->
-<!--                android:insetBottom="0dp"-->
-<!--                android:text="@string/system_admin_page"-->
-<!--                android:textColor="@android:color/white"-->
-<!--                android:textSize="12sp"-->
-<!--                android:theme="@style/Widget.Material3.Button"-->
-<!--                app:cornerRadius="100dp" />-->
+
+            <!--            <com.google.android.material.button.MaterialButton-->
+            <!--                android:id="@+id/admin_panel_button_achievements"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/montserrat_bold"-->
+            <!--                android:gravity="center"-->
+            <!--                android:insetTop="0dp"-->
+            <!--                android:insetBottom="0dp"-->
+            <!--                android:text="@string/achievements_admin_page"-->
+            <!--                android:textColor="@android:color/white"-->
+            <!--                android:textSize="12sp"-->
+            <!--                android:theme="@style/Widget.Material3.Button"-->
+            <!--                app:cornerRadius="100dp" />-->
+
+            <!--            <com.google.android.material.button.MaterialButton-->
+            <!--                android:id="@+id/admin_panel_button_tasks"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/montserrat_bold"-->
+            <!--                android:gravity="center"-->
+            <!--                android:insetTop="0dp"-->
+            <!--                android:insetBottom="0dp"-->
+            <!--                android:text="@string/tasks_admin_page"-->
+            <!--                android:textColor="@android:color/white"-->
+            <!--                android:textSize="12sp"-->
+            <!--                android:theme="@style/Widget.Material3.Button"-->
+            <!--                app:cornerRadius="100dp" />-->
+
+            <!--            <com.google.android.material.button.MaterialButton-->
+            <!--                android:id="@+id/admin_panel_button_system"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/montserrat_bold"-->
+            <!--                android:gravity="center"-->
+            <!--                android:insetTop="0dp"-->
+            <!--                android:insetBottom="0dp"-->
+            <!--                android:text="@string/system_admin_page"-->
+            <!--                android:textColor="@android:color/white"-->
+            <!--                android:textSize="12sp"-->
+            <!--                android:theme="@style/Widget.Material3.Button"-->
+            <!--                app:cornerRadius="100dp" />-->
 
 
         </com.google.android.flexbox.FlexboxLayout>
