@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
@@ -20,20 +21,23 @@ import ru.slavapmk.shtp.io.dto.user.get.UserGroup
 import ru.slavapmk.shtp.ui.Dialog
 
 class AdminGroupFragment : Fragment() {
+    private val groups = ArrayList<UserGroup>()
+    private lateinit var binding: FragmentAdminGroupBinding
+
     @SuppressLint("CheckResult")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentAdminGroupBinding.inflate(inflater)
-        val groups = ArrayList<UserGroup>()
+        binding = FragmentAdminGroupBinding.inflate(inflater)
         binding.list.adapter = GroupAdapter(groups) { deleteGroup ->
             Dialog(
                 resources.getString(R.string.dialog_title_group_delete),
                 resources.getString(R.string.dialog_description_group_delete),
                 resources.getString(R.string.dialog_button_group_delete)
             ) {
-                requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.VISIBLE
+                requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                    View.VISIBLE
                 binding.addUserFrame.visibility = View.GONE
                 Values.api.deleteGroup(Values.token, deleteGroup.id)
                     .observeOn(AndroidSchedulers.mainThread())
@@ -42,11 +46,13 @@ class AdminGroupFragment : Fragment() {
                         val indexOf = groups.indexOf(deleteGroup)
                         groups.removeAt(indexOf)
                         binding.list.adapter?.notifyItemRemoved(indexOf)
-                        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.GONE
+                        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                            View.GONE
                     }, {
                         Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG)
                             .show()
-                        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.GONE
+                        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                            View.GONE
                     })
             }.show(childFragmentManager.beginTransaction(), "delete_group")
         }
@@ -61,16 +67,6 @@ class AdminGroupFragment : Fragment() {
         )
         binding.list.addItemDecoration(dividerItemDecoration)
 
-        Values.api.allUsers(Values.token)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe({
-                groups.addAll(it.userGroups)
-                binding.list.adapter?.notifyItemRangeInserted(0, groups.size)
-            }, {
-                Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG).show()
-            })
-
         binding.applyAddGroupButton.setOnClickListener {
             requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.VISIBLE
             binding.addUserFrame.visibility = View.GONE
@@ -79,19 +75,7 @@ class AdminGroupFragment : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
-                    Values.api.allUsers(Values.token)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe({
-                            groups.clear()
-                            groups.addAll(it.userGroups)
-                            binding.list.adapter?.notifyItemRangeChanged(0, groups.size)
-                            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.GONE
-                        }, {
-                            Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG)
-                                .show()
-                            requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.GONE
-                        })
+                    loadData()
                 }, {
                     Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG).show()
                 })
@@ -100,7 +84,34 @@ class AdminGroupFragment : Fragment() {
         binding.addGroupButton.setOnClickListener {
             binding.addUserFrame.visibility = View.VISIBLE
         }
+        binding.swipe.setOnRefreshListener {
+            loadData()
+        }
+
+        requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.VISIBLE
+        loadData()
 
         return binding.root
+    }
+
+    private fun loadData(): Disposable {
+        return Values.api.allUsers(Values.token)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({
+                val oldSize = groups.size
+                groups.clear()
+                binding.list.adapter?.notifyItemRangeRemoved(0, oldSize)
+                groups.addAll(it.userGroups)
+                binding.list.adapter?.notifyItemRangeInserted(0, groups.size)
+                requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                    View.GONE
+                binding.swipe.isRefreshing = false
+            }, {
+                Toast.makeText(requireContext(), "Internet error", Toast.LENGTH_LONG).show()
+                requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
+                    View.GONE
+                binding.swipe.isRefreshing = false
+            })
     }
 }
