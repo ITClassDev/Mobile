@@ -39,18 +39,18 @@ class AchievementsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAchievementsBinding.inflate(inflater)
-        val data = ArrayList<Achievement>()
+        val achievements = ArrayList<Achievement>()
         Values.achievements.system?.let {
-            data.addAll(it)
+            achievements.addAll(it)
         }
         Values.achievements.base?.let {
-            data.addAll(it)
+            achievements.addAll(it)
         }
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", Locale.US)
-        data.sortBy {
+        achievements.sortBy {
             dateFormat.parse(it.received_at)?.time
         }
-        data.reverse()
+        achievements.reverse()
         val dividerItemDecoration =
             DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         dividerItemDecoration.setDrawable(
@@ -60,8 +60,12 @@ class AchievementsFragment : Fragment() {
             )!!
         )
         binding.textView42.addItemDecoration(dividerItemDecoration)
-        binding.textView42.adapter = AchievementsAdapter(data)
+        binding.textView42.adapter = AchievementsAdapter(achievements)
         binding.textView42.layoutManager = LinearLayoutManager(context)
+
+        binding.achievementsEmpty.visibility =
+            if (achievements.size == 0) View.VISIBLE
+            else View.GONE
 
         binding.addGroupButton.setOnClickListener {
             binding.frame.visibility = View.VISIBLE

@@ -124,4 +124,5 @@
     <string name="dialog_description_group_delete" translatable="false" />
     <string name="dialog_button_group_delete">Delete</string>
     <string name="events_not_available">No events available right now</string>
+    <string name="achievements_not_available" >You haven\'t added any achievements</string>
 </resources>
