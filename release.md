@@ -1,12 +1,3 @@
-Added refreshing support into events and admin pages
+Temporary update is a stub due to the transition of the BackEnd to a new version, with the possibility of supporting the old one. The next update will be for the transition to Api v2
 
-
-Reworking the design into:
-* User profile
-* Achievements
-* Events
-* Admin menu page
-* Application theme (for light global theme)
-
-
-Added messages if events or achievements not exist or unavailable
+Changed the endpoint with the version postscript
