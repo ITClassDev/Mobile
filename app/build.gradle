@@ -26,6 +26,10 @@ android {
     lint {
         disable 'MissingTranslation'
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
+    }
     viewBinding.enabled = true
 }
 
