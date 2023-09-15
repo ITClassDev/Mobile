@@ -23,10 +23,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
     lint {
         disable 'MissingTranslation'
     }
@@ -35,11 +31,11 @@ android {
 
 dependencies {
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
-    implementation "androidx.core:core-ktx:1.10.1"
-    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
-    implementation "androidx.navigation:navigation-fragment:2.6.0"
-    implementation "androidx.core:core:1.10.1"
+    implementation "androidx.core:core-ktx:1.12.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.2"
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.2"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.2"
+    implementation "androidx.core:core-ktx:1.12.0"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation "com.google.android.material:material:1.9.0"
     implementation "androidx.appcompat:appcompat:1.6.1"
@@ -64,7 +60,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 }
 
-task generateVersions {
+tasks.register('generateVersions') {
     doLast {
         file("./version.txt").text = android.defaultConfig.versionName + "\n" + android.defaultConfig.versionCode
     }
