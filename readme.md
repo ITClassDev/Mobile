@@ -17,7 +17,7 @@ The dedicated endpoint used is **shtp.1561.ru**
 * Change Backend-API address at **app/src/main/kotlin/ru/slavapmk/shtp/Values.kt**:
 
   `const val ENDPOINT_URL = "YOUR_URL_HERE"`
-* Install Java 17, [Amazon Correto](https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html) may be suitable
+* Install Java 18, [Amazon Correto](https://docs.aws.amazon.com/corretto/latest/corretto-20-ug/downloads-list.html) may be suitable
 * Set the path to the Java bin folder in the **JAVA_HOME** environment variable
 * Run `./gradlew build --no-daemon` in the project folder
 * The compiled APK file is located in the **app/build/outputs/apk/debug** folder.
