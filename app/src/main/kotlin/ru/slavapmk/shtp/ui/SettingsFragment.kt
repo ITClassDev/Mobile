@@ -54,12 +54,12 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentSettingsBinding.inflate(inflater)
-        binding.aboutInput.setText(Values.user.userAboutText)
-        binding.githubSocInput.setText(Values.user.userGithub)
-        binding.telegramSocInput.setText(Values.user.userTelegram)
-        binding.stepikSocInput.setText(Values.user.userStepik)
-        binding.kaggleSocInput.setText(Values.user.userKaggle)
-        binding.personalSocInput.setText(Values.user.userWebsite)
+        binding.aboutInput.setText(Values.user.aboutText)
+        binding.githubSocInput.setText(Values.user.github)
+        binding.telegramSocInput.setText(Values.user.telegram)
+        binding.stepikSocInput.setText(Values.user.stepik)
+        binding.kaggleSocInput.setText(Values.user.kaggle)
+        binding.personalSocInput.setText(Values.user.website)
         binding.saveButton.setOnClickListener {
             requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.VISIBLE
 
@@ -176,7 +176,7 @@ class SettingsFragment : Fragment() {
         }
         binding.settingsAvatarImage.setOnClickListener {
             val intent = Intent(requireActivity(), FullScreenImageActivity::class.java)
-            intent.putExtra("uri", ENDPOINT_URL + "/storage/avatars/" + Values.user.userAvatarPath)
+            intent.putExtra("uri", ENDPOINT_URL + "/storage/avatars/" + Values.user.avatarPath)
             requireActivity().startActivity(intent)
         }
 
@@ -196,7 +196,7 @@ class SettingsFragment : Fragment() {
                 )
             ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                 .subscribe { response ->
-                    Values.user.userAvatarPath = response.avatar
+                    Values.user.avatarPath = response.avatar
                     loadAvatar()
                 }
         }
@@ -205,9 +205,9 @@ class SettingsFragment : Fragment() {
     private fun loadAvatar() {
         val with = Glide.with(this)
         val avatarPath: String =
-            ENDPOINT_URL + "/storage/avatars/" + Values.user.userAvatarPath
+            ENDPOINT_URL + "storage/avatars/" + Values.user.avatarPath
         val builder =
-            if (Values.user.userAvatarPath.endsWith(".gif")) with.asGif() else with.asBitmap()
+            if (Values.user.avatarPath.endsWith(".gif")) with.asGif() else with.asBitmap()
         builder.load(avatarPath).circleCrop().into(binding.settingsAvatarImage)
     }
 

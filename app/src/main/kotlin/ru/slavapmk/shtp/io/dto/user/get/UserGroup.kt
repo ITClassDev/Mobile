@@ -1,6 +1,7 @@
 package ru.slavapmk.shtp.io.dto.user.get
 
 data class UserGroup(
-    val id: Int,
-    val name: String
+    val uuid: String,
+    val name: String,
+    val color: String
 )

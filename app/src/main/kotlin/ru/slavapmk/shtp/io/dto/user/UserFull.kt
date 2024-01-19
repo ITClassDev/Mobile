@@ -1,22 +1,27 @@
 package ru.slavapmk.shtp.io.dto.user
 
+import ru.slavapmk.shtp.io.dto.user.get.UserGroup
+
 data class UserFull(
     val firstName: String,
-    val groupId: Any,
-    val id: Int,
+    val uuid: String,
     val lastName: String,
     val learningClass: Int,
-    val middleName: String,
-    val new_notifications: Boolean,
+    val patronymicName: String?,
+    val newNotifications: Boolean,
     val rating: Int,
     val systemAchievements: Any,
     val techStack: String?,
-    val userAboutText: String?,
-    var userAvatarPath: String,
-    val userGithub: String?,
-    val userKaggle: String?,
-    val userRole: Int,
-    val userStepik: String?,
-    val userTelegram: String?,
-    val userWebsite: String?
+    val aboutText: String?,
+    var avatarPath: String,
+    val telegram: String?,
+    val website: String?,
+    val github: String?,
+    val kaggle: String?,
+    val stepik: String?,
+    val role: String,
+    val nickName: String?,
+    val shtpMaintainer: Boolean?,
+    val groupId: String,
+    val group: UserGroup
 )

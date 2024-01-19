@@ -24,7 +24,7 @@ import ru.slavapmk.shtp.ui.Dialog
 
 class AdminUsersFragment : Fragment() {
     private val usersList = ArrayList<User>()
-    private val groups: MutableMap<String, Int> = mutableMapOf()
+    private val groups: MutableMap<String, String> = mutableMapOf()
     private lateinit var binding: FragmentAdminUsersBinding
 
     @SuppressLint("CheckResult")
@@ -42,7 +42,7 @@ class AdminUsersFragment : Fragment() {
                 requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
                     View.VISIBLE
                 binding.addUserFrame.visibility = View.GONE
-                Values.api.deleteUser(Values.token, delete_user.id)
+                Values.api.deleteUser(Values.token, delete_user.uuid)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe({
@@ -103,16 +103,24 @@ class AdminUsersFragment : Fragment() {
             val email = binding.njikm.editText?.text.toString()
             val password = binding.mklwq.editText?.text.toString()
             val role = roles[
-                    (binding.roleSelector.editText as? MaterialAutoCompleteTextView)?.text.toString()
+                (binding.roleSelector.editText as? MaterialAutoCompleteTextView)?.text.toString()
             ]!!
             val year = binding.ueirowp.editText?.text.toString().toInt()
             val group = groups[
-                    (binding.groupSelector.editText as? MaterialAutoCompleteTextView)?.text.toString()
+                (binding.groupSelector.editText as? MaterialAutoCompleteTextView)?.text.toString()
             ]!!
             binding.addUserFrame.visibility = View.GONE
-            Values.api.registerUser(
+            Values.api.createUser(
                 Values.token,
-                UserPut(email, name, group, lastname, year, password, role)
+                UserPut(
+                    email,
+                    password,
+                    name,
+                    lastname,
+                    if (role == 0) "student" else "teacher",
+                    year,
+                    group
+                )
             )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -139,7 +147,7 @@ class AdminUsersFragment : Fragment() {
             .subscribeOn(Schedulers.io())
             .subscribe({ users ->
                 groups.clear()
-                groups.putAll(users.userGroups.associate { group -> group.name to group.id })
+                groups.putAll(users.userGroups.associate { group -> group.name to group.uuid })
                 (binding.groupSelector.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
                     groups.keys.toTypedArray()
                 )

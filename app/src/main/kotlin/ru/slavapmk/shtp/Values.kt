@@ -17,7 +17,7 @@ import ru.slavapmk.shtp.io.dto.user.LeaderBoard
 import ru.slavapmk.shtp.io.dto.user.UserFull
 
 object Values {
-    const val ENDPOINT_URL = "https://shtp.1561.ru/api/v1/"
+    const val ENDPOINT_URL = "https://shtp.1561.ru/"
     private const val EVENTS_ENDPOINT_URL = "https://regs.temocenter.ru/"
     private const val LOG_REQUESTS = true
 
@@ -31,7 +31,7 @@ object Values {
     lateinit var leaderboard: LeaderBoard
     lateinit var achievements: Achievements
     lateinit var notifications: AllNotifications
-    lateinit var dailyChallenge: DailyChallenge
+//    lateinit var dailyChallenge: DailyChallenge
     val events: List<Event> = ArrayList()
 
     val httpLoggingInterceptor = HttpLoggingInterceptor()

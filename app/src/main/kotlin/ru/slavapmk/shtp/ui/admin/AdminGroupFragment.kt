@@ -39,7 +39,7 @@ class AdminGroupFragment : Fragment() {
                 requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
                     View.VISIBLE
                 binding.addUserFrame.visibility = View.GONE
-                Values.api.deleteGroup(Values.token, deleteGroup.id)
+                Values.api.deleteGroup(Values.token, deleteGroup.uuid)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe({

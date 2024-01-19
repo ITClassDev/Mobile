@@ -1,7 +1,7 @@
 package ru.slavapmk.shtp.io.dto.notifications
 
 data class PostNotification(
-    val groupId: Int,
+    val toGroup: String,
     val text: String,
     val type: Int
 )

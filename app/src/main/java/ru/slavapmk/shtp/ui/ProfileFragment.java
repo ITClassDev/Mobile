@@ -36,22 +36,22 @@ public class ProfileFragment extends Fragment {
         binding.buttonOpenSettings.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_profile_to_settings));
         binding.profileUserName.setText(getResources().getString(R.string.user_name, Values.user.getFirstName(), Values.user.getLastName()));
 
-        if (Values.user.getUserGithub() == null || Values.user.getUserGithub().equals(""))
+        if (Values.user.getGithub() == null || Values.user.getGithub().equals(""))
             binding.userPersonalGithub.setVisibility(View.GONE);
-        if (Values.user.getUserTelegram() == null || Values.user.getUserTelegram().equals(""))
+        if (Values.user.getTelegram() == null || Values.user.getTelegram().equals(""))
             binding.userPersonalTelegram.setVisibility(View.GONE);
-        if (Values.user.getUserStepik() == null || Values.user.getUserStepik().equals(""))
+        if (Values.user.getStepik() == null || Values.user.getStepik().equals(""))
             binding.userPersonalStepik.setVisibility(View.GONE);
-        if (Values.user.getUserKaggle() == null || Values.user.getUserKaggle().equals(""))
+        if (Values.user.getKaggle() == null || Values.user.getKaggle().equals(""))
             binding.userPersonalKaggle.setVisibility(View.GONE);
-        if (Values.user.getUserWebsite() == null || Values.user.getUserWebsite().equals(""))
+        if (Values.user.getWebsite() == null || Values.user.getWebsite().equals(""))
             binding.userPersonalWebsite.setVisibility(View.GONE);
 
-        binding.userPersonalGithub.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getUserGithub()))));
-        binding.userPersonalTelegram.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getUserTelegram()))));
-        binding.userPersonalStepik.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getUserStepik()))));
-        binding.userPersonalKaggle.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getUserKaggle()))));
-        binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(!Values.user.getUserWebsite().startsWith("http://") && !Values.user.getUserWebsite().startsWith("https://") ? "http://" + Values.user.getUserWebsite() : Values.user.getUserWebsite()))));
+        binding.userPersonalGithub.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/" + Values.user.getGithub()))));
+        binding.userPersonalTelegram.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/" + Values.user.getTelegram()))));
+        binding.userPersonalStepik.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://stepik.org/users/" + Values.user.getStepik()))));
+        binding.userPersonalKaggle.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kaggle.com/" + Values.user.getKaggle()))));
+        binding.userPersonalWebsite.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(!Values.user.getWebsite().startsWith("http://") && !Values.user.getWebsite().startsWith("https://") ? "http://" + Values.user.getWebsite() : Values.user.getWebsite()))));
 
         boolean socialBlock = false;
         for (int i = 0; i < binding.userSocialContainer.getChildCount(); i++)
@@ -63,15 +63,15 @@ public class ProfileFragment extends Fragment {
             binding.userSocialContainer.setVisibility(View.GONE);
 
         RequestManager with = Glide.with(this);
-        String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + Values.user.getUserAvatarPath();
-        if (Values.user.getUserAvatarPath().endsWith(".gif"))
+        String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + Values.user.getAvatarPath();
+        if (Values.user.getAvatarPath().endsWith(".gif"))
             with.asGif().circleCrop().load(avatarWebPath).into(binding.avatar);
         else
             with.asBitmap().circleCrop().load(avatarWebPath).into(binding.avatar);
 
-        if (Values.user.getUserAboutText() == null || "".equals(Values.user.getUserAboutText()))
+        if (Values.user.getAboutText() == null || "".equals(Values.user.getAboutText()))
             binding.aboutText.setVisibility(View.GONE);
-        else binding.aboutText.setText(Values.user.getUserAboutText());
+        else binding.aboutText.setText(Values.user.getAboutText());
 
         if (Values.user.getTechStack() == null || Values.user.getTechStack().equals(""))
             binding.techStack.setVisibility(View.GONE);
@@ -83,12 +83,12 @@ public class ProfileFragment extends Fragment {
             }
 
         binding.accountStatus.setText(getResources().getString(
-                switch (Values.user.getUserRole()) {
-                    case 0 -> R.string.user_role_student;
-                    case 1 -> R.string.user_role_teacher;
-                    case 2 -> R.string.user_role_administrator;
+                switch (Values.user.getRole()) {
+                    case "student" -> R.string.user_role_student;
+                    case "teacher" -> R.string.user_role_teacher;
+                    case "admin" -> R.string.user_role_administrator;
                     default ->
-                            throw new IllegalStateException("Unexpected value: " + Values.user.getUserRole());
+                            throw new IllegalStateException("Unexpected value: " + Values.user.getRole());
                 }
         ));
 
@@ -113,7 +113,7 @@ public class ProfileFragment extends Fragment {
         binding.userStatisticScore.setText(String.format(Locale.getDefault(), "%d", Values.user.getRating()));
         for (int i = 0; i < Values.leaderboard.size(); i++) {
             LeaderBoardItem leaderBoardItem = Values.leaderboard.get(i);
-            if (leaderBoardItem.getId() == Values.user.getId()) {
+            if (leaderBoardItem.getUuid() == Values.user.getUuid()) {
                 binding.userStatisticPosition.setText(String.format(Locale.getDefault(), "%d", i + 1));
                 break;
             }

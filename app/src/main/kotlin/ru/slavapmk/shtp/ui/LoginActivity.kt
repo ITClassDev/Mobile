@@ -14,11 +14,11 @@ import retrofit2.HttpException
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.ActivityLoginBinding
-import ru.slavapmk.shtp.io.dto.achievements.AchievementsResponse
+import ru.slavapmk.shtp.io.dto.achievements.Achievements
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
-import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
+import ru.slavapmk.shtp.io.dto.user.UserFull
 import java.net.ConnectException
 
 class LoginActivity : AppCompatActivity() {
@@ -104,11 +104,14 @@ class LoginActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .subscribe({
                     when (it) {
-                        is AuthMeResponse -> Values.user = it.user
+                        is UserFull -> {
+                            println()
+                            Values.user = it
+                        }
 
                         is LeaderBoard -> Values.leaderboard = it
 
-                        is AchievementsResponse -> Values.achievements = it.achievements
+                        is Achievements -> Values.achievements = it
 
                         is AllNotifications -> Values.notifications = it
 

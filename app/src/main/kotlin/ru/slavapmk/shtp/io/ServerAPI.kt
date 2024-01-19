@@ -15,67 +15,67 @@ import retrofit2.http.Part
 import retrofit2.http.Path
 import ru.slavapmk.shtp.io.dto.PatchResult
 import ru.slavapmk.shtp.io.dto.achievements.AchievementPut
-import ru.slavapmk.shtp.io.dto.achievements.AchievementsResponse
+import ru.slavapmk.shtp.io.dto.achievements.Achievements
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
-import ru.slavapmk.shtp.io.dto.auth.AuthMeResponse
 import ru.slavapmk.shtp.io.dto.groups.GroupPut
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
 import ru.slavapmk.shtp.io.dto.notifications.PostNotification
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
+import ru.slavapmk.shtp.io.dto.user.UserFull
 import ru.slavapmk.shtp.io.dto.user.get.UsersAll
 import ru.slavapmk.shtp.io.dto.user.patch.PatchAvatarResponse
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 import ru.slavapmk.shtp.io.dto.user.put.UserPut
 
 interface ServerAPI {
-    @POST("auth/login")
+    @POST("api/v1/auth/login")
     fun login(
         @Body authRequest: AuthLoginRequest
     ): Observable<AuthLoginResponse>
 
-    @GET("auth/me")
+    @GET("api/v1/auth/me")
     fun getMe(
         @Header("Authorization") token: String
-    ): Observable<AuthMeResponse>
+    ): Observable<UserFull>
 
-    @PATCH("users")
+    @PATCH("api/v1/users")
     fun updateProfile(
         @Header("Authorization") token: String,
         @Body user: PatchUserRequest
     ): Observable<PatchResult>
 
-    @GET("users")
+    @GET("api/v1/users")
     fun allUsers(
         @Header("Authorization") token: String
     ): Observable<UsersAll>
 
-    @PUT("users")
-    fun registerUser(
+    @PUT("api/v1/users")
+    fun createUser(
         @Header("Authorization") token: String,
         @Body user: UserPut
     ): Completable
 
-    @PUT("users/groups")
+    @PUT("api/v1/groups")
     fun createGroup(
         @Header("Authorization") token: String,
         @Body group: GroupPut
     ): Completable
 
-    @DELETE("users/groups/{group_id}")
+    @DELETE("api/v1/groups/{group_id}")
     fun deleteGroup(
         @Header("Authorization") token: String,
-        @Path("group_id") groupId: Int
+        @Path("group_id") groupId: String
     ): Completable
 
-    @PATCH("users/avatar")
+    @PATCH("api/v1/users/avatar")
     @Multipart
     fun updateAvatar(
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part
     ): Observable<PatchAvatarResponse>
 
-    @PUT("achievements")
+    @PUT("api/v1/achievements")
     @Multipart
     fun putAchievement(
         @Header("Authorization") token: String,
@@ -83,25 +83,25 @@ interface ServerAPI {
         @Part file: MultipartBody.Part
     ): Observable<PatchAvatarResponse>
 
-    @DELETE("users/{user_id}")
+    @DELETE("api/v1/users/{user_id}")
     fun deleteUser(
         @Header("Authorization") token: String,
-        @Path("user_id") userId: Int
+        @Path("id") userId: String
     ): Completable
 
-    @GET("achievements")
-    fun getAchievements(@Header("Authorization") token: String): Observable<AchievementsResponse>
+    @GET("api/v1/achievements")
+    fun getAchievements(@Header("Authorization") token: String): Observable<ArrayList<Achievements>>
 
-    @GET("users/my_notifications")
+    @GET("api/v1/notifications/all")
     fun getNotifications(@Header("Authorization") token: String): Observable<AllNotifications>
 
-    @PUT("notifications")
+    @PUT("api/v1/notifications")
     fun sendNotification(
         @Header("Authorization") token: String,
         @Body notification: PostNotification
     ): Completable
 
-    @GET("users/get_leaderboard")
+    @GET("api/v1/users/leaderboard")
     fun getLeaderBoard(): Observable<LeaderBoard>
 
 //    @GET("programming/day_challenge")

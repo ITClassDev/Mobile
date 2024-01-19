@@ -61,7 +61,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.GroupViewHol
         User user = groups.get(position);
         holder.textView.setText(holder.resources.getString(R.string.user_name, user.getFirstName(), user.getLastName()));
         String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + user.getUserAvatarPath();
-        if (Values.user.getUserAvatarPath().endsWith(".gif"))
+        if (Values.user.getAvatarPath().endsWith(".gif"))
             holder.glide.asGif().circleCrop().load(avatarWebPath).into(holder.imageView);
         else
             holder.glide.asBitmap().circleCrop().load(avatarWebPath).into(holder.imageView);

@@ -4,7 +4,7 @@ data class User(
     val firstName: String,
     val groupId: Int,
     val groupName: String,
-    val id: Int,
+    val uuid: String,
     val lastName: String,
     val userAvatarPath: String
 )
