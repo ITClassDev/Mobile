@@ -21,7 +21,7 @@ jobs:
       - name: Build Unsigned Apk
         run: ./gradlew build -Penv=production --parallel
       - name: Compress APK
-        run: ${ANDROID_HOME}/build-tools/27.0.0/zipalign -v -p 4 app/build/outputs/apk/debug/app-debug.apk shtp-unsigned-aligned.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk shtp-unsigned-aligned.apk
       - name: Sign APK
         run: ${ANDROID_HOME}/build-tools/27.0.0/apksigner sign --ks sertificate.jks --ks-pass pass:${{ secrets.SERTIFICATE_PASS }} --key-pass pass:${{ secrets.SERTIFICATE_PASS }} --out shtp.apk shtp-unsigned-aligned.apk
       - name: Generate release version
