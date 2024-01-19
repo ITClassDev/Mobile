@@ -30,11 +30,11 @@ class AdminNotificationsFragment : Fragment() {
             Pair(resources.getString(R.string.admin_panel_notifications_type_warning), 5)
         )
 
-        Values.api.allUsers(Values.token)
+        Values.api.groupList(Values.token)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe({ allUsers ->
-                groups = allUsers.userGroups.associate { it.name to it.uuid }
+            .subscribe({ newGroups ->
+                groups = newGroups.associate { it.name to it.uuid }
 
                 (binding.adminPanelNotificationsGroups.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
                     groups.keys.toTypedArray()

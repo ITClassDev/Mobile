@@ -23,7 +23,8 @@ import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
 import ru.slavapmk.shtp.io.dto.notifications.PostNotification
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
 import ru.slavapmk.shtp.io.dto.user.UserFull
-import ru.slavapmk.shtp.io.dto.user.get.UsersAll
+import ru.slavapmk.shtp.io.dto.user.get.User
+import ru.slavapmk.shtp.io.dto.user.get.UserGroup
 import ru.slavapmk.shtp.io.dto.user.patch.PatchAvatarResponse
 import ru.slavapmk.shtp.io.dto.user.patch.PatchUserRequest
 import ru.slavapmk.shtp.io.dto.user.put.UserPut
@@ -48,13 +49,18 @@ interface ServerAPI {
     @GET("api/v1/users")
     fun allUsers(
         @Header("Authorization") token: String
-    ): Observable<UsersAll>
+    ): Observable<List<User>>
 
     @PUT("api/v1/users")
     fun createUser(
         @Header("Authorization") token: String,
         @Body user: UserPut
     ): Completable
+
+    @GET("api/v1/groups")
+    fun groupList(
+        @Header("Authorization") token: String
+    ): Observable<List<UserGroup>>
 
     @PUT("api/v1/groups")
     fun createGroup(

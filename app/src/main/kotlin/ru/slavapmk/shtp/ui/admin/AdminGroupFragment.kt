@@ -95,14 +95,14 @@ class AdminGroupFragment : Fragment() {
     }
 
     private fun loadData(): Disposable {
-        return Values.api.allUsers(Values.token)
+        return Values.api.groupList(Values.token)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({
                 val oldSize = groups.size
                 groups.clear()
                 binding.list.adapter?.notifyItemRangeRemoved(0, oldSize)
-                groups.addAll(it.userGroups)
+                groups.addAll(it)
                 binding.list.adapter?.notifyItemRangeInserted(0, groups.size)
                 requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
                     View.GONE

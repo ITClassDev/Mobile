@@ -2,6 +2,7 @@ package ru.slavapmk.shtp.ui.admin
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,18 +53,21 @@ class AdminUsersFragment : Fragment() {
                         requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
                             View.GONE
                     }, {
-                        if (it is HttpException && it.code() == 500)
+                        if (it is HttpException && it.code() == 500) {
+                            Log.d("TAAG", it.toString())
                             Toast.makeText(
                                 requireContext(),
                                 "500 Internal Server Error",
                                 Toast.LENGTH_SHORT
                             ).show()
-                        else
+                        } else {
+                            Log.d("TAAG", it.toString())
                             Toast.makeText(
                                 requireContext(),
                                 "Internet Error",
                                 Toast.LENGTH_SHORT
                             ).show()
+                        }
                         requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
                             View.GONE
                     })
@@ -146,8 +150,6 @@ class AdminUsersFragment : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({ users ->
-                groups.clear()
-                groups.putAll(users.userGroups.associate { group -> group.name to group.uuid })
                 (binding.groupSelector.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
                     groups.keys.toTypedArray()
                 )
@@ -155,8 +157,8 @@ class AdminUsersFragment : Fragment() {
                 val oldSize = usersList.size
                 usersList.clear()
                 binding.list.adapter?.notifyItemRangeRemoved(0, oldSize)
-                usersList.addAll(users.users)
-                binding.list.adapter?.notifyItemRangeInserted(0, users.users.size)
+                usersList.addAll(users)
+                binding.list.adapter?.notifyItemRangeInserted(0, users.size)
                 requireActivity().findViewById<View>(R.id.saving_progressbar).visibility =
                     View.GONE
                 binding.swipe.isRefreshing = false

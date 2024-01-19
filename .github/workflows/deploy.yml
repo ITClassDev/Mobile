@@ -1,0 +1,53 @@
+name: Build & Publish APK
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Build-APK:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+      - name: Run gradle daemon
+        run: ./gradlew --daemon
+      - name: Build Unsigned Apk
+        run: ./gradlew build -Penv=production --parallel
+      - name: Compress APK
+        run: ${ANDROID_HOME}/build-tools/27.0.0/zipalign -v -p 4 app/build/outputs/apk/debug/app-debug.apk shtp-unsigned-aligned.apk
+      - name: Sign APK
+        run: ${ANDROID_HOME}/build-tools/27.0.0/apksigner sign --ks sertificate.jks --ks-pass pass:${{ secrets.SERTIFICATE_PASS }} --key-pass pass:${{ secrets.SERTIFICATE_PASS }} --out shtp.apk shtp-unsigned-aligned.apk
+      - name: Generate release version
+        id: version
+        run: |
+          ./gradlew generateVersions
+          echo "RELEASE_NAME=$(sed '1!d' app/version.txt)" >> $GITHUB_OUTPUT
+          echo "RELEASE_CODE=$(sed '2!d' app/version.txt)" >> $GITHUB_OUTPUT
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.RELEASE_CODE }}
+          release_name: Release v${{ steps.version.outputs.RELEASE_NAME }}
+          body_path: release.md
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: shtp.apk
+          asset_name: ShTP.apk
+          asset_content_type: application/zip
