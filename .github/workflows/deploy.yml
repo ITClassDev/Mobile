@@ -14,6 +14,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
       - name: Make Gradle executable
         run: chmod +x ./gradlew
       - name: Run gradle daemon
@@ -21,9 +23,9 @@ jobs:
       - name: Build Unsigned Apk
         run: ./gradlew build -Penv=production --parallel
       - name: Compress APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk shtp-unsigned-aligned.apk
+        run: zipalign -v -p 4 app/build/outputs/apk/debug/app-debug.apk shtp-unsigned-aligned.apk
       - name: Sign APK
-        run: ${ANDROID_HOME}/build-tools/27.0.0/apksigner sign --ks sertificate.jks --ks-pass pass:${{ secrets.SERTIFICATE_PASS }} --key-pass pass:${{ secrets.SERTIFICATE_PASS }} --out shtp.apk shtp-unsigned-aligned.apk
+        run: apksigner sign --ks sertificate.jks --ks-pass pass:${{ secrets.SERTIFICATE_PASS }} --key-pass pass:${{ secrets.SERTIFICATE_PASS }} --out shtp.apk shtp-unsigned-aligned.apk
       - name: Generate release version
         id: version
         run: |
