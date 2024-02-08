@@ -14,18 +14,22 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
       - name: Make Gradle executable
         run: chmod +x ./gradlew
       - name: Run gradle daemon
         run: ./gradlew --daemon
       - name: Build Unsigned Apk
         run: ./gradlew build -Penv=production --parallel
-      - name: Compress APK
-        run: zipalign -v -p 4 app/build/outputs/apk/debug/app-debug.apk shtp-unsigned-aligned.apk
-      - name: Sign APK
-        run: apksigner sign --ks sertificate.jks --ks-pass pass:${{ secrets.SERTIFICATE_PASS }} --key-pass pass:${{ secrets.SERTIFICATE_PASS }} --out shtp.apk shtp-unsigned-aligned.apk
+      - uses: r0adkll/sign-android-release@v1
+        name: Sign APK
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          keyStorePassword: ${{ secrets.SERTIFICATE_PASS }}
+          keyPassword: ${{ secrets.SERTIFICATE_PASS }}
+        env:
+          BUILD_TOOLS_VERSION: "30.0.2"
       - name: Generate release version
         id: version
         run: |
@@ -50,6 +54,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: shtp.apk
+          asset_path: ${{ steps.sign_app.outputs.signedReleaseFile }}
           asset_name: ShTP.apk
           asset_content_type: application/zip
