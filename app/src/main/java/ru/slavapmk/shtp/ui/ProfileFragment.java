@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.google.android.material.chip.Chip;
 
@@ -65,9 +67,19 @@ public class ProfileFragment extends Fragment {
         RequestManager with = Glide.with(this);
         String avatarWebPath = ENDPOINT_URL + "storage/avatars/" + Values.user.getAvatarPath();
         if (Values.user.getAvatarPath().endsWith(".gif"))
-            with.asGif().circleCrop().load(avatarWebPath).into(binding.avatar);
+            with.asGif()
+                    .circleCrop()
+                    .placeholder(R.drawable.baseline_downloading_24)
+                    .error(R.drawable.baseline_signal_wifi_connected_no_internet_4_24)
+                    .fallback(R.drawable.baseline_broken_image_24)
+                    .load(avatarWebPath).into(binding.avatar);
         else
-            with.asBitmap().circleCrop().load(avatarWebPath).into(binding.avatar);
+            with.asBitmap()
+                    .circleCrop()
+                    .placeholder(R.drawable.baseline_downloading_24)
+                    .error(R.drawable.baseline_signal_wifi_connected_no_internet_4_24)
+                    .fallback(R.drawable.baseline_broken_image_24)
+                    .load(avatarWebPath).into(binding.avatar);
 
         if (Values.user.getAboutText() == null || "".equals(Values.user.getAboutText()))
             binding.aboutText.setVisibility(View.GONE);

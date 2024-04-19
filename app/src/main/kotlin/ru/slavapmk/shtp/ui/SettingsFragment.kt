@@ -216,7 +216,11 @@ class SettingsFragment : Fragment() {
             ENDPOINT_URL + "storage/avatars/" + Values.user.avatarPath
         val builder =
             if (Values.user.avatarPath.endsWith(".gif")) with.asGif() else with.asBitmap()
-        builder.load(avatarPath).circleCrop().into(binding.settingsAvatarImage)
+        builder
+            .placeholder(R.drawable.baseline_downloading_24)
+            .error(R.drawable.baseline_signal_wifi_connected_no_internet_4_24)
+            .fallback(R.drawable.baseline_broken_image_24)
+            .load(avatarPath).circleCrop().into(binding.settingsAvatarImage)
     }
 
     private fun reloadChips(stacks: ArrayList<String>) {
