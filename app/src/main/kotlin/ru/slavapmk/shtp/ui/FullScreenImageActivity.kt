@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.databinding.ActivityFullScreenImageBinding
 
@@ -17,7 +19,14 @@ class FullScreenImageActivity : AppCompatActivity() {
             .placeholder(R.drawable.baseline_downloading_24)
             .error(R.drawable.baseline_signal_wifi_connected_no_internet_4_24)
             .fallback(R.drawable.baseline_broken_image_24)
-            .load(uri).into(inflate.avatarFullscreenImage)
+            .load(uri)
+//            .apply(
+//                RequestOptions()
+//                    .
+//                    .override(Target.SIZE_ORIGINAL)
+//            )
+            .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+            .into(inflate.avatarFullscreenImage)
 
         inflate.fullscreenAvatarClose.setOnClickListener {
             finish()
