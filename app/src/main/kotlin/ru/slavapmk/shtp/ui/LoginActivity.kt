@@ -105,13 +105,14 @@ class LoginActivity : AppCompatActivity() {
                 .subscribe({
                     when (it) {
                         is UserFull -> {
-                            println()
                             Values.user = it
                         }
 
                         is LeaderBoard -> Values.leaderboard = it
 
-                        is Achievements -> Values.achievements = it
+                        is Achievements -> {
+                            Values.achievements = it
+                        }
 
                         is AllNotifications -> Values.notifications = it
 

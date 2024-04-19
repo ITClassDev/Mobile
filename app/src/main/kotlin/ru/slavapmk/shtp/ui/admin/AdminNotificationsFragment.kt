@@ -13,7 +13,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.slavapmk.shtp.R
 import ru.slavapmk.shtp.Values
 import ru.slavapmk.shtp.databinding.FragmentAdminNotificationsBinding
-import ru.slavapmk.shtp.io.dto.notifications.PostNotification
+import ru.slavapmk.shtp.io.dto.notifications.Data
+import ru.slavapmk.shtp.io.dto.notifications.PutNotification
 import ru.slavapmk.shtp.ui.Dialog
 
 class AdminNotificationsFragment : Fragment() {
@@ -49,10 +50,14 @@ class AdminNotificationsFragment : Fragment() {
             requireActivity().findViewById<View>(R.id.saving_progressbar).visibility = View.VISIBLE
             Values.api.sendNotification(
                 Values.token,
-                PostNotification(
+                PutNotification(
                     groups[(binding.adminPanelNotificationsGroups.editText as? MaterialAutoCompleteTextView)?.text.toString()]!!,
-                    binding.adminPanelNotificationsText.editText?.text.toString(),
-                    types[(binding.adminPanelNotificationsType.editText as? MaterialAutoCompleteTextView)?.text.toString()]!!
+                    types[(binding.adminPanelNotificationsType.editText as? MaterialAutoCompleteTextView)?.text.toString()]!!,
+                    Data(
+                        null,
+                        binding.adminPanelNotificationsText.editText?.text.toString(),
+                        0
+                    )
                 )
             )
                 .observeOn(AndroidSchedulers.mainThread())

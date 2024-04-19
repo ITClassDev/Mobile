@@ -1,7 +1,7 @@
 package ru.slavapmk.shtp.io.dto.achievements
 
 data class AchievementPut(
-    val description: String,
+    val eventType: String,
     val title: String,
-    val type: Int
+    val description: String
 )

@@ -187,17 +187,21 @@ class SettingsFragment : Fragment() {
         val mime = requireContext().contentResolver.getType(uri)!!
         requireActivity().contentResolver.openInputStream(uri)!!.use {
             val extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime)
-            val aaa = MultipartBody.Builder()
-                .addPart(
-                    MultipartBody.create(MediaType.get(mime), it.readBytes())
-                )
-                .build()
+            val readBytes = it.readBytes()
+//            val aaa = MultipartBody.Builder()
+//                .addPart(
+//                    MultipartBody.create(MediaType.get(mime), readBytes)
+//                )
+//                .build()
+            val create = RequestBody.create(MediaType.get(mime), readBytes)
+            val avatar = MultipartBody.Part.createFormData(
+                "avatar",
+                "avatar.${extension}",
+                create
+            )
             Values.api.updateAvatar(
-                Values.token, MultipartBody.Part.createFormData(
-                    "image",
-                    "avatar.${extension}",
-                    RequestBody.create(MediaType.get(mime), it.readBytes())
-                )
+                Values.token,
+                avatar
             ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                 .subscribe { response ->
                     Values.user.avatarPath = response.avatar

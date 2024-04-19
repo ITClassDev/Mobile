@@ -14,13 +14,14 @@ import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 import ru.slavapmk.shtp.io.dto.PatchResult
+import ru.slavapmk.shtp.io.dto.achievements.Achievement
 import ru.slavapmk.shtp.io.dto.achievements.AchievementPut
 import ru.slavapmk.shtp.io.dto.achievements.Achievements
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginRequest
 import ru.slavapmk.shtp.io.dto.auth.AuthLoginResponse
 import ru.slavapmk.shtp.io.dto.groups.GroupPut
 import ru.slavapmk.shtp.io.dto.notifications.AllNotifications
-import ru.slavapmk.shtp.io.dto.notifications.PostNotification
+import ru.slavapmk.shtp.io.dto.notifications.PutNotification
 import ru.slavapmk.shtp.io.dto.user.LeaderBoard
 import ru.slavapmk.shtp.io.dto.user.UserFull
 import ru.slavapmk.shtp.io.dto.user.get.User
@@ -78,7 +79,7 @@ interface ServerAPI {
     @Multipart
     fun updateAvatar(
         @Header("Authorization") token: String,
-        @Part file: MultipartBody.Part
+        @Part avatar: MultipartBody.Part
     ): Observable<PatchAvatarResponse>
 
     @PUT("api/v1/achievements")
@@ -86,8 +87,8 @@ interface ServerAPI {
     fun putAchievement(
         @Header("Authorization") token: String,
         @Part("achievement") achievement: AchievementPut,
-        @Part file: MultipartBody.Part
-    ): Observable<PatchAvatarResponse>
+        @Part confirmFile: MultipartBody.Part
+    ): Observable<Achievement>
 
     @DELETE("api/v1/users/{user_id}")
     fun deleteUser(
@@ -96,7 +97,7 @@ interface ServerAPI {
     ): Completable
 
     @GET("api/v1/achievements")
-    fun getAchievements(@Header("Authorization") token: String): Observable<ArrayList<Achievements>>
+    fun getAchievements(@Header("Authorization") token: String): Observable<Achievements>
 
     @GET("api/v1/notifications/all")
     fun getNotifications(@Header("Authorization") token: String): Observable<AllNotifications>
@@ -104,7 +105,7 @@ interface ServerAPI {
     @PUT("api/v1/notifications")
     fun sendNotification(
         @Header("Authorization") token: String,
-        @Body notification: PostNotification
+        @Body notification: PutNotification
     ): Completable
 
     @GET("api/v1/users/leaderboard")

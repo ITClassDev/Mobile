@@ -28,16 +28,17 @@ class AchievementsAdapter(private val myDataset: List<Achievement>) :
         holder.itemView.findViewById<TextView?>(R.id.title).text = achievement.title
         holder.itemView.findViewById<TextView?>(R.id.text).text = achievement.description
         holder.itemView.findViewById<TextView?>(R.id.achievement_date).text =
-            LocalDateTime.parse(achievement.received_at).format(formatter)
+            LocalDateTime.parse(achievement.accepted_at).format(formatter)
         holder.itemView.findViewById<TextView?>(R.id.achievement_score).text =
             achievement.points.toString()
         holder.itemView.findViewById<TextView?>(R.id.achievement_type).text =
-            when (achievement.type) {
-                0 -> "Олимпиады / Конкурсы"
-                1 -> "Мероприятия"
-                2 -> "Системное"
-                else -> ""
-            }
+            achievement.eventType
+//            when (achievement.eventType) {
+//                0 -> "Олимпиады / Конкурсы"
+//                1 -> "Мероприятия"
+//                2 -> "Системное"
+//                else -> ""
+//            }
     }
 
     override fun getItemCount() = myDataset.size

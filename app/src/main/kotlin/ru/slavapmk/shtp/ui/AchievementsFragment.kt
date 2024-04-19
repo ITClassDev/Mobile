@@ -39,16 +39,10 @@ class AchievementsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAchievementsBinding.inflate(inflater)
-        val achievements = ArrayList<Achievement>()
-        Values.achievements.system?.let {
-            achievements.addAll(it)
-        }
-        Values.achievements.base?.let {
-            achievements.addAll(it)
-        }
+        val achievements = ArrayList<Achievement>(Values.achievements)
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", Locale.US)
         achievements.sortBy {
-            dateFormat.parse(it.received_at)?.time
+            dateFormat.parse(it.accepted_at)?.time
         }
         achievements.reverse()
         val dividerItemDecoration =
@@ -108,12 +102,12 @@ class AchievementsFragment : Fragment() {
                     Values.api.putAchievement(
                         Values.token,
                         AchievementPut(
+                            "olimpiad",
                             binding.descriptionMe.editText?.text.toString(),
-                            binding.titttle.editText?.text.toString(),
-                            0
+                            binding.titttle.editText?.text.toString()
                         ),
                         MultipartBody.Part.createFormData(
-                            "file", "avatar.$extension", RequestBody.create(
+                            "confirmFile", "avatar.$extension", RequestBody.create(
                                 MediaType.parse(mime),
                                 it.readBytes()
                             )
