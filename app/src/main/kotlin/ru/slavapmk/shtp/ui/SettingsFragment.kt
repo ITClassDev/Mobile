@@ -203,10 +203,16 @@ class SettingsFragment : Fragment() {
                 Values.token,
                 avatar
             ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                .subscribe { response ->
+                .subscribe({ response ->
                     Values.user.avatarPath = response.avatar
                     loadAvatar()
-                }
+                }, {
+                    Toast.makeText(
+                        requireContext(),
+                        "Проблема в связи с сервером, проверьте подключение и повторите",
+                        Toast.LENGTH_LONG
+                    ).show()
+                })
         }
     }
 
